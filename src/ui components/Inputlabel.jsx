@@ -1,4 +1,4 @@
-import EyeIcon from "../assets/svg/eye.svg?react";
+import { Eye } from "../assets/svg";
 
 const Inputlabel = ({ type, children, id }) => {
   return (
@@ -15,7 +15,7 @@ const Inputlabel = ({ type, children, id }) => {
         />
         {type === "password" && (
           <div className="absolute pl-[324px] pt-3">
-            <EyeIcon />
+            <Eye/>
           </div>
         )}
       </div>
