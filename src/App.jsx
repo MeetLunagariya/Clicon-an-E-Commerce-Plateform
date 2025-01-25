@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route element={<UserAccount isForget={isForget} />}>
           <Route path="signIn" element={<SignIn setIsForget={handleIsForget}/>} />
-          <Route path="signIn/forgotPassword" element={<ForgetPassword />} />
+          <Route path="signIn/forgotPassword" element={<ForgetPassword  setIsForget={handleIsForget}/>} />
           <Route path="signUp" element={<SignUp />} />
         </Route>
       </Routes>
