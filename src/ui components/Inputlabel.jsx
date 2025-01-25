@@ -2,8 +2,8 @@ import { Eye } from "../assets/svg";
 
 const Inputlabel = ({ type, children, id }) => {
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={id} className=" text-sm flex justify-between">
+    <div className="flex flex-col gap-2 font-sans">
+      <label htmlFor={id} className=" text-sm text-[#191C1F] flex justify-between">
         {children}
       </label>
 

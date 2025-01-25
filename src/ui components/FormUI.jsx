@@ -1,8 +1,11 @@
+import AccountNavbar from "../userAccount/AccountNavbar";
+
 // eslint-disable-next-line react/prop-types
 const FormUI = ({ children }) => {
   return (
     <>
-        <div className="px-[32px] shadow-lg min-w-[424px] shadow-black/20">
+        <div className=" rounded-md border border-gray-200 min-w-[424px] shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]">
+          <AccountNavbar/>
           {children}
         </div>
     </>

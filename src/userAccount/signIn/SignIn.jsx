@@ -1,7 +1,8 @@
-import { GoogleLogo, RightArrow } from "../../assets/svg";
+import {  AppleLogo, GoogleLogo, RightArrow } from "../../assets/svg";
 import FormButton from "../../ui components/FormButton";
 // import { ReactComponent as ArrowRight } from "../../assets/svg/arrowRight.svg";
 import FormUI from "../../ui components/FormUI";
+import IdLogin from "../../ui components/IdLogin";
 import Inputlabel from "../../ui components/Inputlabel";
 
 const SignIn = () => {
@@ -9,7 +10,7 @@ const SignIn = () => {
     <>
       <FormUI>
         {/* <EyeIcon/> */}
-        <form action="">
+        <form action="" className="px-[32px]  mt-4">
           <div className="flex flex-col gap-y-2">
             <Inputlabel type={"email"} id={"email"}>
               Email Address
@@ -27,19 +28,17 @@ const SignIn = () => {
           </div>
         </form>
         {/* or */}
-        <div className="my-1">
+        <div className="my-1 flex flex-col gap-3 px-[32px]">
           <div className="flex items-center text-sm font-PublicSans text-[#77878F]  before:flex-1 before:border-t before:border-[#E4E7E9] before:me-6 after:flex-1 after:border-t after:border-[#E4E7E9] after:ms-6 ">
             or
           </div>
-        
-          <button className="flex border w-full h-[44px] p-2 justify-center">
-            <div className="mr-auto p-1">
-              <GoogleLogo />
-            </div>
-            <div className="text-[#475156] font-sans mr-auto text-sm my-auto">
-              Login with Google 
-            </div>
-          </button>
+          <IdLogin service={'Google'}>
+            <GoogleLogo/>
+          </IdLogin>
+          <IdLogin service={'Apple'}>
+            <AppleLogo/>
+          </IdLogin>
+         
         </div>
         
       </FormUI>
