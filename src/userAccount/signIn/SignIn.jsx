@@ -5,28 +5,18 @@ import IdLogin from "../../ui components/IdLogin";
 import Inputlabel from "../../ui components/Inputlabel";
 
 const SignIn = ({ setIsForget }) => {
-  
   return (
     <>
       {/* <EyeIcon/> */}
       <form action="" className="px-[32px]">
         <div className="flex flex-col gap-y-2">
-          <Inputlabel type={"email"} id={"email"}>
-            Email Address
-          </Inputlabel>
-          <Inputlabel type={"password"} id={"pass"}>
-            <span>Password</span>
-            <button className="text-[#2DA5F3]" onClick={setIsForget}>
-              {" "}
-              <Link to="forgotPassword">Forget Password</Link>
-            </button>
-          </Inputlabel>
-          <FormButton>
-            <span>sign in</span>
-            <span>
-              <RightArrow />
-            </span>
-          </FormButton>
+          <Inputlabel type={"email"} id={"email"} label={"Email Address"} />
+          <Inputlabel type={"password"} id={"pass"} label={"Password"} />
+          <button className="text-[#2DA5F3] text-sm flex justify-end -mt-1" onClick={setIsForget}>
+            <Link to="/forgotPassword">Forget Password</Link>
+          </button>
+          <FormButton title={"sign in"} />
+            
         </div>
       </form>
       {/* or */}

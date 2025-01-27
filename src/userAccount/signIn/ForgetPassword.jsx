@@ -21,14 +21,9 @@ const ForgetPassword = ({ setIsForget }) => {
         </Inputlabel>
       </div>
 
-      <FormButton>
-        <Link to="resetPassword" className="flex gap-2">
-          <span>Send Code</span>
-          <span>
-            <RightArrow />
-          </span>
-        </Link>
-      </FormButton>
+      <Link to="/resetPassword">
+        <FormButton title={"Send Code"}/>
+      </Link>
 
       <div className="flex flex-col gap-1 py-1 text-sm">
         <div className="flex gap-2">

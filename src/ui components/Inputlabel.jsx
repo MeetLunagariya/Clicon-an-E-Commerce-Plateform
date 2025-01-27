@@ -1,10 +1,10 @@
 import { Eye } from "../assets/svg";
 
-const Inputlabel = ({ type, children, id, placeholder }) => {
+const Inputlabel = ({ type, children, id, placeholder, label }) => {
   return (
     <div className="flex flex-col gap-2 font-sans">
       <label htmlFor={id} className=" text-sm text-[#191C1F] flex justify-between">
-        {children}
+        {label}
       </label>
 
       <div className="w-full relative flex">
@@ -14,11 +14,13 @@ const Inputlabel = ({ type, children, id, placeholder }) => {
           type={type}
           id={id}
         />
+
         {type === "password" && (
-          <div className="absolute pl-[324px] pt-3">
+          <button className="absolute right-0 pt-3 mr-2">
             <Eye/>
-          </div>
-        )}
+          </button>
+        )}  
+        
       </div>
     </div>
   );

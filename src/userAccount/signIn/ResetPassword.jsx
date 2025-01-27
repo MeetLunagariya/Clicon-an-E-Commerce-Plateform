@@ -17,12 +17,10 @@ const ResetPassword = () => {
       </div>
 
       <form action="" className="flex flex-col gap-4 mt-4">
-        <Inputlabel id={'password'} placeholder={'8+ characters'} type={'password'}>Password</Inputlabel>
-        <Inputlabel id={'confirmPassword'}  type={'password'}>Confirm Password</Inputlabel>
-        <FormButton>
-          <span>reset password</span>
-          <span><RightArrow/></span>
-        </FormButton>
+        <Inputlabel id={'password'} placeholder={'8+ characters'} type={'password'} label={"Password"}/>
+        <Inputlabel id={'confirmPassword'}  type={'password'} label={"Confirm Password"}/>
+        <FormButton title={'Reset Password'}/>
+        
       </form>
     </div>
   );

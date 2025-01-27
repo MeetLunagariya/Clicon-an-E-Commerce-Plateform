@@ -9,22 +9,20 @@ const SignUp = () => {
     <>
       <form action="" className="px-[32px]">
         <div className="flex flex-col gap-y-2">
-          <Inputlabel type={"name"} id={"name"}>
-            Name
-          </Inputlabel>
-          <Inputlabel type={"email"} id={"email"}>
-            Email Address
-          </Inputlabel>
+          <Inputlabel type={"name"} id={"name"} label={"Name"} />
+           
+          <Inputlabel type={"email"} id={"email"} label={"Email Address"} />
+            
           <Inputlabel
             type={"password"}
             id={"password"}
             placeholder={"8+ characters"}
-          >
-            Password
-          </Inputlabel>
-          <Inputlabel type={"password"} id={"confirmPassword"}>
-            Confirm Password
-          </Inputlabel>
+            label={"Password"}
+            
+          />
+           
+          <Inputlabel type={"password"} id={"confirmPassword"} label={"Confirm Password"} />
+            
 
           <div className="flex gap-2 mx-w-[360px]">
             <div className="inline-flex items-center mb-auto">
@@ -46,12 +44,8 @@ const SignUp = () => {
             </div>
           </div>
         </div>
-        <FormButton>
-          sign up
-          <span>
-            <RightArrow/>
-          </span>
-        </FormButton>
+        <FormButton title={"sign up"} />
+          
       </form>
       <div className="my-1 flex flex-col gap-3 px-[32px]">
           <div className="flex items-center text-sm font-PublicSans text-[#77878F]  before:flex-1 before:border-t before:border-[#E4E7E9] before:me-6 after:flex-1 after:border-t after:border-[#E4E7E9] after:ms-6 ">
