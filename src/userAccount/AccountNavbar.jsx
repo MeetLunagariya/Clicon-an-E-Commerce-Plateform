@@ -18,7 +18,7 @@ const AccountNavbar = () => {
               " border-b-[4px] border-[#FA8232] text-gray-900"
             }`}
           >
-            <NavLink to="/signIn" onClick={() => handleSetActive("SignIn")}>
+            <NavLink to="/" onClick={() => handleSetActive("SignIn")}>
               <div className="text-center">Sign In</div>
             </NavLink>
           </li>

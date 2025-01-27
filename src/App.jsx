@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router";
+import { BrowserRouter,  Route, Routes } from "react-router";
 import UserAccount from "./userAccount/UserAccount";
 import SignIn from "./userAccount/signIn/SignIn";
 import SignUp from "./userAccount/signUp/SignUp";
@@ -16,22 +16,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<UserAccount isForget={isForget} />}>
-        {/* <Route path={"/"} element={<Navigate to={"/signIn"} />}> */}
+       
+        <Route path="/" element={<UserAccount isForget={isForget} />}>
+          <Route index element={<SignIn setIsForget={handleIsForget} />} />
+          <Route path="signUp" element={<SignUp />} />
           <Route
-            index
-            path="/signIn"
-            element={<SignIn setIsForget={handleIsForget} />}
-          />
-          <Route
-            path="/forgotPassword"
+            path="forgotPassword"
             element={<ForgetPassword setIsForget={handleIsForget} />}
           />
           <Route
-            path="/resetPassword"
+            path="resetPassword"
             element={<ResetPassword setIsForget={handleIsForget} />}
           />
-          <Route path="signUp" element={<SignUp />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -3,4 +3,5 @@ import RightArrow from "./arrowRight.svg?react";
 import GoogleLogo from "./googleLogo.svg?react";
 import AppleLogo from "./Apple.svg?react";
 import Check from "./Check.svg?react";
-export { Eye, RightArrow, GoogleLogo, AppleLogo, Check };
+import HideEye from "./hideEye.svg?react";
+export { Eye, RightArrow, GoogleLogo, AppleLogo, Check, HideEye };

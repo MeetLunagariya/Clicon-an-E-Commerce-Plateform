@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import { RightArrow } from "../../assets/svg";
 import FormButton from "../../ui components/FormButton";
 import Inputlabel from "../../ui components/Inputlabel";
 
@@ -16,13 +15,11 @@ const ForgetPassword = ({ setIsForget }) => {
         </div>
       </div>
       <div className="pt-3">
-        <Inputlabel id={"email"} type={"email"}>
-          Email Address
-        </Inputlabel>
+        <Inputlabel id={"email"} type={"email"} label={"Email Address"} />
       </div>
 
       <Link to="/resetPassword">
-        <FormButton title={"Send Code"}/>
+        <FormButton title={"Send Code"} />
       </Link>
 
       <div className="flex flex-col gap-1 py-1 text-sm">
