@@ -9,7 +9,7 @@ import {
 
 const Middle_Nav = () => {
   return (
-    <nav className=" py-[20px] flex justify-between">
+    <nav className="px-[200px] py-[20px] flex justify-between">
       <div>
         <Logo />
       </div>

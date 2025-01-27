@@ -1,9 +1,7 @@
 import React from "react";
 import { CaretDown } from "../../assets/svg";
 
-const nav_list = [
-  
-]
+const nav_list = []
 
 const Bottom_Nav = () => {
   return (
