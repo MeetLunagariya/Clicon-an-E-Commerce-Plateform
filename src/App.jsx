@@ -5,6 +5,7 @@ import SignUp from "./userAccount/signUp/SignUp";
 import { useState } from "react";
 import ForgetPassword from "./userAccount/signIn/ForgetPassword";
 import ResetPassword from "./userAccount/signIn/ResetPassword";
+import Index from "./shop_page";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -29,6 +30,7 @@ function App() {
             element={<ResetPassword setIsForget={handleIsForget} />}
           />
         </Route>
+        <Route path="/shop_page" element={<Index/>} />
       </Routes>
     </BrowserRouter>
   );
