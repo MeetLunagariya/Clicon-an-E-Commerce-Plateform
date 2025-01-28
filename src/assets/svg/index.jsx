@@ -16,8 +16,22 @@ import ShoppingCartSimple from "./ShoppingCartSimple.svg?react";
 import User from "./User.svg?react";
 import Heart from "./Heart.svg?react";
 import CaretDown from "./CaretDown.svg?react";
+import ArrowsCounterClockwise from "./ArrowsCounterClockwise.svg?react";
+import Headphones from "./Headphones.svg?react";
+import Info from "./Info.svg?react";
+import MapPinLine from "./MapPinLine.svg?react";
+import PhoneCall from "./PhoneCall.svg?react";
+import House from "./House.svg?react";
+import CaretRight from "./CaretRight.svg?react";
 
 export {
+  CaretRight,
+  House,
+  PhoneCall,
+  Headphones,
+  Info,
+  MapPinLine,
+  ArrowsCounterClockwise,
   CaretDown,
   Facebook,
   Twitter,

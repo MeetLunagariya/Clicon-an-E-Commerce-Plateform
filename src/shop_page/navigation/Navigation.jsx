@@ -2,6 +2,7 @@ import React from "react";
 import Top_Nav from "./Top_Nav";
 import Middle_Nav from "./Middle_Nav";
 import Bottom_Nav from "./Bottom_Nav";
+import Routes_Nav from "./Routes_Nav";
 
 const Navigation = () => {
   return (
@@ -12,7 +13,8 @@ const Navigation = () => {
         </div>
         <Middle_Nav />
       </div>
-        <Bottom_Nav/>
+      <Bottom_Nav />
+      <Routes_Nav />
     </div>
   );
 };
