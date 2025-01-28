@@ -1,11 +1,12 @@
-import React from "react";
 import Navigation from "./navigation/Navigation";
+import Product_Index from "./prduct_list/Product_Index";
 
 const Index = () => {
   return (
-    <div className="">
+    <>
       <Navigation />
-    </div>
+      <Product_Index/>
+    </>
   );
 };
 
