@@ -6,7 +6,7 @@ import Routes_Nav from "./Routes_Nav";
 
 const Navigation = () => {
   return (
-    <div className="">
+    <div className="container mx-auto">
       <div className="bg-[#1B6392]  text-[#FFFFFF] ">
         <div className="shadow-[0px_1px_0px_0px_rgba(128,_128,_128,_0.5)] ">
           <Top_Nav />

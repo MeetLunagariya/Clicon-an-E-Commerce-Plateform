@@ -17,7 +17,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-       
         <Route path="/" element={<UserAccount isForget={isForget} />}>
           <Route index element={<SignIn setIsForget={handleIsForget} />} />
           <Route path="signUp" element={<SignUp />} />
