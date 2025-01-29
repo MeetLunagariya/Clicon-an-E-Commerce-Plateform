@@ -17,7 +17,7 @@ const nav_list = [
 
 const Bottom_Nav = () => {
   return (
-    <nav className="flex xl:mx-[200px] h-[80px] justify-between py-[16px]">
+    <nav className="flex h-[80px] bg-[#FFFFFF] justify-between py-[16px]">
       <div className="flex gap-6">
         <button  className=" flex rounded-sm h-[48px] w-[154px] py-[14px] px-6 bg-[#F2F4F5] gap-[8px]">
           <span className="text-sm text-[#191C1F]">All Category </span>
