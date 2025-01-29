@@ -10,7 +10,7 @@ import Search from "../common/Search";
 
 const Middle_Nav = () => {
   return (
-    <nav className="py-[20px] flex justify-between">
+    <nav className="py-[20px] flex justify-between px-4">
       <div>
         <Logo />
       </div>

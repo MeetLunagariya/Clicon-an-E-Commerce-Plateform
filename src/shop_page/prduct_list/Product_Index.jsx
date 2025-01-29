@@ -3,7 +3,7 @@ import Products from "./products/Products";
 
 const Product_Index = () => {
   return (
-    <div className="container mx-auto flex pt-[40px] pb-[72px] gap-6">
+    <div className="container mx-auto flex pt-[40px] pb-[72px] gap-6 px-4">
       <Sidebar />
       <Products />
     </div>
