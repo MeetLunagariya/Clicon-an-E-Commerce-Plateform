@@ -4,7 +4,7 @@ const nav_arr = ["Home", "Shop", "ShopGrid", "Electronics Devices"];
 
 const Routes_Nav = () => {
   return (
-    <div className="px-[200px] flex gap-[8px] h-[72px] bg-[#F2F4F5]">
+    <div className="xl:px-[200px] flex gap-[8px] h-[72px] bg-[#F2F4F5]">
       <span className="my-auto">
         <House />
       </span>

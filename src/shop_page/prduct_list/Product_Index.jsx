@@ -1,13 +1,13 @@
-import Sidebar from './sidebar/Sidebar'
-import Products from './Products'
+import Sidebar from "./sidebar/Sidebar";
+import Products from "./products/Products";
 
 const Product_Index = () => {
   return (
-    <div className='flex px-[200px] py-[40px]'>
-      <Sidebar/>
-      <Products/>
+    <div className="container flex xl:px-[200px] pt-[40px] pb-[72px] gap-6">
+      <Sidebar />
+      <Products />
     </div>
-  )
-}
+  );
+};
 
-export default Product_Index
+export default Product_Index;

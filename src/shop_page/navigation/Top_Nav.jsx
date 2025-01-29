@@ -9,7 +9,7 @@ import {
 } from "../../assets/svg";
 const Top_Nav = () => {
   return (
-    <nav className="flex font-sans justify-between  py-3 px-[200px]">
+    <nav className="flex font-sans justify-between  py-3 xl:mx-[200px]">
       <div className="">
         <p>Welcome to Clicon online eCommerce store. </p>
       </div>
