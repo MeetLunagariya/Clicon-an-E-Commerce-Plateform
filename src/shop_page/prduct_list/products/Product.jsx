@@ -19,6 +19,7 @@ const Product = ({ product, badge_value }) => {
     color = badge_value.color;
   }
 
+
   return (
     <div className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
     onMouseEnter={()=>setIsCardHover(true)}
@@ -46,7 +47,7 @@ const Product = ({ product, badge_value }) => {
             alt="Image of Phone"
             className=" w-full h-full"
           />
-        </div>
+        </div>       
         {badge_value && (
           <div
             className={`absolute top-0 left-0  text-[#FFFFFF] py-[5px] px-[10px] rounded-sm gap-[10px] uppercase`}

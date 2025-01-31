@@ -26,8 +26,17 @@ import House from "./House.svg?react";
 import CaretRight from "./CaretRight.svg?react";
 import HeartBlack from "./HeartBlack.svg?react";
 import ShoppingCartSimple2 from "./ShoppingCartSimple2.svg?react";
+import ArrowLeft_footer from "./ArrowLeft_footer.svg?react";
+import ArrowRight_footer from "./ArrowRight_footer.svg?react";
+import ShoppingCartSimple_advertise from "./ShoppingCartSimple_advertise.svg?react";
+import ArrowRight_advertise from "./ArrowRight_advertise.svg?react";
+
 
 export {
+  ArrowRight_advertise,
+  ShoppingCartSimple_advertise,
+  ArrowLeft_footer,
+  ArrowRight_footer,
   Eye2,
   ShoppingCartSimple2,
   HeartBlack,
