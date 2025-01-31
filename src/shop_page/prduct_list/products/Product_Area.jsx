@@ -1,4 +1,29 @@
-import { img_1, img_10, img_11, img_12, img_13, img_14, img_15, img_16, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9 } from "../../../assets/img";
+import {
+  img_1,
+  img_10,
+  img_11,
+  img_12,
+  img_13,
+  img_14,
+  img_15,
+  img_16,
+  img_17,
+  img_18,
+  img_19,
+  img_2,
+  img_20,
+  img_21,
+  img_22,
+  img_23,
+  img_24,
+  img_3,
+  img_4,
+  img_5,
+  img_6,
+  img_7,
+  img_8,
+  img_9,
+} from "../../../assets/img";
 import Product from "./Product";
 
 const products = [
@@ -60,7 +85,9 @@ const products = [
     star_value: 4,
     review_count: 877,
     description: "Polaroid 57-Inch Photo/Video Tripod with Deluxe Tripod Ca...",
-    price: 1200,
+    price: 1600,
+    disc_price:1200,
+    disc_percentage:25,
   },
   {
     id: 7,
@@ -160,13 +187,15 @@ const products = [
     star_value: 4,
     review_count: 423,
     description: "Polaroid 57-Inch Photo/Video Tripod with Deluxe Tripod Ca...",
-    price: 1200,
+    price: 1600,
+    disc_price:1200,
+    disc_percentage:25,
   },
   {
     id: 17,
     category: "tv",
     badge_id: 1,
-    image: img_6,
+    image: img_17,
     star_value: 5,
     review_count: 738,
     description: "TOZO T6 True Wireless Earbuds Bluetooth Headphon...",
@@ -176,7 +205,7 @@ const products = [
     id: 18,
     category: "mobile",
     badge_id: null,
-    image: img_6,
+    image: img_18,
     star_value: 5,
     review_count: 536,
     description: "Samsung Electronics Samsung Galexy S21 5G",
@@ -186,7 +215,7 @@ const products = [
     id: 19,
     category: "ac",
     badge_id: 2,
-    image: img_6,
+    image: img_19,
     star_value: 5,
     review_count: 423,
     description: "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
@@ -196,7 +225,7 @@ const products = [
     id: 20,
     category: "headphone",
     badge_id: null,
-    image: img_6,
+    image: img_20,
     star_value: 4,
     review_count: 816,
     description: "Portable Wshing Machine, 11lbs capacity Model 18NMF...",
@@ -206,7 +235,7 @@ const products = [
     id: 21,
     category: "mobile",
     badge_id: 2,
-    image: img_6,
+    image: img_21,
     star_value: 4,
     review_count: 994,
     description: "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
@@ -216,7 +245,7 @@ const products = [
     id: 22,
     category: "laptop",
     badge_id: null,
-    image: img_6,
+    image: img_22,
     star_value: 5,
     review_count: 492,
     description: "Dell Optiplex 7000x7480 All-in-One Computer Monitor",
@@ -224,19 +253,21 @@ const products = [
   },
   {
     id: 23,
-    category: "printer",
+    category: "phone",
     badge_id: 4,
-    image: img_6,
+    image: img_23,
     star_value: 5,
     review_count: 798,
     description: "Portable Wshing Machine, 11lbs capacity Model 18NMF...",
-    price: 80,
+    price: 124,
+    disc_price: 80,
+    disc_percentage:25,
   },
   {
     id: 24,
     category: "laptop",
     badge_id: 1,
-    image: img_6,
+    image: img_24,
     star_value: 5,
     review_count: 600,
     description: "TOZO T6 True Wireless Earbuds Bluetooth Headphon...",
@@ -248,12 +279,12 @@ const badge_value = {
   1: { val: "hot", color: "#EE5858" },
   2: { val: "Best Deals", color: "#2DA5F3" },
   3: { val: "sale", color: "#2DB224" },
-  4: { val: "25% off", color: "#EFD33D" },
+  4: { val: "discount", color: "#EFD33D" },
 };
 
 const Product_Area = () => {
   return (
-    <div >
+    <div>
       <ul className="grid grid-cols-4 gap-4">
         {products.map((product) => (
           <>

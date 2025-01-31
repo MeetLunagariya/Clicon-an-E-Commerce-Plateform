@@ -14,6 +14,14 @@ import img_13 from './image_13.png'
 import img_14 from './image_14.png'
 import img_15 from './image_15.png'
 import img_16 from './image_16.png'
+import img_17 from './image_17.png'
+import img_18 from './image_18.png'
+import img_19 from './image_19.png'
+import img_20 from './image_20.png'
+import img_21 from './image_21.png'
+import img_22 from './image_22.png'
+import img_23 from './image_23.png'
+import img_24 from './image_24.png'
 
 
-export { img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9, img_10, img_11, img_12, img_13, img_14, img_15, img_16 };
+export { img_1, img_2, img_3, img_4, img_5, img_6, img_7, img_8, img_9, img_10, img_11, img_12, img_13, img_14, img_15, img_16, img_17, img_18, img_19, img_20, img_21, img_22, img_23, img_24};

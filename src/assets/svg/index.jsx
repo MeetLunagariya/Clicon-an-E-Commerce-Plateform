@@ -1,4 +1,5 @@
 import Eye from "./eye.svg?react";
+import Eye2 from "./eye2.svg?react";
 import RightArrow from "./arrowRight.svg?react";
 import GoogleLogo from "./googleLogo.svg?react";
 import AppleLogo from "./Apple.svg?react";
@@ -23,8 +24,13 @@ import MapPinLine from "./MapPinLine.svg?react";
 import PhoneCall from "./PhoneCall.svg?react";
 import House from "./House.svg?react";
 import CaretRight from "./CaretRight.svg?react";
+import HeartBlack from "./HeartBlack.svg?react";
+import ShoppingCartSimple2 from "./ShoppingCartSimple2.svg?react";
 
 export {
+  Eye2,
+  ShoppingCartSimple2,
+  HeartBlack,
   CaretRight,
   House,
   PhoneCall,
