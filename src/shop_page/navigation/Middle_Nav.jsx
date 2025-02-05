@@ -15,7 +15,7 @@ const Middle_Nav = () => {
         <Logo />
       </div>
 
-      <Search classs="w-[450px]"/>
+      <Search classs="w-[450px] text-black" />
 
       <div className="flex gap-6 my-auto">
         <span>
