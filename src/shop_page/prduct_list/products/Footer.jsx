@@ -1,16 +1,45 @@
 import React from "react";
 import { ArrowLeft_footer, ArrowRight_footer } from "../../../assets/svg";
+import { products } from "./productData";
 
-const Footer = () => {
-  
-  
+const Footer = ({
+  handlePageChange,
+  currentPage,
+  PAGE_SIZE,
+  handleNext,
+  handlePrevious,
+}) => {
+  const totalProducts = products.length;
+  const totalPages = Math.ceil(totalProducts / PAGE_SIZE);
+
   return (
-    <div className="w-full flex justify-center items-center">
-      <button className="flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232]">
+    <div className="w-full flex justify-center items-center gap-5">
+      <button
+        className="flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232]"
+        onClick={handlePrevious}
+      >
         <ArrowLeft_footer />
       </button>
-      {}
-      <button className="flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232]">
+      <div className="flex gap-2">
+        {[...Array(totalPages).keys()].map((item) => (
+          <>
+            <button
+              className={`h-[48px] w-[48px] flex justify-center items-center rounded-full border border-[#E4E7E9] ${
+                currentPage === item &&
+                "border-[#FA8232] bg-[#FA8232] text-white"
+              } font-semibold`}
+              key={item}
+              onClick={() => handlePageChange(item)}
+            >
+              {(item >= 9 && "0") + item + 1}
+            </button>
+          </>
+        ))}
+      </div>
+      <button
+        className={`flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232]`}
+        onClick={handleNext}
+      >
         <ArrowRight_footer />
       </button>
     </div>
