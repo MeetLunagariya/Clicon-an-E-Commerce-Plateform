@@ -21,7 +21,7 @@ const brands = [
 const Popular_Brands = () => {
   return (
     <div className="py-4 border-b border-[#E4E7E9]">
-      <Title_Sidebar title={"popular brands"} />
+      <Title_Sidebar title={"popular brands"} text_color={'#191C1F'}/>
       <div className="grid grid-cols-2 gap-2 mt-3">
         {brands.map((brand) => (
           <>

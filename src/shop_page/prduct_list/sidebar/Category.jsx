@@ -22,7 +22,7 @@ const Category = () => {
 
   return (
     <div className="flex flex-col gap-4 w-full pb-4 border-b border-[#E4E7E9]">
-      <Title_Sidebar title={"Category"} />
+      <Title_Sidebar title={"Category"} text_color={'#191C1F'}/>
       <ul className="flex flex-col gap-3 w-full -ml-1">
         {list_data.map((item) => (
           <li key={item}>

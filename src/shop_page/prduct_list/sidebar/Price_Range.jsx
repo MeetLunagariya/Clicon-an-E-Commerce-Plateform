@@ -17,7 +17,7 @@ const Price_Range = () => {
   const [selected, setSelected] = useState("");
   return (
     <div className="flex flex-col gap-4 w-full py-4 border-b border-[#E4E7E9] ">
-      <Title_Sidebar title={"Price Range"} />
+      <Title_Sidebar title={"Price Range"} text_color={'#191C1F'}/>
       <label className="sr-only">Example range</label>
       <RangeSlider/>
       <ul className="flex flex-col gap-3 w-full -ml-1">

@@ -30,9 +30,16 @@ import ArrowLeft_footer from "./ArrowLeft_footer.svg?react";
 import ArrowRight_footer from "./ArrowRight_footer.svg?react";
 import ShoppingCartSimple_advertise from "./ShoppingCartSimple_advertise.svg?react";
 import ArrowRight_advertise from "./ArrowRight_advertise.svg?react";
-
+import Footer_Logo from "./Footer_Logo.svg?react";
+import ArrowRight_Category_Footer from "./ArrowRight_Category_Footer.svg?react";
+import App_store from "./App_store.svg?react";
+import Play_store from "./Play_store.svg?react";
 
 export {
+  App_store,
+  Play_store,
+  ArrowRight_Category_Footer,
+  Footer_Logo,
   ArrowRight_advertise,
   ShoppingCartSimple_advertise,
   ArrowLeft_footer,
