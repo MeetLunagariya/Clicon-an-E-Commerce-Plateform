@@ -34,8 +34,11 @@ import Footer_Logo from "./Footer_Logo.svg?react";
 import ArrowRight_Category_Footer from "./ArrowRight_Category_Footer.svg?react";
 import App_store from "./App_store.svg?react";
 import Play_store from "./Play_store.svg?react";
-
+import ArrowLeft_Productpage from "./ArrowLeft_Productpage.svg?react";
+import ArrowRight_Productpage from "./ArrowRight_Productpage.svg?react";
 export {
+  ArrowRight_Productpage,
+  ArrowLeft_Productpage,
   App_store,
   Play_store,
   ArrowRight_Category_Footer,
