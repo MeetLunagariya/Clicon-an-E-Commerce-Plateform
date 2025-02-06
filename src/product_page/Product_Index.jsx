@@ -1,3 +1,4 @@
+import MiddleSection from "./MiddleSection";
 import TopSection from "./TopSection";
 
 
@@ -6,6 +7,7 @@ const Product_Index = () => {
     <div className="container ">
       <div className="">
         <TopSection/>
+        <MiddleSection/>
       </div>
      
     </div>
