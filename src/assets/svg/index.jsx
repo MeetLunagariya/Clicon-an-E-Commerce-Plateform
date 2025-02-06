@@ -36,7 +36,19 @@ import App_store from "./App_store.svg?react";
 import Play_store from "./Play_store.svg?react";
 import ArrowLeft_Productpage from "./ArrowLeft_Productpage.svg?react";
 import ArrowRight_Productpage from "./ArrowRight_Productpage.svg?react";
+import Heart_Productpage from "./Heart_Productpage.svg?react";
+import ArrowsClockwise from "./ArrowsClockwise.svg?react";
+import Copy from "./Copy.svg?react";
+import Twitter_product_page from "./Twitter_product_page.svg?react";
+import Pinterest_product_page from "./Pinterest_product_page.svg?react";
+import Facebook_product_page from "./Facebook_product_page.svg?react";
 export {
+  Facebook_product_page,
+  Pinterest_product_page,
+  Twitter_product_page,
+  Copy,
+  ArrowsClockwise,
+  Heart_Productpage,
   ArrowRight_Productpage,
   ArrowLeft_Productpage,
   App_store,

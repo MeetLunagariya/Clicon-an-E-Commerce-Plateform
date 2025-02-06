@@ -30,8 +30,10 @@ import macbook_3 from "./macbook_3.png";
 import macbook_4 from "./macbook_4.png";
 import macbook_5 from "./macbook_5.png";
 import macbook_6 from "./macbook_6.png";
+import Payment_Method from "./Payment_Method.png";
 
 export {
+  Payment_Method,
   macbook_1,
   macbook_2,
   macbook_3,
