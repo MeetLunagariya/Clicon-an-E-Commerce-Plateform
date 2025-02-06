@@ -81,7 +81,7 @@ const SignIn = ({ setIsForget }) => {
         <IdLogin service="Apple" logo={<AppleLogo />} />
       </div>
     </form>
-  );
+  );  
 };
 
 export default SignIn;
