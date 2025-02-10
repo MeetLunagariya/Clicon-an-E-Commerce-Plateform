@@ -1,4 +1,3 @@
-import React from "react";
 import Title from "./Title";
 import Product_Card from "./Product_Card";
 import { suggested_products } from "./Data";
