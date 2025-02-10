@@ -42,7 +42,17 @@ import Copy from "./Copy.svg?react";
 import Twitter_product_page from "./Twitter_product_page.svg?react";
 import Pinterest_product_page from "./Pinterest_product_page.svg?react";
 import Facebook_product_page from "./Facebook_product_page.svg?react";
+import CreditCard from "./CreditCard.svg?react";
+import Handshake from "./Handshake.svg?react";
+import Headphones_copy from "./Headphones_copy.svg?react";
+import Medal from "./Medal.svg?react";
+import Truck from "./Truck.svg?react";
 export {
+  Truck,
+  Medal,
+  Headphones_copy,
+  Handshake,
+  CreditCard,
   Facebook_product_page,
   Pinterest_product_page,
   Twitter_product_page,

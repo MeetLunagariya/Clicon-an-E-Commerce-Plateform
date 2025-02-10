@@ -14,7 +14,7 @@ import {
 import { Payment_Method } from "../assets/img";
 const TopSection = () => {
   return (
-    <div className=" pt-8 pb-20 flex gap-14">
+    <div className=" pt-8 pb-20 flex flex-col xl:flex-row gap-14">
       {/* Product Image section */}
       <Product_Image />
 
