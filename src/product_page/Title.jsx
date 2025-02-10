@@ -1,8 +1,8 @@
 import React from "react";
 
-const Title = ({title}) => {
+const Title = ({ title }) => {
   return (
-    <div className="text-[#191C1F] font-medium font-sans text-left text-wrap">
+    <div className="text-[#191C1F] text-base font-semibold font-sans text-left text-wrap">
       {title}
     </div>
   );

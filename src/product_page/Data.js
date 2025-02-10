@@ -1,4 +1,18 @@
 import {
+  cctv,
+  controller,
+  img_1,
+  img_11,
+  img_14,
+  img_15,
+  img_18,
+  img_25,
+  img_26,
+  img_6,
+  img_8,
+  play_station,
+} from "../assets/img";
+import {
   CreditCard,
   Handshake,
   Headphones_copy,
@@ -33,4 +47,93 @@ const shipping_data = [
   { title: "Unishop Global Export:", value: "3-4 days, $39.00" },
 ];
 
-export { nav_data, description_data, feature_data, shipping_data };
+const suggested_products = [
+  {
+    title: "RELATED PRODUCT",
+    data: [
+      {
+        img: img_14,
+        title: "Bose Sport Earbuds-Wireless Earphones-Bluetooth In Ear...",
+        price: 1500,
+      },
+      {
+        img: img_18,
+        title: "Simple Mobile 4G LTE Prepaid Smartphone",
+        price: 1500,
+      },
+      {
+        img: img_11,
+        title: "4K UHD LED Smart TV with Chromecast Built-in",
+        price: 1500,
+      },
+    ],
+  },
+  {
+    title: "PRODUCT ACCESSORIES",
+    data: [
+      {
+        img: play_station,
+        title: "Samsung Electronics Samsung Galexy S21 5G",
+        price: 1500,
+      },
+      {
+        img: cctv,
+        title: "Simple Mobile 5G LTE Galexy 12 Mini 512GB Gaming Phone",
+        price: 1500,
+      },
+      {
+        img: img_1,
+        title: "Sony DSCHX8 High Zoom Point & Shoot Camera",
+        price: 1500,
+      },
+    ],
+  },
+  {
+    title: "APPLE PRODUCT",
+    data: [
+      {
+        img: img_8,
+        title: "TOZO T6 True Wireless Earbuds Bluetooth Headpho...",
+        price: 1500,
+      },
+      {
+        img: img_15,
+        title: "JBL FLIP 4 - Waterproof Portable Bluetooth Speaker...",
+        price: 1500,
+      },
+      {
+        img: controller,
+        title: "Wyze Cam Pan v2 1080p Pan/Tilt/Zoom Wi-Fi Indoor Smar...",
+        price: 1500,
+      },
+    ],
+  },
+  {
+    title: "FEATURED PRODUCTS",
+    data: [
+      {
+        img: img_6,
+        title: "Portable Wshing Machine, 11lbs capacity Model 18NMF...",
+        price: 1500,
+      },
+      {
+        img: img_26,
+        title: "Sony DSCHX8 High Zoom Point & Shoot Camera",
+        price: 1500,
+      },
+      {
+        img: img_25,
+        title: "Dell Optiplex 7000x7480 All-in-One Computer Monitor",
+        price: 1500,
+      },
+    ],
+  },
+];
+
+export {
+  nav_data,
+  description_data,
+  feature_data,
+  shipping_data,
+  suggested_products,
+};

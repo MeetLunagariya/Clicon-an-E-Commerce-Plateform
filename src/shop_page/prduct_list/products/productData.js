@@ -85,8 +85,8 @@ const products = [
     review_count: 877,
     description: "Polaroid 57-Inch Photo/Video Tripod with Deluxe Tripod Ca...",
     price: 1600,
-    disc_price:1200,
-    disc_percentage:25,
+    disc_price: 1200,
+    disc_percentage: 25,
   },
   {
     id: 7,
@@ -187,8 +187,8 @@ const products = [
     review_count: 423,
     description: "Polaroid 57-Inch Photo/Video Tripod with Deluxe Tripod Ca...",
     price: 1600,
-    disc_price:1200,
-    disc_percentage:25,
+    disc_price: 1200,
+    disc_percentage: 25,
   },
   {
     id: 17,
@@ -260,7 +260,7 @@ const products = [
     description: "Portable Wshing Machine, 11lbs capacity Model 18NMF...",
     price: 124,
     disc_price: 80,
-    disc_percentage:25,
+    disc_percentage: 25,
   },
   {
     id: 24,
@@ -281,4 +281,4 @@ const badge_value = {
   4: { val: "discount", color: "#EFD33D" },
 };
 
-export  {products,badge_value};
+export { products, badge_value };

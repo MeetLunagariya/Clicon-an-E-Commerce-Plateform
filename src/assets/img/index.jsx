@@ -22,6 +22,8 @@ import img_21 from "./image_21.png";
 import img_22 from "./image_22.png";
 import img_23 from "./image_23.png";
 import img_24 from "./image_24.png";
+import img_25 from "./img_25.png";
+import img_26 from "./img_26.png";
 import iwatch from "./iwatch.png";
 import iwatch_title from "./iwatch_title.png";
 import macbook_1 from "./macbook_1.png";
@@ -31,8 +33,13 @@ import macbook_4 from "./macbook_4.png";
 import macbook_5 from "./macbook_5.png";
 import macbook_6 from "./macbook_6.png";
 import Payment_Method from "./Payment_Method.png";
+import play_station from "./play_station.png";
+import cctv from "./cctv.png";
+import controller from "./controller.png";
 
-export {
+export {play_station,
+  controller,
+  cctv,
   Payment_Method,
   macbook_1,
   macbook_2,
@@ -41,6 +48,8 @@ export {
   macbook_5,
   macbook_6,
   img_1,
+  img_25,
+  img_26,
   img_2,
   img_3,
   img_4,

@@ -9,7 +9,7 @@ const Index_Footer = () => {
     <div className="text-[#ADB7BC] bg-[#191C1F]">
       <div className="flex flex-col">
         <div className="container mx-auto py-20">
-          <div className="px-4 flex justify-between">
+          <div className="px-4 flex justify-around lg:justify-between">
             <Details />
             <Category />
             <Quick_Links />

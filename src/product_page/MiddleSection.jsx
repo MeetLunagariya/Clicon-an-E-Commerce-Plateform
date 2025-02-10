@@ -11,7 +11,7 @@ const MiddleSection = () => {
     setIsActive(event);
   };
   return (
-    <div className="border border-[#E4E7E9] rounded-sm flex flex-col ">
+    <div className="border border-[#E4E7E9] rounded-sm flex flex-col my-20">
       <nav className="border-b border-[#E4E7E9]">
         <ul className="flex justify-center">
           {nav_data.map((title, index) => (
@@ -31,7 +31,7 @@ const MiddleSection = () => {
           ))}
         </ul>
       </nav>
-      <div className="px-7 py-7 grid grid-cols-4 gap-6">
+      <div className="px-7 py-7 grid grid-cols-2 lg:grid-cols-4 gap-6">
         <Description />
         <Feature />
         <Shipping_Info />
