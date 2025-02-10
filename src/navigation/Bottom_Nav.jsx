@@ -6,7 +6,7 @@ import {
   Info,
   MapPinLine,
   PhoneCall,
-} from "../../assets/svg";
+} from "../assets/svg";
 
 const nav_list = [
   { icon: <MapPinLine />, text: "track Order" },

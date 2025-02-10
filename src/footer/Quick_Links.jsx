@@ -1,4 +1,4 @@
-import Title_Sidebar from "../prduct_list/sidebar/Title_Sidebar";
+import Title_Sidebar from "../shop_page/prduct_list/sidebar/Title_Sidebar";
 import { quick_links } from "./data";
 
 const Quick_Links = () => {

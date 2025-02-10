@@ -18,7 +18,7 @@ const Search = ({ classs = "" }) => {
           css
         }
       />
-      <button className="absolute right-0 mr-2 text-center my-3">
+      <button className="absolute right-0 mr-2 top-0 bottom-0">
         <MagnifyingGlass />
       </button>
     </div>

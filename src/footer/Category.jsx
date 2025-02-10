@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { categories } from "./data";
-import { ArrowRight_Category_Footer } from "../../assets/svg";
-import Title_Sidebar from "../prduct_list/sidebar/Title_Sidebar";
+import { ArrowRight_Category_Footer } from "../assets/svg";
+import Title_Sidebar from "../shop_page/prduct_list/sidebar/Title_Sidebar";
 
 const Category = () => {
   const [isSelecterd, setIsSelected] = useState(3);
@@ -11,8 +11,8 @@ const Category = () => {
   };
 
   return (
-    <section className="flex flex-col gap-3">
-      <Title_Sidebar text_color={'#FFFFFF'} title={'Top Category'}/>
+    <section className="flex flex-col gap-3 w-[180px]">
+      <Title_Sidebar text_color={"#FFFFFF"} title={"Top Category"} />
       <div className="flex flex-col gap-1.5">
         <ul className="flex flex-col gap-1.5">
           {categories.map((category) => (

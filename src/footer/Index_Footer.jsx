@@ -1,4 +1,4 @@
-import Popular_Tags from "../prduct_list/sidebar/Popular_Tags";
+import Popular_Tags from "../shop_page/prduct_list/sidebar/Popular_Tags";
 import App_Download from "./App_Download";
 import Category from "./Category";
 import Details from "./Details";

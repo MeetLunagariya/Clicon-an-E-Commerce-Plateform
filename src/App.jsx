@@ -6,8 +6,8 @@ import { useState } from "react";
 import ForgetPassword from "./userAccount/signIn/ForgetPassword";
 import ResetPassword from "./userAccount/signIn/ResetPassword";
 import Index from "./shop_page/Index";
-import Navigation from "./shop_page/navigation/Navigation";
-import Index_Footer from "./shop_page/footer/Index_Footer";
+import Navigation from "./navigation/Navigation";
+import Index_Footer from "./footer/Index_Footer";
 import Product_Index from "./product_page/Product_Index";
 
 function App() {

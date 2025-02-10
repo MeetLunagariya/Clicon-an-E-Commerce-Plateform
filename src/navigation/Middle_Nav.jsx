@@ -2,11 +2,11 @@ import React from "react";
 import {
   Heart,
   Logo,
-  MagnifyingGlass,
   ShoppingCartSimple,
+  ShoppingCartSimple_advertise,
   User,
-} from "../../assets/svg";
-import Search from "../common/Search";
+} from "../assets/svg";
+import Search from "../shop_page/common/Search";
 
 const Middle_Nav = () => {
   return (
@@ -18,8 +18,11 @@ const Middle_Nav = () => {
       <Search classs="w-[450px] text-black" />
 
       <div className="flex gap-6 my-auto">
-        <span>
+        <span className="relative hover:cursor-pointer">
           <ShoppingCartSimple />
+          <div className="absolute top-0 right-0 bg-white rounded-full h-4 w-4 flex items-center justify-center text-sm text-[#1B6392] font-medium ">
+            5
+          </div>
         </span>
         <span>
           <Heart />

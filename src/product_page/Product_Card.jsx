@@ -7,7 +7,7 @@ const Product_Card = ({product}) => {
         <img src={product.img} alt={product.title}  className="h-full w-full"/>
       </div>
       <div className="flex flex-col gap-2">
-        <span className="font-normal">{product.title}</span>
+        <span className="font-normal line-clamp-2">{product.title}</span>
         <span className="font-semibold text-[#2DA5F3] ">${product.price}</span>
       </div>
     </div>

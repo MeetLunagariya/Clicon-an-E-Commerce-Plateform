@@ -1,4 +1,4 @@
-import { CaretRight, House } from "../../assets/svg";
+import { CaretRight, House } from "../assets/svg";
 
 const nav_arr = ["Home", "Shop", "ShopGrid", "Electronics Devices"];
 

@@ -6,7 +6,7 @@ import {
   Reddit,
   Twitter,
   Youtube,
-} from "../../assets/svg";
+} from "../assets/svg";
 const Top_Nav = () => {
   return (
     <nav className="flex font-sans justify-between py-3 px-4">

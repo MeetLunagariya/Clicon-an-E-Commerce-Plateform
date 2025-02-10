@@ -1,7 +1,7 @@
 import React from "react";
 import Download from "./Download";
-import { App_store, Play_store } from "../../assets/svg";
-import Title_Sidebar from "../prduct_list/sidebar/Title_Sidebar";
+import { App_store, Play_store } from "../assets/svg";
+import Title_Sidebar from "../shop_page/prduct_list/sidebar/Title_Sidebar";
 
 const App_Download = () => {
   return (
