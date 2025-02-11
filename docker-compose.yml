@@ -1,0 +1,35 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    expose:
+      - "5000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mongo
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=${MONGO_URI}
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongodb_container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    expose:
+      - "27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

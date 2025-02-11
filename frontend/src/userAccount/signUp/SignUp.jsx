@@ -5,9 +5,10 @@ import IdLogin from "../../ui components/IdLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useEffect } from "react";
 
 const schema = yup.object({
-  name: yup
+  username: yup
     .string()
     .trim()
     .required("Name is required")
@@ -20,7 +21,11 @@ const schema = yup.object({
     .string()
     .trim()
     .required("Password is required")
-    .min(8, "Name must be at least 4 characters"),
+    .min(8, "Name must be at least 8 characters")
+    .matches(RegExp('(.*[a-z].*)'), 'Lowercase')
+    .matches(RegExp('(.*[A-Z].*)'), 'Uppercase')
+    .matches(RegExp('(.*\\d.*)'), 'Number')
+    .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), 'Special'),
   confirm_password: yup
     .string()
     .label("confirm password")
@@ -37,9 +42,36 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  
+  // console.log(errors);
+  const registerUser = async (userData) => {
+    if (Object.keys(errors).length === 0) {
+      const { username, email, password } = userData;
+      // console.log(userData);
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({username, email, password}),
+          }
+        );
+        const data = await response.json();
+        console.log("data : ", data);
+        // Handle response data
+      } catch (error) {
+        console.log(error);
+        // Handle error
+      }
+    }
+  };
 
   const onSubmit = (data) => {
     console.log("Submitted Data:", data);
+    registerUser(data);
     // Check valid credentials Here
   };
 
@@ -49,9 +81,9 @@ const SignUp = () => {
         <div className="flex flex-col gap-y-2">
           <Inputlabel
             type={"name"}
-            id={"name"}
-            label={"Name"}
-            {...register("name")}
+            id={"username"}
+            label={"Username"}
+            {...register("username")}
           />{" "}
           {errors.name && (
             <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -107,10 +139,10 @@ const SignUp = () => {
             </div>
           </div>
           {errors.terms_and_conditions && (
-                <p className="text-sm text-red-500">
-                  {errors.terms_and_conditions.message}
-                </p>
-              )}
+            <p className="text-sm text-red-500">
+              {errors.terms_and_conditions.message}
+            </p>
+          )}
         </div>
         <FormButton title={"sign up"} type={"submit"} />
       </form>

@@ -7,24 +7,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const checkIfEmailExists = async (email) => {
-  const existingUsers = ["user1@gmail.com", "user2@gmail.com"];
-  return existingUsers.includes(email);
-};
-
 const schema = yup.object({
   email: yup
     .string()
     .email("Invalid email format")
-    .required("Email is required")
-    .test("email-exists", "This email is not registered", async (value) => {
-      if (!value) return false;
-      const exists = await checkIfEmailExists(value);
-      return exists; // Must return true for valid
-    }),
+    .required("Email is required"),
+
   password: yup.string().required("Password is required"),
 });
-
+ 
 const SignIn = ({ setIsForget }) => {
   const {
     watch,
@@ -33,8 +24,27 @@ const SignIn = ({ setIsForget }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const loginUser = async (userData) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      const data = await response.json();
+      console.log(data);
+      // Handle response data, e.g., store the token
+    } catch (error) {
+      console.error(error);
+      // Handle error
+    }
+  };
+
   const onSubmit = (data) => {
-    console.log("Submitted Data:", data);
+    console.log(data);
+    loginUser(data);
     // Check valid credentials Here
   };
 
@@ -71,7 +81,6 @@ const SignIn = ({ setIsForget }) => {
         <FormButton title="Sign In" type="submit" />
       </div>
 
-    
       <div className="my-1 flex flex-col gap-3 ">
         <div className="flex items-center text-sm font-PublicSans text-[#77878F] before:flex-1 before:border-t before:border-[#E4E7E9] before:me-6 after:flex-1 after:border-t after:border-[#E4E7E9] after:ms-6 ">
           or
@@ -81,7 +90,7 @@ const SignIn = ({ setIsForget }) => {
         <IdLogin service="Apple" logo={<AppleLogo />} />
       </div>
     </form>
-  );  
+  );
 };
 
 export default SignIn;
