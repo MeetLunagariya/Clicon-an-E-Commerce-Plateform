@@ -49,7 +49,8 @@ import Medal from "./Medal.svg?react";
 import Truck from "./Truck.svg?react";
 import XCircle_Gray from "./XCircle_Gray.svg?react";
 import XCircle_Red from "./XCircle_Red.svg?react";
-export {
+import ArrowLeft_Cart from "./ArrowLeft_Cart.svg?react";
+export {ArrowLeft_Cart,
   XCircle_Red,
   XCircle_Gray,
   Truck,
