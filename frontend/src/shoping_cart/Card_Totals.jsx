@@ -1,18 +1,28 @@
-import React from "react";
 import Title from "../product_page/Title";
 import { useSelector } from "react-redux";
 import FormButton from "../ui components/FormButton";
 
 const Card_Totals = () => {
   const items = useSelector((state) => state.cart.items);
-  const sub_total = items.reduce((total, item) => total + item.price, 0);
+  console.log("Items in cart:", items);
+
+  const sub_total = items.reduce(
+    (total, item) =>
+      total +
+      (item.badge_id === 4 ? item.disc_price : item.price) * item.quantity,
+    0
+  );
+  console.log("Subtotal:", sub_total);
+
   const data = [
     { title: "Sub-total", price: sub_total },
-    { title: "Shipping", price: null },
+    { title: "Shipping", price: 0 },
     { title: "Discount", price: 24 },
     { title: "Tax", price: 61.99 },
   ];
+
   const totalPrice = data.reduce((total, item) => total + item.price, 0);
+  console.log("Total Price:", totalPrice);
 
   return (
     <section className="px-6 border border-gray-100 rounded-sm">
@@ -37,9 +47,7 @@ const Card_Totals = () => {
         </div>
         <div className="flex justify-between text-lg pt-3">
           <span className="text-gray-600">Total</span>
-          <span className="font-medium">
-           ${totalPrice} USD
-          </span>
+          <span className="font-medium">${totalPrice} USD</span>
         </div>
         <FormButton title="proceed to checkout" />
       </section>
