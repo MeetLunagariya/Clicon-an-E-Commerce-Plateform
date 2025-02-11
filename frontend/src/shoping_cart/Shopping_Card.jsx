@@ -11,7 +11,7 @@ const Shopping_Card = () => {
   console.log(items);
 
   return (
-    <section className="col-span-2 row-span-2 border border-gray-100 rounded-sm">
+    <section className="col-span-2 row-span-2 border border-gray-100 rounded-sm self-start">
       <div className="flex justify-start items-center px-6 py-5">
         <Title title={"Shopping Card"} />
       </div>

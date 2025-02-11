@@ -1,5 +1,6 @@
 
 import Card_Totals from "./Card_Totals";
+import Coupon_Code from "./Coupon_Code";
 import Shopping_Card from "./Shopping_Card";
 
 const Cart = () => {
@@ -9,7 +10,7 @@ const Cart = () => {
       <section className="my-14 px-4 grid grid-cols-3 gap-4">
         <Shopping_Card/>
         <Card_Totals/>
-        <section className="py-6">Coupon Code</section>
+        <Coupon_Code/>
       </section>
     </div>
   );
