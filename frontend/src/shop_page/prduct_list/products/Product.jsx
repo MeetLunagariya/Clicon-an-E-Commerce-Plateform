@@ -2,6 +2,8 @@
 import { Rating } from "@mui/material";
 import { useState } from "react";
 import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
+import { useDispatch } from "react-redux";
+import { addToCart,removeFromCart } from "../../../Store/cartSlice";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -10,6 +12,8 @@ const hoverIcon = [
 ];
 
 const Product = ({ product, badge_value }) => {
+  const dispatch = useDispatch();
+
   const [isCardHover, setIsCardHover] = useState(false);
   let value = "";
   let color = "";
@@ -19,6 +23,9 @@ const Product = ({ product, badge_value }) => {
     color = badge_value.color;
   }
 
+  function handleAddItem(product){
+    dispatch(addToCart(product))
+  }
 
   return (
     <div className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
@@ -34,6 +41,7 @@ const Product = ({ product, badge_value }) => {
                   className={`h-[48px] w-[48px] flex justify-center items-center hover:cursor-pointer ${
                     icon.value === "eye" ? "bg-[#FA8232]" : "bg-white"
                   } rounded-full`}
+                  onClick={()=>handleAddItem(product)}
                 >
                   {icon.icon}
                 </div>

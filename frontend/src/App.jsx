@@ -9,6 +9,7 @@ import Index from "./shop_page/Index";
 import Navigation from "./navigation/Navigation";
 import Index_Footer from "./footer/Index_Footer";
 import Product_Index from "./product_page/Product_Index";
+import Cart from "./shoping_cart/Cart";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -35,6 +36,7 @@ function App() {
         </Route>
         <Route path="/shop_page" element={<Index />} />
         <Route path="/product_page" element={<Product_Index />} />
+        <Route path="/shoping_cart" element={<Cart />} />
       </Routes>
       <Index_Footer />
     </BrowserRouter>
