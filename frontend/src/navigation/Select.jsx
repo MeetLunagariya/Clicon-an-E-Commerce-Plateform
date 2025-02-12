@@ -23,7 +23,7 @@ const Select = ({
   }, []);
 
   return (
-    <div className="relative w-full" ref={selectRef}>
+    <div className="relative w-full " ref={selectRef}>
       <button
         type="button"
         className="relative bg-transparent  rounded-lg py-2 pl-3 pr-10 text-left focus:border-blue-500 focus:outline-none flex"
@@ -44,7 +44,7 @@ const Select = ({
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-1 -left-[50px] w-[150px] bg-white shadow-lg max-h-60 rounded-md py-1  focus:outline-none ">
+        <div className="absolute z-10 mt-1 -left-[50px] w-[150px] bg-white shadow-lg max-h-60 rounded-md py-1  focus:outline-none border border-gray-100">
           {options.map((option) => (
             <button
               key={option.id}

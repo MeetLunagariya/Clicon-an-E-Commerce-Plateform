@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import FormButton from "../ui components/FormButton";
 
 const Card_Totals = () => {
-  const items = useSelector((state) => state.cart.items);
-  console.log("Items in cart:", items);
+  const { items, totalQuantity } = useSelector((state) => state.cart);
+  console.log("Items in cart:", totalQuantity);
 
   const sub_total = items.reduce(
     (total, item) =>
@@ -25,33 +25,38 @@ const Card_Totals = () => {
   console.log("Total Price:", totalPrice);
 
   return (
-    <section className="px-6 border border-gray-100 rounded-sm">
-      <div className="flex justify-start items-center py-5">
-        <Title title={"Card Totals"} />
-      </div>
-
-      <section className="">
-        <div className="text-sm flex flex-col gap-3 border-b border-gray-100 pb-5 ">
-          {data.map((value) => (
-            <>
-              <div className="flex justify-between">
-                <span className="text-gray-600">{value.title}</span>
-                <span className="font-medium">
-                  {value.title === "Shipping" && value.price === null
-                    ? "Free"
-                    : "$" + value.price}
-                </span>
-              </div>
-            </>
-          ))}
+    <>
+      <section className="px-6 border border-gray-100 rounded-sm">
+        <div className="flex justify-start items-center py-5">
+          <Title title={"Card Totals"} />
         </div>
-        <div className="flex justify-between text-lg pt-3">
-          <span className="text-gray-600">Total</span>
-          <span className="font-medium">${totalPrice} USD</span>
-        </div>
-        <FormButton title="proceed to checkout" />
+        {totalQuantity >= 1 ? (
+          <section className="">
+            <div className="text-sm flex flex-col gap-3 border-b border-gray-100 pb-5 ">
+              {data.map((value) => (
+                <>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">{value.title}</span>
+                    <span className="font-medium">
+                      {value.title === "Shipping" && value.price === null
+                        ? "Free"
+                        : "$" + value.price}
+                    </span>
+                  </div>
+                </>
+              ))}
+            </div>
+            <div className="flex justify-between text-lg pt-3">
+              <span className="text-gray-600">Total</span>
+              <span className="font-medium">${totalPrice} USD</span>
+            </div>
+            <FormButton title="proceed to checkout" />
+          </section>
+        ) : (
+          <section className="py-5 font-medium text-gray-400"> No Items In cart</section>
+        )}
       </section>
-    </section>
+    </>
   );
 };
 
