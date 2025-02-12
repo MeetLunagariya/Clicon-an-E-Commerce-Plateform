@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Rating } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
 import { useDispatch } from "react-redux";
-import { addToCart,removeFromCart } from "../../../Store/cartSlice";
+import { addToCart, removeFromCart } from "../../../Store/cartSlice";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -23,14 +23,15 @@ const Product = ({ product, badge_value }) => {
     color = badge_value.color;
   }
 
-  function handleAddItem(product){
-    dispatch(addToCart(product))
+  function handleAddItem(product) {
+    dispatch(addToCart(product));
   }
 
   return (
-    <div className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
-    onMouseEnter={()=>setIsCardHover(true)}
-    onMouseLeave={()=>setIsCardHover(false)}
+    <div
+      className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
+      onMouseEnter={() => setIsCardHover(true)}
+      onMouseLeave={() => setIsCardHover(false)}
     >
       <div className="relative mx-auto w-[fit-content] z-0 h-full">
         {isCardHover === true && (
@@ -38,12 +39,14 @@ const Product = ({ product, badge_value }) => {
             {hoverIcon.map((icon) => (
               <>
                 <div
-                  className={`h-[48px] w-[48px] flex justify-center items-center hover:cursor-pointer ${
-                    icon.value === "eye" ? "bg-[#FA8232]" : "bg-white"
-                  } rounded-full`}
-                  onClick={()=>handleAddItem(product)}
+                  className="h-[48px] w-[48px] flex justify-center items-center cursor-pointer bg-white hover:bg-[#FA8232] rounded-full text-black hover:text-white transition-colors"
+                  onClick={() =>
+                    icon.value === "cart" && handleAddItem(product)
+                  }
                 >
-                  {icon.icon}
+                  {React.cloneElement(icon.icon, {
+                    className: "stroke-current w-6 h-6",
+                  })}
                 </div>
               </>
             ))}
@@ -55,7 +58,7 @@ const Product = ({ product, badge_value }) => {
             alt="Image of Phone"
             className=" w-full h-full"
           />
-        </div>       
+        </div>
         {badge_value && (
           <div
             className={`absolute top-0 left-0  text-[#FFFFFF] py-[5px] px-[10px] rounded-sm gap-[10px] uppercase`}

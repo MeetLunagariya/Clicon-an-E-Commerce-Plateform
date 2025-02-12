@@ -36,8 +36,15 @@ import Payment_Method from "./Payment_Method.png";
 import play_station from "./play_station.png";
 import cctv from "./cctv.png";
 import controller from "./controller.png";
+import English from "./English.png";
+import Mandarin from "./Mandarin.png";
+import Russian from "./Russian.png";
 
-export {play_station,
+export {
+  Russian,
+  Mandarin,
+  English,
+  play_station,
   controller,
   cctv,
   Payment_Method,

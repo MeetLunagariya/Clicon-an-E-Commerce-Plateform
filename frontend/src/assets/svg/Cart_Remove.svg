@@ -15,4 +15,11 @@
       strokeLinecap="round" 
       strokeLinejoin="round"
     />
-  </svg>
+    {/* Strikethrough Line */}
+    <path 
+      d="M20 4L4 20" 
+      className="stroke-current text-red-500" 
+      strokeWidth="2" 
+      strokeLinecap="round"
+    />
+</svg>

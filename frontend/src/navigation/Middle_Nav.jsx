@@ -25,12 +25,12 @@ const Middle_Nav = () => {
             {totalQuantity}
           </div>
         </span>
-        <span>
+        <button>
           <Heart />
-        </span>
-        <span>
+        </button>
+        <button >
           <User />
-        </span>
+        </button>
       </div>
     </nav>
   );
