@@ -37,7 +37,7 @@ const SignIn = ({ setIsForget }) => {
       console.log(data);
       // Handle response data, e.g., store the token
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
       // Handle error
     }
   };
