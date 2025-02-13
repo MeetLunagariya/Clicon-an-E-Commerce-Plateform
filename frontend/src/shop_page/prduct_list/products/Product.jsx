@@ -42,7 +42,7 @@ const Product = ({ product, badge_value }) => {
                 <div
                   className="h-[48px] w-[48px] flex justify-center items-center cursor-pointer bg-white hover:bg-[#FA8232] rounded-full text-black hover:text-white transition-colors"
                   onClick={() => {
-                    icon.value === "cart" && handleAddItem(product);
+                    icon.value === "cart" && handleAddItem({product});
                     icon.value === "eye" &&
                       navigate(`../product_page/${product.id}`);
                   }}

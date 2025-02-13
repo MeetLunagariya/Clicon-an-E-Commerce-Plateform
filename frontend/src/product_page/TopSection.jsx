@@ -13,7 +13,9 @@ import {
 } from "../assets/svg";
 import { Payment_Method } from "../assets/img";
 
+
 const TopSection = ({ product, badge_value }) => {
+ 
   return (
     <div className=" pt-8 flex flex-col xl:flex-row gap-14">
       {/* Product Image section */}
@@ -75,7 +77,7 @@ const TopSection = ({ product, badge_value }) => {
           </div>
         </section>
 
-        <FormSection />
+        <FormSection product={product}/>
 
         <div className="flex justify-between pb-2 my-2">
           <div className="flex gap-6">

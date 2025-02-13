@@ -57,7 +57,7 @@ const Item = ({ item }) => {
             type="button"
             className="text-[#191C1F] text-xl my-auto disabled:text-gray-400"
             disabled={item.quantity === MAX_ITEM_COUNT}
-            onClick={() => dispatch(addToCart(item))}
+            onClick={() => dispatch(addToCart({ product:item }))}
           >
             +
           </button>
