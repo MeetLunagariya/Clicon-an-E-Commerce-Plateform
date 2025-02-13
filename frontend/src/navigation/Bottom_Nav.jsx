@@ -21,19 +21,27 @@ const nav_list = [
 const Bottom_Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(null);
-  const selectRef = useRef();
+  const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
 
+  const handleCategory = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
+  // To Manage DropDown Behaviour 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
+      if (buttonRef.current && buttonRef.current.contains(event.target)) {
+        return; // Do nothing if clicking on the button itself
+      }
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  // console.log(selected)
+
   return (
     <nav className="flex h-[80px] bg-[#FFFFFF] justify-between py-[16px] px-4">
       <div className=" relative flex">
@@ -41,10 +49,12 @@ const Bottom_Nav = () => {
           data-popover-target="menu-1"
           data-popover-nested="true"
           type="button"
+          // ref={selectRef}
           className={`py-3.5 px-6 rounded-sm  focus:outline-none flex justify-center  items-center gap-3 ${
             isOpen && "bg-[#FA8232]"
           }`}
-          onClick={() => setIsOpen(!isOpen)}
+          ref={buttonRef}
+          onClick={() => handleCategory()}
         >
           <div className={`text-sm text-nowrap ${isOpen ? " text-white" : ""}`}>
             All Category
@@ -64,7 +74,7 @@ const Bottom_Nav = () => {
             data-popover="menu-1"
             data-popover-placement="bottom"
             className={`absolute top-full min-w-[240px] rounded-sm border border-slate-200 bg-white focus:outline-none transition-opacity mt-3 py-3`}
-            ref={selectRef}
+            ref={dropdownRef}
           >
             {categories.map((category) => (
               <>

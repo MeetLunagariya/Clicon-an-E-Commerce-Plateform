@@ -35,7 +35,7 @@ function App() {
           />
         </Route>
         <Route path="/shop_page" element={<Index />} />
-        <Route path="/product_page" element={<Product_Index />} />
+        <Route path="/product_page/:id" element={<Product_Index />} />
         <Route path="/shoping_cart" element={<Cart />} />
       </Routes>
       <Index_Footer />

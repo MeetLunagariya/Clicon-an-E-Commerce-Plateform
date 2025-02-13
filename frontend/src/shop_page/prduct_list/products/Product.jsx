@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import { Rating } from "@mui/material";
 import React, { useState } from "react";
 import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../../Store/cartSlice";
+import { useNavigate } from "react-router";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -12,6 +12,7 @@ const hoverIcon = [
 ];
 
 const Product = ({ product, badge_value }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isCardHover, setIsCardHover] = useState(false);
@@ -40,9 +41,11 @@ const Product = ({ product, badge_value }) => {
               <>
                 <div
                   className="h-[48px] w-[48px] flex justify-center items-center cursor-pointer bg-white hover:bg-[#FA8232] rounded-full text-black hover:text-white transition-colors"
-                  onClick={() =>
-                    icon.value === "cart" && handleAddItem(product)
-                  }
+                  onClick={() => {
+                    icon.value === "cart" && handleAddItem(product);
+                    icon.value === "eye" &&
+                      navigate(`../product_page/${product.id}`);
+                  }}
                 >
                   {React.cloneElement(icon.icon, {
                     className: "stroke-current w-6 h-6",

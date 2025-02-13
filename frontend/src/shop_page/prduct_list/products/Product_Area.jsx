@@ -14,7 +14,7 @@ const Product_Area = ({start_end}) => {
                 key={product.id}
                 badge_value={
                   product.badge_id ? badge_value[product.badge_id] : null
-                }
+                } 
               />
             </li>
           </>

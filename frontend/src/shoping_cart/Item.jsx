@@ -14,10 +14,10 @@ const Item = ({ item }) => {
         {/* about product */}
         <div className="col-span-3 flex items-center gap-3">
           <span
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer transition-colors duration-300 text-[#929FA5] hover:text-[#EE5858]"
             onClick={() => dispatch(removeFromCart(item.id))}
           >
-            <XCircle_Gray className="w-6 h-6 transition-colors duration-300 stroke-[#929FA5] hover:stroke-[#EE5858]" />
+            <XCircle_Gray  />
           </span>
 
           <div className="h-full w-[72px]">

@@ -2,9 +2,35 @@ import { useState } from "react";
 import { macbook_imgs as imgs } from "./productData";
 import { ArrowLeft_Productpage, ArrowRight_Productpage } from "../assets/svg";
 import Images from "./Images";
-const Product_Image = () => {
+import { macbook_1, macbook_2, macbook_3, macbook_4, macbook_5, macbook_6 } from "../assets/img";
+const Product_Image = ({img}) => {
   const [currentImg, setCurrentImg] = useState(1);
-
+  const imgs = [
+    {
+      id: 1,
+      img: img,
+    },
+    {
+      id: 2,
+      img: macbook_2,
+    },
+    {
+      id: 3,
+      img: macbook_3,
+    },
+    {
+      id: 4,
+      img: macbook_4,
+    },
+    {
+      id: 5,
+      img: macbook_5,
+    },
+    {
+      id: 6,
+      img: macbook_6,
+    },
+  ];
   return (
     <div className="flex flex-col gap-6">
       <div className=" border rounded-sm">

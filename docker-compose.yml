@@ -41,6 +41,21 @@ services:
     # networks:
     #   - app-network
 
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb_container
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: adminpassword
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+
 volumes:
   mongo-data:
 
