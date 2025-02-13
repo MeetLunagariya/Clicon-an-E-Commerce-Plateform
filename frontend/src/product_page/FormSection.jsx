@@ -11,13 +11,11 @@ const FormSection = ({ product }) => {
   const dispatch = useDispatch();
   const [itemCount, setItemCount] = useState(1);
   useEffect(() => {
-    
-      const isItemInCart = items.some((item) => item.id === product.id);
-      setIsItemInCart(isItemInCart);
-    
+    const isItemInCart = items.some((item) => item.id === product.id);
+    setIsItemInCart(isItemInCart);
   }, [items]);
 
-  console.log("isItemInCart", isItemInCart);
+  // console.log("isItemInCart", isItemInCart);
 
   return (
     <section className="my-5">

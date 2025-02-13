@@ -53,7 +53,7 @@ const Range_Slider = () => {
     setValue(newValue);
   };
 
-  console.log(value);
+  // console.log(value);
 
   return (
     <div className="w-full">

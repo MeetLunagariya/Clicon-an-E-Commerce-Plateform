@@ -5,10 +5,10 @@ import TopSection from "./TopSection";
 import { products,badge_value } from "../shop_page/prduct_list/products/productData";
 const Product_Index = () => {
   const {id} = useParams();
-  console.log("id", id);
+  // console.log("id", id);
 
   const product = products.find((data) => data.id == id);
-  console.log("product", product);
+  // console.log("product", product);
 
   return (
     <div className="container ">

@@ -4,7 +4,7 @@ import FormButton from "../ui components/FormButton";
 
 const Card_Totals = () => {
   const { items, totalQuantity } = useSelector((state) => state.cart);
-  console.log("Items in cart:", totalQuantity);
+  // console.log("Items in cart:", totalQuantity);
 
   const sub_total = items.reduce(
     (total, item) =>
@@ -12,7 +12,7 @@ const Card_Totals = () => {
       (item.badge_id === 4 ? item.disc_price : item.price) * item.quantity,
     0
   );
-  console.log("Subtotal:", sub_total);
+  // console.log("Subtotal:", sub_total);
 
   const data = [
     { title: "Sub-total", price: sub_total },
@@ -22,7 +22,7 @@ const Card_Totals = () => {
   ];
 
   const totalPrice = data.reduce((total, item) => total + item.price, 0);
-  console.log("Total Price:", totalPrice);
+  // console.log("Total Price:", totalPrice);
 
   return (
     <>
