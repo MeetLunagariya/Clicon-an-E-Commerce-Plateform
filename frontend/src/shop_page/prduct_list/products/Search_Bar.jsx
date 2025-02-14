@@ -4,10 +4,10 @@ const Search_Bar = () => {
   return (
     <div className="flex justify-between">
       <Search classs={"border border-[#E4E7E9] w-[424px] h-[44px] text-sm"} />
-      <div className="flex py-auto gap-[22px]">
+      <div className="flex py-auto gap-2.5 xl:gap-[22px]">
         <label
           htmlFor="countries"
-          className="text-sm font-semibold my-auto text-[#191C1F]"
+          className="text-sm font-semibold my-auto text-[#191C1F] text-center"
         >
           Sort by:
         </label>

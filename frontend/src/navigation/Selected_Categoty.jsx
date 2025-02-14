@@ -32,7 +32,7 @@ const Selected_Categoty = ({ selected }) => {
               (product) =>
                 product.title === "FEATURED PRODUCTS" && (
                   <>
-                    <section className="flex flex-col gap-4">
+                    <section className="flex flex-col gap-4 h-full">
                       <Title title={"FEATURED PHONES"} />
                       <ul className=" flex flex-col gap-4">
                         {product.data.map((data) => (
@@ -53,7 +53,9 @@ const Selected_Categoty = ({ selected }) => {
                 )
             )}
           </section>
-          <section className="min-w-[312px] bg-[#F7E99E] flex flex-col p-8 gap-6 rounded-sm">
+
+          {/* Discount Card / */}
+          <section className="min-w-[312px] bg-[#F7E99E] flex flex-col p-8 gap-6 rounded-lg">
             <div className="flex flex-col gap-3 justify-center items-center">
               <div className="min-h-[96px]">
                 <img src={category_discount} alt="" />

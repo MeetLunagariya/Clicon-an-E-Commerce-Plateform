@@ -47,7 +47,7 @@ const Bottom_Nav = () => {
 
   return (
     <nav className="flex h-[80px] bg-[#FFFFFF] justify-between py-[16px] px-4">
-      <div className="  flex">
+      <div className="  flex gap-6">
         <div className="relative">
           <button
             data-popover-target="menu-1"

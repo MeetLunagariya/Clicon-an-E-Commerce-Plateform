@@ -5,7 +5,7 @@ const Product_Area = ({start_end}) => {
   // console.log("pagestart : "+start_end.start+" pageend : "+start_end.end)
   return (
     <div>
-      <ul className="grid grid-cols-4 gap-4 flex-wrap">
+      <ul className="grid grid-cols-3 lg:grid-cols-4 gap-4 flex-wrap">
         {products.slice(start_end.start,start_end.end).map((product) => (
           <>
             <li key={product.id}>

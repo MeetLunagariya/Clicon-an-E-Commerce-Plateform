@@ -13,7 +13,7 @@ import Cart from "./shoping_cart/Cart";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
-  console.log(isForget);
+  // console.log(isForget);
 
   function handleIsForget() {
     setIsForget((prevstate) => !prevstate);
