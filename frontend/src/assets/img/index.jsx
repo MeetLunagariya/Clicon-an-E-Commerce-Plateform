@@ -39,8 +39,10 @@ import controller from "./controller.png";
 import English from "./English.png";
 import Mandarin from "./Mandarin.png";
 import Russian from "./Russian.png";
+import category_discount from "./category_discount.png";
 
 export {
+  category_discount,
   Russian,
   Mandarin,
   English,

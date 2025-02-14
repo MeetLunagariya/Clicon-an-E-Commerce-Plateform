@@ -2,15 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowsCounterClockwise,
   CaretDown,
-  CaretRight,
   Headphones,
   Info,
   MapPinLine,
   PhoneCall,
 } from "../assets/svg";
-import { categories, companies } from "./data";
+import { categories } from "./data";
 import Category from "./Category";
-import SubCategory from "./SubCategory";
+
+import { useNavigate } from "react-router";
+import Selected_Categoty from "./Selected_Categoty";
 
 const nav_list = [
   { icon: <MapPinLine />, text: "track Order" },
@@ -22,6 +23,7 @@ const nav_list = [
 const Bottom_Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(null);
+  // console.log("selected", selected);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -88,21 +90,7 @@ const Bottom_Nav = () => {
                   />
                 </>
               ))}
-              <div className="absolute left-full rounded-sm z-10 border border-slate-200 bg-white shadow-lg top-0 ml-3">
-                <ul
-                  role="menu"
-                  data-popover="nested-menu"
-                  data-popover-offset="20"
-                  data-popover-placement="right-start"
-                  className=" min-w-[164px] overflow-auto   text-sm focus:outline-none p-5"
-                >
-                  {companies.map((company) => (
-                    <>
-                      <SubCategory sub_title={company} />
-                    </>
-                  ))}
-                </ul>
-              </div>
+              <Selected_Categoty selected={selected} />
             </ul>
           )}
         </div>
