@@ -17,23 +17,10 @@ const Product = ({ product, badge_value }) => {
   const dispatch = useDispatch();
 
   const [activeCard, setActiveCard] = useState(null);
-  // console.log("activeCard", activeCard);
-  // const [isMobile, setIsMobile] = useState(false);
+  // const scrollToSection = () => {
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth <= 1024);
-  //   };
-
-  //   handleResize();
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
-
-  // const handleCardClick = (id) => {
-  //   setActiveCard(activeCard === id ? null : id);
+  //   window.postMessage({ type: "SCROLL_TO_SECTION" }, "*");
   // };
-
   return (
     <div
       className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
@@ -52,8 +39,9 @@ const Product = ({ product, badge_value }) => {
                 className="h-[48px] w-[48px] flex justify-center items-center cursor-pointer bg-white hover:bg-[#FA8232] rounded-full text-black hover:text-white transition-colors"
                 onClick={(e) => {
                   // e.stopPropagation();
-                  if (icon.value === "cart") dispatch(addToCart({product}));
+                  if (icon.value === "cart") dispatch(addToCart({ product }));
                   if (icon.value === "eye")
+                    // scrollToSection();
                     navigate(`../product_page/${product.id}`);
                 }}
               >

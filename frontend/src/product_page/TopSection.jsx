@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Rating } from "@mui/material";
 import Product_Image from "./Product_Image";
 import FormSection from "./FormSection";
@@ -13,11 +13,13 @@ import {
 } from "../assets/svg";
 import { Payment_Method } from "../assets/img";
 
-
 const TopSection = ({ product, badge_value }) => {
- 
+  useEffect(() => {
+    const element = document.getElementById("target-section");
+    element.scrollIntoView({ behavior: "smooth" });
+  }, []);
   return (
-    <div className=" pt-8 flex flex-col xl:flex-row gap-14">
+    <div className=" pt-8 flex flex-col xl:flex-row gap-14" id="target-section">
       {/* Product Image section */}
       <Product_Image img={product.image} />
 
@@ -77,7 +79,7 @@ const TopSection = ({ product, badge_value }) => {
           </div>
         </section>
 
-        <FormSection product={product}/>
+        <FormSection product={product} />
 
         <div className="flex justify-between pb-2 my-2">
           <div className="flex gap-6">
