@@ -25,14 +25,14 @@ const FormSection = ({ product }) => {
             <label htmlFor="color">Color</label>
             <ul className="flex gap-3">
               <li key={"#B1B5B8"}>
-                <div className="rounded-full border-2 border-[#FA8232] p-1">
+                <button className="rounded-full border-2 hover:border-[#FA8232] p-1" type="button">
                   <div className="min-w-8 min-h-8 bg-[#B1B5B8] rounded-full"></div>
-                </div>
+                </button>
               </li>
               <li key={"#E0E1E1"}>
-                <div className="p-1 ">
+                <button className="p-1 rounded-full border-2 hover:border-[#FA8232]" type="button">
                   <div className="min-w-8 min-h-8 bg-[#E0E1E1] rounded-full"></div>
-                </div>
+                </button>
               </li>
             </ul>
           </div>

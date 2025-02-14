@@ -13,7 +13,7 @@ const Search_Bar = () => {
         </label>
         <select
           id="countries"
-          className="bg-gray-50 border border-[#E4E7E9] text-[#475156] text-sm rounded-sm block w-[180px] p-2.5 border-r-8 border-transparent hover:cursor-pointer outline-none"
+          className="bg-gray-50 border border-[#E4E7E9] text-[#475156] text-sm rounded-sm block w-[180px] p-2.5 border-r-8 border-transparent hover:cursor-pointer outline-none "
         >
           <option selected>Most Popular</option>
           <option value="US">United States</option>
