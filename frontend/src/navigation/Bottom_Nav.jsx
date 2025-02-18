@@ -47,7 +47,7 @@ const Bottom_Nav = () => {
 
   return (
     <nav className="flex h-[80px] bg-[#FFFFFF] justify-between py-[16px] px-4">
-      <div className="  flex gap-6">
+      <div className="flex gap-6">
         <div className="relative">
           <button
             data-popover-target="menu-1"
@@ -57,6 +57,8 @@ const Bottom_Nav = () => {
               isOpen && "bg-[#FA8232]"
             }`}
             ref={buttonRef}
+            // onMouseEnter={() => handleCategory()}
+            // onMouseLeave={() => handleCategory()}
             onClick={() => handleCategory()}
           >
             <div
@@ -78,7 +80,7 @@ const Bottom_Nav = () => {
               role="menu"
               data-popover="menu-1"
               data-popover-placement="bottom"
-              className={`absolute top-full min-w-[240px] rounded-sm border border-slate-200 bg-white focus:outline-none transition-opacity mt-3 py-3`}
+              className={`absolute top-full z-10 min-w-[240px] rounded-sm border border-slate-200 bg-white focus:outline-none transition-opacity mt-3 py-3`}
               ref={dropdownRef}
             >
               {categories.map((category) => (
