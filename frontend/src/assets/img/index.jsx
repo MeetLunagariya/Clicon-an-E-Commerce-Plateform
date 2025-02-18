@@ -40,8 +40,18 @@ import English from "./English.png";
 import Mandarin from "./Mandarin.png";
 import Russian from "./Russian.png";
 import category_discount from "./category_discount.png";
+import CurrencyDollar from "./CurrencyDollar.png";
+import venmo from "./venmo.png";
+import paypal from "./paypal.png";
+import amazon from "./amazon.png";
+import CreditCard from "./CreditCard.png";
 
 export {
+  CreditCard,
+  amazon,
+  paypal,
+  venmo,
+  CurrencyDollar,
   category_discount,
   Russian,
   Mandarin,

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../../product_page/Title";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Inputlabel from "../../ui components/Inputlabel";
-import { CountrySelect } from "react-country-state-city";
-import "react-country-state-city/dist/react-country-state-city.css";
+import Address from "./Address";
+import { Check } from "../../assets/svg";
 
 const schema = yup.object({
   firstname: yup
@@ -34,14 +34,15 @@ const schema = yup.object({
   state: yup.string().trim().required("State is required"),
   zip: yup
     .number()
-    // .trim()
     .required("Zip Code is required")
-    .min(4, "Zip Code must be at least 4 characters"),
+    .min(4, "Zip Code must be at least 4 characters")
+    .max(6, "Zip Code must be at least 6 characters"),
   email: yup
     .string()
     .email("Invalid email format")
     .required("Email is required"),
   phone_number: yup.number().required("Email is required"),
+  isDifferentAddress: yup.boolean(),
 });
 const User_Info = () => {
   const {
@@ -51,8 +52,10 @@ const User_Info = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-
-  console.log(watch("country"));
+  const isDifferentAddress = watch("isDifferentAddress", false);
+  // console.log(watch('country'))
+  // console.log(watch('state'))
+  // console.log(watch("isDifferentAddress"));
 
   return (
     <section className="flex flex-col gap-6 ">
@@ -60,6 +63,7 @@ const User_Info = () => {
         <Title title={"Billing Information"} />
       </div>
       <div className="grid grid-cols-4 gap-4">
+        {/* Name Area  */}
         <span className="">
           <Inputlabel
             type={"name"}
@@ -86,23 +90,41 @@ const User_Info = () => {
             {...register("company_name")}
           />
         </span>
-        <span className="col-span-4">
-          <Inputlabel
-            type={"text"}
-            id={"address_1"}
-            label={"Address"}
-            {...register("address_1")}
-          />
-        </span>
-        <span>
-          <CountrySelect
-            containerClassName="[border:none] [outline:none] [box-shadow:none] !important"
-            inputClassName="!border-none !outline-none px-3 py-2 rounded-md "
-            onChange={(selected) => setValue("country", selected?.name)}
-            onTextChange={(_txt) => console.log(_txt)}
-            placeHolder="Select Country"
-          />
-        </span>
+
+        {/* Address Area  */}
+        <Address register={register} setValue={setValue} />
+
+        
+        <div className="flex gap-2 col-span-4">
+          <div className="inline-flex items-center mb-auto">
+            <label className="flex items-center cursor-pointer relative">
+              <input
+                type="checkbox"
+                className="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded-sm shadow hover:shadow-md border border-slate-300 checked:bg-[#FA8232] checked:border-[#FA8232]"
+                id="check"
+                {...register("isDifferentAddress")}
+              />
+              <span className="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <Check />
+              </span>
+            </label>
+          </div>
+          <div className="text-sm font-sans text-[#475156]">
+            Ship into different address
+          </div>
+        </div>
+        {isDifferentAddress === true && (
+          <>
+            <span className="col-span-4">
+              <Inputlabel
+                type={"text"}
+                id={"address_2"}
+                label={"Address 2"}
+                {...register("address_2")}
+              />
+            </span>
+          </>
+        )}
       </div>
     </section>
   );
