@@ -92,7 +92,7 @@ const products = [
     id: 7,
     category: "tv",
     badge_id: null,
-    image: img_7,
+    image: img_1,
     star_value: 5,
     review_count: 877,
     description: "Dell Optiplex 7000x7480 All-in-One Computer Monitor",

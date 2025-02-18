@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import img_1 from "./Image_1.png";
 import img_2 from "./Image_2.png";
 import img_3 from "./Image_3.png";
@@ -36,8 +37,27 @@ import Payment_Method from "./Payment_Method.png";
 import play_station from "./play_station.png";
 import cctv from "./cctv.png";
 import controller from "./controller.png";
+import English from "./English.png";
+import Mandarin from "./Mandarin.png";
+import Russian from "./Russian.png";
+import category_discount from "./category_discount.png";
+import CurrencyDollar from "./CurrencyDollar.png";
+import venmo from "./venmo.png";
+import paypal from "./paypal.png";
+import amazon from "./amazon.png";
+import CreditCard from "./CreditCard.png";
 
-export {play_station,
+export {
+  CreditCard,
+  amazon,
+  paypal,
+  venmo,
+  CurrencyDollar,
+  category_discount,
+  Russian,
+  Mandarin,
+  English,
+  play_station,
   controller,
   cctv,
   Payment_Method,

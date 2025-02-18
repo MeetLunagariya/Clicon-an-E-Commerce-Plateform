@@ -47,7 +47,12 @@ import Handshake from "./Handshake.svg?react";
 import Headphones_copy from "./Headphones_copy.svg?react";
 import Medal from "./Medal.svg?react";
 import Truck from "./Truck.svg?react";
-export {
+import XCircle_Gray from "./XCircle_Gray.svg?react";
+import XCircle_Red from "./XCircle_Red.svg?react";
+import ArrowLeft_Cart from "./ArrowLeft_Cart.svg?react";
+export {ArrowLeft_Cart,
+  XCircle_Red,
+  XCircle_Gray,
   Truck,
   Medal,
   Headphones_copy,

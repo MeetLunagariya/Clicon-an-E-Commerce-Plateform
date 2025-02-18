@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ShoppingCartSimple_advertise } from "../assets/svg";
-
+import { addToCart, removeFromCart } from "../Store/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 const MAX_ITEM_COUNT = 5;
 
-const FormSection = () => {
+const FormSection = ({ product }) => {
+  const { items } = useSelector((state) => state.cart);
+  const [isItemInCart, setIsItemInCart] = useState(false);
+  // console.log("item", items);
+  const dispatch = useDispatch();
   const [itemCount, setItemCount] = useState(1);
+  useEffect(() => {
+    const isItemInCart = items.some((item) => item.id === product.id);
+    setIsItemInCart(isItemInCart);
+  }, [items]);
+
+  // console.log("isItemInCart", isItemInCart);
 
   return (
     <section className="my-5">
@@ -14,14 +25,14 @@ const FormSection = () => {
             <label htmlFor="color">Color</label>
             <ul className="flex gap-3">
               <li key={"#B1B5B8"}>
-                <div className="rounded-full border-2 border-[#FA8232] p-1">
+                <button className="rounded-full border-2 hover:border-[#FA8232] p-1" type="button">
                   <div className="min-w-8 min-h-8 bg-[#B1B5B8] rounded-full"></div>
-                </div>
+                </button>
               </li>
               <li key={"#E0E1E1"}>
-                <div className="p-1 ">
+                <button className="p-1 rounded-full border-2 hover:border-[#FA8232]" type="button">
                   <div className="min-w-8 min-h-8 bg-[#E0E1E1] rounded-full"></div>
-                </div>
+                </button>
               </li>
             </ul>
           </div>
@@ -66,8 +77,8 @@ const FormSection = () => {
           <div className="flex justify-evenly border border-[#E4E7E9] py-3 rounded-sm mt-3">
             <button
               type="button"
-              className="text-[#191C1F] text-xl my-auto"
-              disabled={itemCount === 1}
+              className="text-[#191C1F] text-xl my-auto disabled:cursor-not-allowed"
+              disabled={itemCount === 1 || isItemInCart}
               onClick={() => setItemCount(itemCount - 1)}
             >
               -
@@ -75,8 +86,8 @@ const FormSection = () => {
             <span className="text-[#475156] my-auto text-xl">{itemCount}</span>
             <button
               type="button"
-              className="text-[#191C1F] text-xl my-auto"
-              disabled={itemCount === MAX_ITEM_COUNT}
+              className="text-[#191C1F] text-xl my-auto disabled:cursor-not-allowed"
+              disabled={itemCount === MAX_ITEM_COUNT || isItemInCart}
               onClick={() => setItemCount(itemCount + 1)}
             >
               +
@@ -85,8 +96,15 @@ const FormSection = () => {
           <button
             className="col-span-2 flex uppercase bg-[#FA8232] justify-center items-center mt-3 rounded-sm gap-3"
             type="button"
+            onClick={() => {
+              isItemInCart
+                ? dispatch(removeFromCart(product.id))
+                : dispatch(addToCart({ product, quantity: itemCount }));
+            }}
           >
-            <span className="text-white font-medium text-lg">add to cart</span>
+            <span className="text-white font-medium text-lg">
+              {isItemInCart ? "Remove from cart" : "add to cart"}
+            </span>
             <span>
               <ShoppingCartSimple_advertise />
             </span>

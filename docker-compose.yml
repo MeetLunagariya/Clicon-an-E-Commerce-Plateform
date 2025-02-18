@@ -1,23 +1,30 @@
-version: '3'
 services:
   backend:
     build: ./backend
-    expose:
-      - "5000"
+    ports:
+      - "5000:5000" # Expose only within the internal network
     volumes:
       - ./backend:/app
     depends_on:
       - mongo
+    container_name: backend
     environment:
       - NODE_ENV=production
-      - MONGO_URI=${MONGO_URI}
+      - MONGO_URI=mongodb://admin:password@mongo:27017/your-database?authSource=admin
+    # networks:
+    #   - app-network
 
   frontend:
     build: ./frontend
     ports:
-      - "3000:80"
+      - "3000:80" # Expose only frontend to the host machine
+    container_name: frontend
     depends_on:
       - backend
+    # extra_hosts:
+    #   - "backend:172.19.0.3" # Replace with your domain and backend service IP address
+    # networks:
+    #   - app-network
 
   mongo:
     image: mongo
@@ -26,10 +33,32 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
-    expose:
-      - "27017"
+      MONGO_INITDB_DATABASE: your-database
+    ports:
+      - "27017:27017" # Do not expose to host, only accessible internally
     volumes:
       - mongo-data:/data/db
+    # networks:
+    #   - app-network
+
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb_container
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: adminpassword
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
 
 volumes:
   mongo-data:
+
+# networks:
+#   app-network:
+#     driver: bridge

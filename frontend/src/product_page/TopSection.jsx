@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Rating } from "@mui/material";
 import Product_Image from "./Product_Image";
 import FormSection from "./FormSection";
@@ -12,30 +12,32 @@ import {
   Twitter_product_page,
 } from "../assets/svg";
 import { Payment_Method } from "../assets/img";
-const TopSection = () => {
+
+const TopSection = ({ product, badge_value }) => {
+  useEffect(() => {
+    const element = document.getElementById("target-section");
+    element.scrollIntoView({ behavior: "smooth" });
+  }, []);
   return (
-    <div className=" pt-8 flex flex-col xl:flex-row gap-14">
+    <div className=" pt-8 flex flex-col xl:flex-row gap-14" id="target-section">
       {/* Product Image section */}
-      <Product_Image />
+      <Product_Image img={product.image} />
 
       {/* Product Details  */}
       <div className="flex flex-col">
         <section className="flex flex-col gap-4 border-b border-[#E4E7E9]">
           <div className="flex flex-col gap-2">
             <div className="flex gap-1.5 ">
-              <Rating value={5} readOnly />
+              <Rating value={product.star_value} readOnly />
               <span className="text-[#191C1F] text-sm font-medium my-auto">
                 4.7 Star Rating
               </span>
               <span className="text-[#5F6C72] text-sm my-auto">
-                (21,671 User feedback)
+                ({product.review_count} User feedback)
               </span>
             </div>
             <div className="">
-              <p className="text-xl text-[#191C1F]">
-                2020 Apple MacBook Pro with Apple M1 Chip (13-inch, 8GB RAM,
-                256GB SSD Storage) - Space Gray
-              </p>
+              <p className="text-xl text-[#191C1F]">{product.description}</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -57,19 +59,27 @@ const TopSection = () => {
             </div>
           </div>
           <div className="flex gap-2 my-5">
-            <span className="text-[#2DA5F3] font-medium text-2xl my-auto">
-              $1699
-            </span>
-            <span className="text-[#77878F] line-through my-auto">
-              $1999.00
-            </span>
-            <span className="bg-[#EFD33D] py-[5px] px-2.5 rounded-sm font-medium uppercase">
-              21% off
-            </span>
+            {badge_value?.val === "discount" ? (
+              <>
+                <span className="text-[#2DA5F3] font-medium text-2xl my-auto">
+                  ${product.disc_price}
+                </span>
+                <span className="text-[#77878F] line-through my-auto">
+                  ${product.price}
+                </span>
+                <span className="bg-[#EFD33D] py-[5px] px-2.5 rounded-sm font-medium uppercase">
+                  {product.disc_percentage}% off
+                </span>
+              </>
+            ) : (
+              <span className="text-[#2DA5F3] font-medium text-2xl my-auto">
+                ${product.price}
+              </span>
+            )}
           </div>
         </section>
 
-        <FormSection />
+        <FormSection product={product} />
 
         <div className="flex justify-between pb-2 my-2">
           <div className="flex gap-6">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Facebook,
   Instagram,
@@ -7,43 +7,63 @@ import {
   Twitter,
   Youtube,
 } from "../assets/svg";
+import { English, Mandarin, Russian } from "../assets/img";
+import Select from "./Select";
 const Top_Nav = () => {
+  const [language, setLanguage] = useState('Eng');
+  const [currency, setCurrency] = useState('USD');
+  const languages = [
+    { value: "Eng", title: "English", img: English },
+    { value: "Man", title: "Mandarin", img: Mandarin },
+    { value: "Rus", title: "Russian", img: Russian },
+  ];
+
+  const currencies = [
+    { value: "USD", title: "Dollar (USD)" },
+    { value: "EUR", title: "Euro (EUR)" },
+  ];
+
   return (
-    <nav className="flex font-sans justify-between py-3 px-4">
+    <nav className="flex font-sans justify-between py-3 px-4 items-center">
       <div className="">
         <p>Welcome to Clicon online eCommerce store. </p>
       </div>
       <div className="flex gap-6">
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
           <div>Follow us: </div>
           <div className="flex gap-3 my-auto">
-            <span>
+            <button>
               <Twitter />
-            </span>
-            <span>
+            </button>
+            <button>
               <Facebook />
-            </span>
-            <span>
+            </button>
+            <button>
               <Pinterest />
-            </span>
-            <span>
+            </button>
+            <button>
               <Reddit />
-            </span>
-            <span>
+            </button>
+            <button>
               <Youtube />
-            </span>
-            <span>
+            </button>
+            <button>
               <Instagram />
-            </span>
+            </button>
           </div>
         </div>
-        <div className="border-l border-[#FFFFFF]/50 pl-6 flex gap-6">
-          <select name="lang" className="bg-[#1B6392]">
-            <option value="Eng">Eng</option>
-          </select>
-          <select name="currency" className="bg-[#1B6392]">
-            <option value="currency">USD</option>
-          </select>
+        <div className="border-l border-[#FFFFFF]/50 pl-6 flex gap-2">
+        <Select
+            options={languages}
+            value={language}
+            onChange={setLanguage}
+          />
+        <Select
+            options={currencies}
+            value={currency}
+            onChange={setCurrency}
+          />
+         
         </div>
       </div>
     </nav>

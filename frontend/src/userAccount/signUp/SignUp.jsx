@@ -45,9 +45,10 @@ const SignUp = () => {
   
   // console.log(errors);
   const registerUser = async (userData) => {
+    console.log(userData);
     if (Object.keys(errors).length === 0) {
       const { username, email, password } = userData;
-      // console.log(userData);
+      console.log(userData);
       try {
         const response = await fetch(
           "http://localhost:5000/api/auth/register",
@@ -63,7 +64,7 @@ const SignUp = () => {
         console.log("data : ", data);
         // Handle response data
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
         // Handle error
       }
     }

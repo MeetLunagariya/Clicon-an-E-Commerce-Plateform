@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Rating } from "@mui/material";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../Store/cartSlice";
+import { useNavigate } from "react-router";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -10,34 +13,42 @@ const hoverIcon = [
 ];
 
 const Product = ({ product, badge_value }) => {
-  const [isCardHover, setIsCardHover] = useState(false);
-  let value = "";
-  let color = "";
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  if (badge_value) {
-    value = badge_value.val;
-    color = badge_value.color;
-  }
+  const [activeCard, setActiveCard] = useState(null);
+  // const scrollToSection = () => {
 
-
+  //   window.postMessage({ type: "SCROLL_TO_SECTION" }, "*");
+  // };
   return (
-    <div className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
-    onMouseEnter={()=>setIsCardHover(true)}
-    onMouseLeave={()=>setIsCardHover(false)}
+    <div
+      className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
+      onMouseEnter={() => setActiveCard(product.id)}
+      onMouseLeave={() => setActiveCard(null)}
+      // onClick={() => {isMobile && handleCardClick(product.id);
+      //   console.log(product.id)
+      // }}
     >
       <div className="relative mx-auto w-[fit-content] z-0 h-full">
-        {isCardHover === true && (
-          <div className="absolute bg-[#00000033]/20 h-full w-full flex  justify-center items-center gap-1">
-            {hoverIcon.map((icon) => (
-              <>
-                <div
-                  className={`h-[48px] w-[48px] flex justify-center items-center hover:cursor-pointer ${
-                    icon.value === "eye" ? "bg-[#FA8232]" : "bg-white"
-                  } rounded-full`}
-                >
-                  {icon.icon}
-                </div>
-              </>
+        {activeCard && (
+          <div className="absolute bg-[#00000033]/20 h-full w-full flex justify-center items-center gap-1">
+            {hoverIcon.map((icon, index) => (
+              <div
+                key={index}
+                className="h-[48px] w-[48px] flex justify-center items-center cursor-pointer bg-white hover:bg-[#FA8232] rounded-full text-black hover:text-white transition-colors"
+                onClick={(e) => {
+                  // e.stopPropagation();
+                  if (icon.value === "cart") dispatch(addToCart({ product }));
+                  if (icon.value === "eye")
+                    // scrollToSection();
+                    navigate(`../product_page/${product.id}`);
+                }}
+              >
+                {React.cloneElement(icon.icon, {
+                  className: "stroke-current w-6 h-6",
+                })}
+              </div>
             ))}
           </div>
         )}
@@ -45,47 +56,43 @@ const Product = ({ product, badge_value }) => {
           <img
             src={product.image}
             alt="Image of Phone"
-            className=" w-full h-full"
+            className="w-full h-full"
           />
-        </div>       
+        </div>
         {badge_value && (
           <div
-            className={`absolute top-0 left-0  text-[#FFFFFF] py-[5px] px-[10px] rounded-sm gap-[10px] uppercase`}
-            style={{ backgroundColor: color }}
+            className={`absolute top-0 left-0 text-[#FFFFFF] py-[5px] px-[10px] rounded-sm gap-[10px] uppercase`}
+            style={{ backgroundColor: badge_value.color }}
           >
-            {value === "discount" ? (
-              <>
-                <div className="flex text-black font-semibold gap-1">
-                  <span className="">{product.disc_percentage}%</span>
-                  <span className="">off</span>
-                </div>
-              </>
+            {badge_value.val === "discount" ? (
+              <div className="flex text-black font-semibold gap-1">
+                <span>{product.disc_percentage}%</span>
+                <span>off</span>
+              </div>
             ) : (
-              <span>{value}</span>
+              <span>{badge_value.val}</span>
             )}
           </div>
         )}
       </div>
       <div className="flex flex-col gap-[8px] justify-start overflow-hidden text-sm">
-        <div className="flex gap-1 ">
+        <div className="flex gap-1">
           <span className="h-[16px]">
             <Rating value={product.star_value} readOnly />
           </span>
           <span className="text-[#77878F]">({product.review_count})</span>
         </div>
-        <div className="text-[#191C1F] font-semibold ">
+        <div className="text-[#191C1F] font-semibold">
           {product.description}
         </div>
         <div className="text-[#2DA5F3] font-semibold">
-          {value === "discount" ? (
-            <>
-              <div className="flex font-semibold gap-1">
-                <span className="text-[#929FA5] line-through">
-                  ${product.price}
-                </span>
-                <span className="">${product.disc_price}</span>
-              </div>
-            </>
+          {badge_value?.val === "discount" ? (
+            <div className="flex font-semibold gap-1">
+              <span className="text-[#929FA5] line-through">
+                ${product.price}
+              </span>
+              <span>${product.disc_price}</span>
+            </div>
           ) : (
             <span>${product.price}</span>
           )}
