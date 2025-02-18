@@ -1,61 +1,12 @@
 import React, { useState } from "react";
 import Title from "../../product_page/Title";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
 import Inputlabel from "../../ui components/Inputlabel";
 import Address from "./Address";
 import { Check } from "../../assets/svg";
 
-const schema = yup.object({
-  firstname: yup
-    .string()
-    .trim()
-    .required("First Name is required")
-    .min(4, "Name must be at least 4 characters"),
-  lastname: yup
-    .string()
-    .trim()
-    .required("Last Name is required")
-    .min(4, "Name must be at least 4 characters"),
-  company_name: yup.string(),
-  address_1: yup
-    .string()
-    .trim()
-    .required("Address is required")
-    .min(4, "Adress must be at least 4 characters"),
-  address_2: yup
-    .string()
-    .trim()
-    .required("Address is required")
-    .min(4, "Adress must be at least 4 characters"),
-  country: yup.string().trim().required("country is required"),
-  city: yup.string().trim().required("City is required"),
-  state: yup.string().trim().required("State is required"),
-  zip: yup
-    .number()
-    .required("Zip Code is required")
-    .min(4, "Zip Code must be at least 4 characters")
-    .max(6, "Zip Code must be at least 6 characters"),
-  email: yup
-    .string()
-    .email("Invalid email format")
-    .required("Email is required"),
-  phone_number: yup.number().required("Email is required"),
-  isDifferentAddress: yup.boolean(),
-});
-const User_Info = () => {
-  const {
-    watch,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+const User_Info = ({ register, errors, setValue, watch }) => {
   const isDifferentAddress = watch("isDifferentAddress", false);
-  // console.log(watch('country'))
-  // console.log(watch('state'))
-  // console.log(watch("isDifferentAddress"));
 
   return (
     <section className="flex flex-col gap-6 ">
@@ -72,6 +23,9 @@ const User_Info = () => {
             label={"First Name"}
             {...register("firstname")}
           />
+          {errors.firstname && (
+            <p className="text-sm text-red-500">{errors.firstname.message}</p>
+          )}
         </span>
         <span className="">
           <Inputlabel
@@ -81,6 +35,9 @@ const User_Info = () => {
             label={"Last Name"}
             {...register("lastname")}
           />
+          {errors.lastname && (
+            <p className="text-sm text-red-500">{errors.lastname.message}</p>
+          )}
         </span>
         <span className="col-span-2">
           <Inputlabel
@@ -91,10 +48,25 @@ const User_Info = () => {
             {...register("company_name")}
           />
         </span>
-
         {/* Address Area  */}
-        <Address register={register} setValue={setValue} />
-
+        <Address register={register} setValue={setValue} errors={errors} />
+        <span className="col-span-2">
+          <Inputlabel
+            type={"email"}
+            id={"email"}
+            label={"Email"}
+            {...register("email")}
+          />
+        </span>
+        <span className="col-span-2">
+          <Inputlabel
+            type={"number"}
+            id={"phone_number"}
+            label={"Phone Number"}
+            
+            {...register("phone_number")}
+          />
+        </span>
 
         <div className="flex gap-2 col-span-4">
           <div className="inline-flex items-center mb-auto">

@@ -3,7 +3,7 @@ import { CountrySelect, StateSelect } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import Inputlabel from "../../ui components/Inputlabel";
 
-const Address = ({register,setValue}) => {
+const Address = ({ register, setValue, errors }) => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
@@ -16,6 +16,9 @@ const Address = ({register,setValue}) => {
           label={"Address"}
           {...register("address_1")}
         />
+        {errors.address_1 && (
+          <p className="text-sm text-red-500">{errors.address_1.message}</p>
+        )}
       </span>
       <span className="flex flex-col gap-2">
         <label htmlFor="country" className="text-sm text-[#191C1F] flex gap-1">
@@ -29,9 +32,12 @@ const Address = ({register,setValue}) => {
             setValue("country", selected?.name);
             setSelectedCountry(selected);
           }}
-          onTextChange={(_txt) => console.log(_txt)}
+          // onTextChange={(_txt) => console.log(_txt)}
           placeHolder="Select Country"
         />
+        {errors.country && (
+          <p className="text-sm text-red-500">{errors.country.message}</p>
+        )}
       </span>
       <span className="flex flex-col gap-2">
         <label htmlFor="state" className="text-sm text-[#191C1F] flex gap-1">
@@ -46,13 +52,16 @@ const Address = ({register,setValue}) => {
             setValue("state", selected?.name);
             setSelectedState(selected);
           }}
-          onTextChange={(_txt) => console.log(_txt)}
+          // onTextChange={(_txt) => console.log(_txt)}
           // defaultValue={currentState}
           placeHolder="Select State"
         />
+        {errors.state && (
+          <p className="text-sm text-red-500">{errors.state.message}</p>
+        )}
       </span>
       <span className="flex flex-col gap-2">
-        <label htmlFor="state" className="text-sm text-[#191C1F] flex gap-1">
+        <label htmlFor="City" className="text-sm text-[#191C1F] flex gap-1">
           City
         </label>
         <StateSelect
@@ -65,10 +74,13 @@ const Address = ({register,setValue}) => {
             setValue("city", selected?.name);
             setSelectedCity(selected);
           }}
-          onTextChange={(_txt) => console.log(_txt)}
+          // onTextChange={(_txt) => console.log(_txt)}
           // defaultValue={currentState}
           placeHolder="Select State"
         />
+        {errors.city && (
+          <p className="text-sm text-red-500">{errors.city.message}</p>
+        )}
       </span>
       <span className="flex flex-col gap-2">
         <Inputlabel
@@ -77,6 +89,9 @@ const Address = ({register,setValue}) => {
           label={"Zip Code"}
           {...register("zip")}
         />
+        {errors.zip && (
+          <p className="text-sm text-red-500">{errors.zip.message}</p>
+        )}
       </span>
     </>
   );

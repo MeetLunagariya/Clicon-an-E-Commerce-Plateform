@@ -14,7 +14,7 @@ const Payment_Info = () => {
         {payment_options.map((option) => (
           <>
             <li
-              className={`flex-1 flex flex-col justify-center items-center gap-4 min-w-[160px] border-r border-gray-200 last:border-r-0`}
+              className={`flex-1 flex flex-col justify-center items-center gap-4 border-r border-gray-200 last:border-r-0`}
               key={option.id}
             >
               <div className="max-w-8 max-h-8">

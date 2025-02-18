@@ -1,4 +1,3 @@
-import React from "react";
 import Title from "../../product_page/Title";
 import { useSelector } from "react-redux";
 import Card_Totals from "../../shoping_cart/Card_Totals";
@@ -6,7 +5,7 @@ import { useNavigate } from "react-router";
 
 const Order_Summary = () => {
   const { items } = useSelector((state) => state.cart);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // console.log("items", items);
   return (
     <section className="border border-gray-200 rounded-sm px-4 py-2 self-start">
@@ -30,7 +29,10 @@ const Order_Summary = () => {
                     {item?.description}
                   </div>
                   <div className="font-semibold  ">
-                   <span className="text text-gray-600">{item?.quantity} x</span><span className="text-[#2DA5F3]"> ${item?.price}</span>
+                    <span className="text text-gray-600">
+                      {item?.quantity} x
+                    </span>
+                    <span className="text-[#2DA5F3]"> ${item?.price}</span>
                   </div>
                 </div>
               </div>
@@ -38,8 +40,14 @@ const Order_Summary = () => {
           </>
         ))}
       </ul>
-      <Card_Totals title={'place order'}
-       onClick={() => navigate(`/checkout`)}/>
+      <Card_Totals
+        title={"place order"}
+        type="submit"
+        onClick={() => {
+          console.log("Clicked");
+          // navigate(`/checkout`);
+        }}
+      />
     </section>
   );
 };

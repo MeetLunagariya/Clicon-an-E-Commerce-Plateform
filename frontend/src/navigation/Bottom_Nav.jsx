@@ -9,8 +9,6 @@ import {
 } from "../assets/svg";
 import { categories } from "./data";
 import Category from "./Category";
-
-import { useNavigate } from "react-router";
 import Selected_Categoty from "./Selected_Categoty";
 
 const nav_list = [
