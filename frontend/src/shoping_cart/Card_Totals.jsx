@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import FormButton from "../ui components/FormButton";
 import { useNavigate } from "react-router";
 
-const Card_Totals = () => {
-  const navigate = useNavigate();
+const Card_Totals = ({ title, ...props }) => {
+  
   const { items, totalQuantity } = useSelector((state) => state.cart);
   // console.log("Items in cart:", totalQuantity);
 
@@ -28,7 +28,7 @@ const Card_Totals = () => {
 
   return (
     <>
-      <section className="px-6 border border-gray-100 rounded-sm">
+      <section className=" rounded-sm">
         <div className="flex justify-start items-center py-5">
           <Title title={"Card Totals"} />
         </div>
@@ -53,8 +53,8 @@ const Card_Totals = () => {
               <span className="font-medium">${totalPrice} USD</span>
             </div>
             <FormButton
-              title="proceed to checkout"
-              onClick={() => navigate(`../checkout`)}
+              title={title}
+              {...props}
             />
           </section>
         ) : (

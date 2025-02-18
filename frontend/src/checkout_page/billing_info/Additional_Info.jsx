@@ -1,6 +1,5 @@
 import React from "react";
 import Title from "../../product_page/Title";
-import Inputlabel from "../../ui components/Inputlabel";
 
 const Additional_Info = () => {
   return (
