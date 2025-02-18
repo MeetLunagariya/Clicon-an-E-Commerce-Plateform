@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import img_1 from "./Image_1.png";
 import img_2 from "./Image_2.png";
 import img_3 from "./Image_3.png";

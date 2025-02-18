@@ -87,6 +87,7 @@ const User_Info = () => {
             type={"text"}
             id={"company_name"}
             label={"Company Name"}
+            isOptional={true}
             {...register("company_name")}
           />
         </span>
@@ -94,7 +95,7 @@ const User_Info = () => {
         {/* Address Area  */}
         <Address register={register} setValue={setValue} />
 
-        
+
         <div className="flex gap-2 col-span-4">
           <div className="inline-flex items-center mb-auto">
             <label className="flex items-center cursor-pointer relative">

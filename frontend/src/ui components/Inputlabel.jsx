@@ -4,14 +4,14 @@ import { useState, forwardRef } from "react";
 import { Eye, HideEye } from "../assets/svg";
 
 const Inputlabel = forwardRef(
-  ({ type, id, placeholder, label, ...props }, ref) => {
+  ({ type, id, placeholder, label, isOptional , ...props }, ref) => {
     const [isPassVisible, setIsPassVisible] = useState(false);
 
     return (
       <div className="flex flex-col gap-2 font-sans">
         <label htmlFor={id} className="text-sm text-[#191C1F] flex gap-1">
           <span>{label}</span>
-          {label === "Company Name" && (
+          {isOptional && (
             <>
               <span className="text-gray-400">(Optional)</span>
             </>
