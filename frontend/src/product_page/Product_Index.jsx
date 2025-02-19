@@ -2,9 +2,12 @@ import { useParams } from "react-router";
 import Bottom_Section from "./Bottom_Section";
 import MiddleSection from "./MiddleSection";
 import TopSection from "./TopSection";
-import { products,badge_value } from "../shop_page/prduct_list/products/productData";
+import {
+  products,
+  badge_value,
+} from "../shop_page/prduct_list/products/productData";
 const Product_Index = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   // console.log("id", id);
 
   const product = products.find((data) => data.id == id);
@@ -13,9 +16,11 @@ const Product_Index = () => {
   return (
     <div className="container ">
       <div className="">
-        <TopSection id={id} product={product}  badge_value={
-                  product.badge_id ? badge_value[product.badge_id] : null
-                } />
+        <TopSection
+          id={id}
+          product={product}
+          badge_value={product.badge_id ? badge_value[product.badge_id] : null}
+        />
         <MiddleSection />
         <Bottom_Section />
       </div>

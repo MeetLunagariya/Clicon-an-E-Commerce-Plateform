@@ -3,7 +3,7 @@ import Order_Summary from "./order_summary/Order_Summary";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Successful from "./Successful";
 
 const schema = yup.object({
@@ -35,18 +35,18 @@ const schema = yup.object({
     .string()
     .trim()
     .required("Zip Code is required")
-    .matches(/^\d+$/, "Zip Code must be numeric")
-    .min(4, "Zip Code must be at least 4 numbers")
-    .max(6, "Zip Code must be at most 6 numbers"),
+    .matches(/^\d+$/, "Zip Code must be numeric"),
+    // .min(4, "Zip Code must be at least 4 numbers")
+    // .max(6, "Zip Code must be at most 6 numbers"),
   email: yup
     .string()
-    .email("Invalid email format")
-    .required("Email is required"),
+    .email("Invalid email format"),
+    // .required("Email is required"),
   phone_number: yup
     .string()
-    .trim()
-    .required("Phone Number is required")
-    .matches(/^\d+$/, "Phone Number must be numeric"),
+    .trim(),
+    // .required("Phone Number is required")
+    // .matches(/^\d+$/, "Phone Number must be numeric"),
   isDifferentAddress: yup.boolean(),
 });
 
@@ -60,17 +60,31 @@ const Checkout = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const [isOrderPlaced, setisOrderPlaced] = useState(false);
-
+  console.log(errors)
   function submit(data) {
-    reset(data); 
-    setisOrderPlaced(true); 
+    reset(data);
+    setisOrderPlaced(true);
   }
+
+  useEffect(() => {
+    if (isOrderPlaced) {
+      setTimeout(() => {
+        const element = document.getElementById("target-event");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100); // Delay to ensure rendering
+    }
+  }, [isOrderPlaced]);
 
   return (
     <div className="container ">
       {isOrderPlaced ? (
         <>
-          <section className="min-h-[524px] flex justify-center items-center">
+          <section
+            className="min-h-[524px] flex justify-center items-center"
+            id="target-event"
+          >
             <Successful />
           </section>
         </>
