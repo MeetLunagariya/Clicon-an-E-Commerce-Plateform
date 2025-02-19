@@ -50,7 +50,10 @@ import Truck from "./Truck.svg?react";
 import XCircle_Gray from "./XCircle_Gray.svg?react";
 import XCircle_Red from "./XCircle_Red.svg?react";
 import ArrowLeft_Cart from "./ArrowLeft_Cart.svg?react";
-export {ArrowLeft_Cart,
+import Stack from "./Stack.svg?react";
+export {
+  Stack,
+  ArrowLeft_Cart,
   XCircle_Red,
   XCircle_Gray,
   Truck,

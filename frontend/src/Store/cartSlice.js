@@ -10,6 +10,10 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    emptyCart(state) {
+      state.items = [];
+      state.totalQuantity = 0; // Reset total quantity when cart is emptied
+    },
     addToCart(state, action) {
       const newItem = action.payload;
       const quantityToAdd = newItem.quantity || 1;
@@ -52,6 +56,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeItemQuantity, removeFromCart, clearCart } =
+export const { addToCart, removeItemQuantity, removeFromCart, clearCart, emptyCart } =
   cartSlice.actions;
 export default cartSlice.reducer;
