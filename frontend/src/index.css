@@ -13,3 +13,11 @@
     margin: 0;
   }
 }
+
+.stdropdown-container {
+  text-align: left;
+  border: 1px solid #E4E7E9 !important;
+  position: relative;
+  border-radius: 0.125rem !important;
+  font-family: Arial, Helvetica, sans-serif;
+}

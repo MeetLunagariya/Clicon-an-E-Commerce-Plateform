@@ -16,7 +16,7 @@ const Successful = () => {
     dispatch(emptyCart());
     // console.log("items", items);
   }, []);
-
+    
   
   return (
     <div className="flex flex-col text-center justify-center items-center gap-5">
