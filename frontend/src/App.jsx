@@ -11,6 +11,7 @@ import Index_Footer from "./footer/Index_Footer";
 import Product_Index from "./product_page/Product_Index";
 import Cart from "./shoping_cart/Cart";
 import Checkout from "./checkout_page/Checkout";
+import Wishlist_Index from "./wishlist/Wishlist_Index";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -39,6 +40,7 @@ function App() {
         <Route path="/product_page/:id" element={<Product_Index />} />
         <Route path="/shoping_cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/wishlist" element={<Wishlist_Index />} />
       </Routes>
       <Index_Footer />
     </BrowserRouter>

@@ -2,8 +2,9 @@
 import { Rating } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../Store/cartSlice";
+import { addToWishlist } from "../../../Store/wishlistSlice";
 import { useNavigate } from "react-router";
 
 const hoverIcon = [
@@ -15,20 +16,15 @@ const hoverIcon = [
 const Product = ({ product, badge_value }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [activeCard, setActiveCard] = useState(null);
-  // const scrollToSection = () => {
+  // const { wished_items } = useSelector((state) => state.WishList);
+  // console.log("wished_items", wished_items);
 
-  //   window.postMessage({ type: "SCROLL_TO_SECTION" }, "*");
-  // };
   return (
     <div
       className="border rounded-sm border-[#E4E7E9] p-4 hover:shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)]"
       onMouseEnter={() => setActiveCard(product.id)}
       onMouseLeave={() => setActiveCard(null)}
-      // onClick={() => {isMobile && handleCardClick(product.id);
-      //   console.log(product.id)
-      // }}
     >
       <div className="relative mx-auto w-[fit-content] z-0 h-full">
         {activeCard && (
@@ -39,6 +35,7 @@ const Product = ({ product, badge_value }) => {
                 className="h-[48px] w-[48px] flex justify-center items-center cursor-pointer bg-white hover:bg-[#FA8232] rounded-full text-black hover:text-white transition-colors"
                 onClick={(e) => {
                   // e.stopPropagation();
+                  if (icon.value === "heart") dispatch(addToWishlist(product));
                   if (icon.value === "cart") dispatch(addToCart({ product }));
                   if (icon.value === "eye")
                     // scrollToSection();

@@ -25,7 +25,7 @@ const Middle_Nav = () => {
             {totalQuantity}
           </div>
         </span>
-        <button>
+        <button onClick={() => navigate("./wishlist")}>
           <Heart />
         </button>
         <button >
