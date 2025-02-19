@@ -1,9 +1,10 @@
-import React from "react";
 import Billing_Info from "./billing_info/Billing_Info";
 import Order_Summary from "./order_summary/Order_Summary";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
+import Successful from "./Successful";
 
 const schema = yup.object({
   firstname: yup
@@ -31,46 +32,63 @@ const schema = yup.object({
   city: yup.string().trim().required("City is required"),
   state: yup.string().trim().required("State is required"),
   zip: yup
-  .string()
-  .trim()
-  .required("Zip Code is required")
-  .matches(/^\d+$/, "Zip Code must be numeric")
-  .min(4, "Zip Code must be at least 4 numbers")
-  .max(6, "Zip Code must be at most 6 numbers"),
+    .string()
+    .trim()
+    .required("Zip Code is required")
+    .matches(/^\d+$/, "Zip Code must be numeric")
+    .min(4, "Zip Code must be at least 4 numbers")
+    .max(6, "Zip Code must be at most 6 numbers"),
   email: yup
     .string()
     .email("Invalid email format")
     .required("Email is required"),
-    phone_number: yup
+  phone_number: yup
     .string()
     .trim()
     .required("Phone Number is required")
     .matches(/^\d+$/, "Phone Number must be numeric"),
   isDifferentAddress: yup.boolean(),
 });
+
 const Checkout = () => {
   const {
     watch,
     register,
     setValue,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  // console.log(watch("lastname"));
-  console.log("Form Errors:", errors);
-  function submit(data){
-    console.log(data);
-  };
+  const [isOrderPlaced, setisOrderPlaced] = useState(false);
+
+  function submit(data) {
+    reset(data); 
+    setisOrderPlaced(true); 
+  }
 
   return (
     <div className="container ">
-      <form className="" onSubmit={handleSubmit(submit)}>
-        <div className="grid grid-cols-4 px-3 py-10 gap-4">
-          <Billing_Info register={register} errors={errors} setValue={setValue} watch={watch}/>
-          <Order_Summary />
-        </div>
-        {/* <button>submit</button> */}
-      </form>
+      {isOrderPlaced ? (
+        <>
+          <section className="min-h-[524px] flex justify-center items-center">
+            <Successful />
+          </section>
+        </>
+      ) : (
+        <>
+          <form className="" onSubmit={handleSubmit(submit)}>
+            <div className="grid grid-cols-4 px-3 py-10 gap-4">
+              <Billing_Info
+                register={register}
+                errors={errors}
+                setValue={setValue}
+                watch={watch}
+              />
+              <Order_Summary />
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 };

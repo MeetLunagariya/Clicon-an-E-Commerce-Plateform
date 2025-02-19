@@ -1,12 +1,10 @@
 import Title from "../../product_page/Title";
 import { useSelector } from "react-redux";
 import Card_Totals from "../../shoping_cart/Card_Totals";
-import { useNavigate } from "react-router";
 
 const Order_Summary = () => {
   const { items } = useSelector((state) => state.cart);
-  const navigate = useNavigate();
-  // console.log("items", items);
+
   return (
     <section className="border border-gray-200 rounded-sm px-4 py-2 self-start">
       <div>
@@ -40,14 +38,7 @@ const Order_Summary = () => {
           </>
         ))}
       </ul>
-      <Card_Totals
-        title={"place order"}
-        type="submit"
-        onClick={() => {
-          console.log("Clicked");
-          // navigate(`/checkout`);
-        }}
-      />
+      <Card_Totals title={"place order"} type="submit" />
     </section>
   );
 };
