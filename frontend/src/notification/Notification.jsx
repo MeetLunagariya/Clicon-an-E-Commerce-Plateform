@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
 import { FiCheckSquare, FiX } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { removeNotification } from "../Store/notificationSlice";
 import { useDispatch } from "react-redux";
 const Notification = ({ text, id }) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       dispatch(removeNotification(id));

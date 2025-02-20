@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { ShoppingCartSimple_advertise, XCircle_Gray } from "../assets/svg";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromWishlist, addToWishlist } from "../Store/wishlistSlice";
+import { removeFromWishlist } from "../Store/wishlistSlice";
 import { addToCart, removeFromCart } from "../Store/cartSlice";
 import { addNotification } from "../Store/notificationSlice";
 
 const Item = ({ item }) => {
   const dispatch = useDispatch();
   const [isItemInCart, setIsItemInCart] = useState(null);
-  const { wished_items } = useSelector((state) => state.WishList);
   const { items } = useSelector((state) => state.cart);
 
   // to check Item is already in cart or not

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { ShoppingCartSimple_advertise } from "../assets/svg";
 import { addToCart, removeFromCart } from "../Store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";

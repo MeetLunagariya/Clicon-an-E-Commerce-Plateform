@@ -13,6 +13,8 @@ import Cart from "./shoping_cart/Cart";
 import Checkout from "./checkout_page/Checkout";
 import Wishlist_Index from "./wishlist/Wishlist_Index";
 import Notification_Index from "./notification/Notification_Index";
+import Account from "./account/Account";
+import Dashboard from "./account/Dashboard";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -24,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navigation />
-      <Notification_Index/>
+      <Notification_Index />
       <Routes>
         <Route path="/" element={<UserAccount isForget={isForget} />}>
           <Route index element={<SignIn setIsForget={handleIsForget} />} />
@@ -43,6 +45,10 @@ function App() {
         <Route path="/shoping_cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/wishlist" element={<Wishlist_Index />} />
+        <Route path="/userAccount" element={<Account />}>
+          <Route index element={<Dashboard />} />
+          <Route index path="dashboard" element={<Dashboard />} />
+        </Route>
       </Routes>
       <Index_Footer />
     </BrowserRouter>
