@@ -10,7 +10,7 @@ const wishlistSlice = createSlice({
   initialState,
   reducers: {
     addToWishlist(state, action) {
-      console.log(action.payload);
+      // console.log(action.payload);
       const newItem = action.payload;
       const existingItem = state.wished_items.find(
         (item) => item.id === newItem.id
@@ -20,7 +20,7 @@ const wishlistSlice = createSlice({
         state.total_wished_items++;
       }
 
-      console.log("wished_items", state.wished_items);
+      // console.log("wished_items", state.wished_items);
     },
 
     removeFromWishlist(state, action) {

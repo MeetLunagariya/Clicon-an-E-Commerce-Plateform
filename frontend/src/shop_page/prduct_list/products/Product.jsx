@@ -8,6 +8,7 @@ import { addToWishlist } from "../../../Store/wishlistSlice";
 import { useNavigate } from "react-router";
 import { FiCheckSquare, FiX } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
+import { addNotification } from "../../../Store/notificationSlice";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -44,22 +45,12 @@ const hoverIcon = [
 //   );
 // };
 
-const Product = ({ product, badge_value, addNotification }) => {
-  const navigate = useNavigate();
+const Product = ({ product, badge_value }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState(null);
-  // const [notifications, setNotifications] = useState([]);
-
-  // const removeNotif = (id) => {
-  //   setNotifications((pv) => pv.filter((n) => n.id !== id));
-  // };
-
-  // const addNotification = (message) => {
-  //   setNotifications((pv) => [
-  //     { id: Math.random(), text: message },
-  //     ...pv
-  //   ]);
-  // };
+  const { notifications } = useSelector((state) => state.notification);
+  // console.log("notifications", notifications);
 
   return (
     <>
@@ -79,11 +70,21 @@ const Product = ({ product, badge_value, addNotification }) => {
                     e.stopPropagation();
                     if (icon.value === "heart") {
                       dispatch(addToWishlist(product));
-                      addNotification("Added to Wishlist");
+                      dispatch(
+                        addNotification({
+                          id: Date.now(),
+                          text: "Added to wishlist",
+                        })
+                      );
                     }
                     if (icon.value === "cart") {
                       dispatch(addToCart({ product }));
-                      addNotification("Added to Cart");
+                      dispatch(
+                        addNotification({
+                          id: Date.now(),
+                          text: "Added to Cart",
+                        })
+                      );
                     }
                     if (icon.value === "eye") {
                       navigate(`../product_page/${product.id}`);
