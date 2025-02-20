@@ -3,6 +3,7 @@ import { ShoppingCartSimple_advertise, XCircle_Gray } from "../assets/svg";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWishlist, addToWishlist } from "../Store/wishlistSlice";
 import { addToCart, removeFromCart } from "../Store/cartSlice";
+import { addNotification } from "../Store/notificationSlice";
 
 const Item = ({ item }) => {
   const dispatch = useDispatch();
@@ -59,10 +60,22 @@ const Item = ({ item }) => {
             type="button"
             onClick={() => {
               isItemInCart
-                ? dispatch(removeFromCart(item.id))
-                : dispatch(addToCart({ product: item, quantity: 1 }));
+                ? (dispatch(removeFromCart(item.id)),
+                  dispatch(
+                    addNotification({
+                      id: Date.now(),
+                      text: "Removed From Cart",
+                    })
+                  ))
+                : (dispatch(addToCart({ product: item, quantity: 1 })),
+                  dispatch(
+                    addNotification({
+                      id: Date.now(),
+                      text: "Added to Cart",
+                    })
+                  ));
             }}
-            disabled = {!item.stock_status}
+            disabled={!item.stock_status}
           >
             <span className="text-white font-medium text-lg">
               {isItemInCart ? "Remove from cart" : "add to cart"}
