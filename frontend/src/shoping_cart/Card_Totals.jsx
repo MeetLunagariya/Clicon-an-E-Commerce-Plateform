@@ -4,7 +4,6 @@ import FormButton from "../ui components/FormButton";
 import { useNavigate } from "react-router";
 
 const Card_Totals = ({ title, ...props }) => {
-  
   const { items, totalQuantity } = useSelector((state) => state.cart);
   // console.log("Items in cart:", totalQuantity);
 
@@ -28,8 +27,8 @@ const Card_Totals = ({ title, ...props }) => {
 
   return (
     <>
-      <section className=" rounded-sm">
-        <div className="flex justify-start items-center py-5">
+      <section className=" rounded-sm ">
+        <div className="flex justify-start items-center py-5 ">
           <Title title={"Card Totals"} />
         </div>
         {totalQuantity >= 1 ? (
@@ -52,10 +51,7 @@ const Card_Totals = ({ title, ...props }) => {
               <span className="text-gray-600">Total</span>
               <span className="font-medium">${totalPrice} USD</span>
             </div>
-            <FormButton
-              title={title}
-              {...props}
-            />
+            <FormButton title={title} {...props} />
           </section>
         ) : (
           <section className="py-5 font-medium text-gray-400">
