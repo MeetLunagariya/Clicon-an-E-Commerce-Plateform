@@ -14,7 +14,7 @@ import Checkout from "./checkout_page/Checkout";
 import Wishlist_Index from "./wishlist/Wishlist_Index";
 import Notification_Index from "./notification/Notification_Index";
 import Account from "./account/Account";
-import Dashboard from "./account/Dashboard";
+import Dashboard from "./account/dashboard/Dashboard";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
