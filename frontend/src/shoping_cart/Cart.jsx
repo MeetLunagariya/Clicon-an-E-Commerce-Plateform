@@ -9,7 +9,7 @@ const Cart = () => {
     <div className="container mx-auto">
       <section className="my-14 px-4 grid grid-cols-3 gap-4">
         <Shopping_Card />
-        <span className="border border-gray-100 px-6 ">
+        <span className="border border-gray-100 px-6 self-start">
           <Card_Totals
             title={"proceed to checkout"}
             onClick={() => navigate(`../checkout`)}

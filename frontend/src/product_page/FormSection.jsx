@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { ShoppingCartSimple_advertise } from "../assets/svg";
 import { addToCart, removeFromCart } from "../Store/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { addNotification } from "../Store/notificationSlice";
 const MAX_ITEM_COUNT = 5;
 
 const FormSection = ({ product }) => {
@@ -25,12 +27,18 @@ const FormSection = ({ product }) => {
             <label htmlFor="color">Color</label>
             <ul className="flex gap-3">
               <li key={"#B1B5B8"}>
-                <button className="rounded-full border-2 hover:border-[#FA8232] p-1" type="button">
+                <button
+                  className="rounded-full border-2 hover:border-[#FA8232] p-1"
+                  type="button"
+                >
                   <div className="min-w-8 min-h-8 bg-[#B1B5B8] rounded-full"></div>
                 </button>
               </li>
               <li key={"#E0E1E1"}>
-                <button className="p-1 rounded-full border-2 hover:border-[#FA8232]" type="button">
+                <button
+                  className="p-1 rounded-full border-2 hover:border-[#FA8232]"
+                  type="button"
+                >
                   <div className="min-w-8 min-h-8 bg-[#E0E1E1] rounded-full"></div>
                 </button>
               </li>
@@ -98,8 +106,21 @@ const FormSection = ({ product }) => {
             type="button"
             onClick={() => {
               isItemInCart
-                ? dispatch(removeFromCart(product.id))
-                : dispatch(addToCart({ product, quantity: itemCount }));
+                ? (dispatch(removeFromCart(product.id)),
+                  dispatch(
+                    addNotification({
+                      id: Date.now(),
+                      text: "Removed From Cart",
+                    })
+                  ))
+                : 
+                (dispatch(addToCart({ product, quantity: itemCount })),
+                dispatch(
+                  addNotification({
+                    id: Date.now(),
+                    text: "Added to Cart",
+                  })
+                ))
             }}
           >
             <span className="text-white font-medium text-lg">

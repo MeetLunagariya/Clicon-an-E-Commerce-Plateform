@@ -29,7 +29,7 @@ const cartSlice = createSlice({
       }
 
       state.totalQuantity += quantityToAdd; // Update total quantity
-      // console.log(state.items.length)
+      console.log(state.items.length)
     },
     removeItemQuantity(state, action) {
       // console.log('dlt...')

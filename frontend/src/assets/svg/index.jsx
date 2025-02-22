@@ -51,7 +51,23 @@ import XCircle_Gray from "./XCircle_Gray.svg?react";
 import XCircle_Red from "./XCircle_Red.svg?react";
 import ArrowLeft_Cart from "./ArrowLeft_Cart.svg?react";
 import Stack from "./Stack.svg?react";
+import Storefront from "./Storefront.svg?react";
+import Notebook from "./Notebook.svg?react";
+import ClockClockwise from "./ClockClockwise.svg?react";
+import Gear from "./Gear.svg?react";
+import SignOut from "./SignOut.svg?react";
+import Stack_2 from "./Stack_2.svg?react";
+import ShoppingCartSimple_2 from "./ShoppingCartSimple_2.svg?react";
+import Heart_2 from "./Heart_2.svg?react";
 export {
+  Heart_2,
+  ShoppingCartSimple_2,
+  Stack_2,
+  SignOut,
+  Gear,
+  ClockClockwise,
+  Notebook,
+  Storefront,
   Stack,
   ArrowLeft_Cart,
   XCircle_Red,

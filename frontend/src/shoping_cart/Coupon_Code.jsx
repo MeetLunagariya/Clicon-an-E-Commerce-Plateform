@@ -3,7 +3,7 @@ import Title from "../product_page/Title";
 
 const Coupon_Code = () => {
   return (
-    <section className=" border border-gray-100 rounded-sm">
+    <section className=" border border-gray-100 rounded-sm self-start">
       <div className="flex justify-start items-center py-5 px-6 border-b border-gray-100">
         <Title title={"Coupon Code"} />
       </div>

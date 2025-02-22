@@ -25,10 +25,10 @@ const Middle_Nav = () => {
             {totalQuantity}
           </div>
         </span>
-        <button>
+        <button onClick={() => navigate("./wishlist")}>
           <Heart />
         </button>
-        <button >
+        <button onClick={()=>navigate("./userAccount")}>
           <User />
         </button>
       </div>
