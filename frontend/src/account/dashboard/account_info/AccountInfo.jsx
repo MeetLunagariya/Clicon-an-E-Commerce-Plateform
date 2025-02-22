@@ -5,10 +5,12 @@ import Orders from "./Orders";
 
 const AccountInfo = () => {
   return (
-    <section className="grid grid-cols-3 gap-6">
+    <section className="grid grid-cols-2 lg:grid-cols-3 gap-6">
       <Info />
       <BillingAdress />
-      <Orders />
+      <div className="col-span-2 lg:col-span-1">
+        <Orders />
+      </div>
     </section>
   );
 };

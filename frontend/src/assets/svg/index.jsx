@@ -59,7 +59,13 @@ import SignOut from "./SignOut.svg?react";
 import Stack_2 from "./Stack_2.svg?react";
 import ShoppingCartSimple_2 from "./ShoppingCartSimple_2.svg?react";
 import Heart_2 from "./Heart_2.svg?react";
+import Package from "./Package.svg?react";
+import Receipt from "./Receipt.svg?react";
+import Rocket from "./Rocket.svg?react";
 export {
+  Rocket,
+  Receipt,
+  Package,
   Heart_2,
   ShoppingCartSimple_2,
   Stack_2,
