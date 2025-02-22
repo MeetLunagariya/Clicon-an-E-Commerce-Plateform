@@ -1,5 +1,5 @@
 import React from "react";
-import EditButton from "../EditButton";
+import EditButton from "./EditButton";
 import Title from "../../../product_page/Title";
 
 const BillingAdress = () => {
