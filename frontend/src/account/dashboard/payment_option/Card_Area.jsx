@@ -1,7 +1,7 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Copy, DotsThree } from "../../../assets/svg";
 import { addNotification } from "../../../Store/notificationSlice";
+import Card_Number from "./Card_Number";
 
 const Card_Area = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Card_Area = () => {
                   Card Number
                 </div>
                 <div className="flex gap-1 ">
-                  <span>{card.number}</span>
+                  <span className="text-"><Card_Number cardNumber={card.number}/></span>
                   <button
                     className="text-gray-300 hover:text-gray-100"
                     onClick={() => {
