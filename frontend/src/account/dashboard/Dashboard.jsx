@@ -1,6 +1,6 @@
 import React from "react";
 import NameSection from "./NameSection";
-import AccountInfo from "./AccountInfo";
+import AccountInfo from "./account_info/AccountInfo";
 
 const Dashboard = () => {
   return (

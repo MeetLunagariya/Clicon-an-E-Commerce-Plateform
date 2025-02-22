@@ -47,8 +47,10 @@ import paypal from "./paypal.png";
 import amazon from "./amazon.png";
 import CreditCard from "./CreditCard.png";
 import CheckCircle from "./CheckCircle.png";
+import profile from "./profile.png";
 
 export {
+  profile,
   CheckCircle,
   CreditCard,
   amazon,
