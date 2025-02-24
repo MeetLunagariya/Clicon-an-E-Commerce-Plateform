@@ -5,7 +5,7 @@ import { showApplicationForm } from "../../../Store/payment_cardSlice";
 import { addNotification } from "../../../Store/notificationSlice";
 const Title_Bar = () => {
   const { maxCards } = useSelector((state) => state.card);
-  console.log("maxCards", maxCards);
+  // console.log("maxCards", maxCards);
   const dispatch = useDispatch();
   return (
     <section className=" flex justify-between items-center py-2 px-6">

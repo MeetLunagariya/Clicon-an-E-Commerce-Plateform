@@ -33,7 +33,8 @@ const schema = yup
 
 const Card_Form = ({ selectedCard }) => {
   const dispatch = useDispatch();
-  const cards = useSelector((state) => state.card);
+  const { cards, isUpdate } = useSelector((state) => state.card);
+  // console.log("cards", cards);
 
   const {
     register,
@@ -70,7 +71,6 @@ const Card_Form = ({ selectedCard }) => {
       dispatch(addCard(newCard));
 
       // console.log("New card data:", newCard);
-    
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -96,7 +96,7 @@ const Card_Form = ({ selectedCard }) => {
           <X className="w-6 h-6" />
         </button>
         <h2 className="text-2xl font-bold text-orange-500 mb-4">
-          Apply for {selectedCard?.title || "Card"}
+          {isUpdate ? "Update Card" : "Add Card"}
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -214,7 +214,13 @@ const Card_Form = ({ selectedCard }) => {
                 scale: isSubmitting ? 1 : 0.95,
               }}
             >
-              {isSubmitting ? "Submitting..." : "Submit Application"}
+              {isUpdate
+                ? isSubmitting
+                  ? "Updating..."
+                  : "Update Application"
+                : isSubmitting
+                ? "Submitting..."
+                : "Submit Application"}
             </motion.button>
           </div>
         </form>

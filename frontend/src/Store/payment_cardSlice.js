@@ -25,6 +25,7 @@ const initialState = {
   ],
   showApplicationForm: false,
   maxCards: 2,
+  isUpdate:false,
 };
 
 const cardSlice = createSlice({
