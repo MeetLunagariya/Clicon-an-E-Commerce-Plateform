@@ -6,7 +6,14 @@ import Card_Number from "./Card_Number";
 const Card_Area = () => {
   const dispatch = useDispatch();
   const { cards } = useSelector((state) => state.card);
-  console.log("cards", cards);
+  // console.log("cards", cards);
+
+  const formatBalance = (balance) => {
+    return new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(balance);
+  };
 
   return (
     <section className="border-t border-gray-200 px-6 py-4">
@@ -15,11 +22,18 @@ const Card_Area = () => {
           <>
             <li
               key={card.id}
-              className="py-7 px-6 bg-[radial-gradient(98.14%_214.97%_at_0%_0%,_#1B6392_0%,_#124261_80%)] text-white rounded-lg min-w-[296px] min-h-[196px] flex flex-col justify-between"
+              className={`py-7 px-6 ${
+                card.id % 2 !== 0
+                  ? "bg-[radial-gradient(98.14%_214.97%_at_0%_0%,_#1B6392_0%,_#124261_80%)]"
+                  : "bg-[radial-gradient(98.14%_214.97%_at_0%_0%,_#248E1D_0%,_#2DB324_100%)]"
+              } text-white rounded-lg min-w-[296px] min-h-[196px] flex flex-col justify-between`}
             >
               <div className="flex justify-between">
                 <div className="text-xl">
-                  <span className="font-medium ">${card.balance}</span> USD
+                  <span className="font-medium">
+                    ${formatBalance(card.balance)}
+                  </span>{" "}
+                  USD
                 </div>
                 <button className="text-gray-300 hover:text-gray-100">
                   <DotsThree />
@@ -30,7 +44,9 @@ const Card_Area = () => {
                   Card Number
                 </div>
                 <div className="flex gap-1 ">
-                  <span className="text-"><Card_Number cardNumber={card.number}/></span>
+                  <span className="text-">
+                    <Card_Number cardNumber={card.number} />
+                  </span>
                   <button
                     className="text-gray-300 hover:text-gray-100"
                     onClick={() => {

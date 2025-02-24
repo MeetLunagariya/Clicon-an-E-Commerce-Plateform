@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { mastercard, visa } from "../assets/img";
+import { addNotification } from "./notificationSlice";
 
 const initialState = {
   cards: [
@@ -22,27 +23,51 @@ const initialState = {
       type: mastercard,
     },
   ],
+  showApplicationForm: false,
+  maxCards: 2,
 };
 
 const cardSlice = createSlice({
   name: "cards",
   initialState,
   reducers: {
+    showApplicationForm(state) {
+      state.showApplicationForm = !state.showApplicationForm;
+    },
     addCard(state, action) {
+      state.maxCards = state.maxCards + 1;
       state.cards.push(action.payload);
+      state.showApplicationForm = false;
     },
     removeCard(state, action) {
-      state.cards = state.cards.filter((card) => card.id!== action.payload);
+      state.cards = state.cards.filter((card) => card.id !== action.payload);
     },
     updateCard(state, action) {
       const { id, updatedCard } = action.payload;
       state.cards = state.cards.map((card) =>
-        card.id === id? {...card,...updatedCard } : card
+        card.id === id ? { ...card, ...updatedCard } : card
       );
     },
   },
-})
+});
 
-export const { addCard, removeCard, updateCard } = cardSlice.actions;
+// Store the original addCard action creator
+const {
+  addCard: originalAddCard,
+  removeCard,
+  updateCard,
+  showApplicationForm,
+} = cardSlice.actions;
+
+// Redefine addCard as a thunk
+export const addCard = (newCard) => (dispatch) => {
+ 
+    dispatch(originalAddCard(newCard));
+    dispatch(addNotification({ text: `New card added: ${newCard.number}` }));
+ 
+};
+
+// Export other action creators
+export { removeCard, updateCard, showApplicationForm };
 
 export default cardSlice.reducer;
