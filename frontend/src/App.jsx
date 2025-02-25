@@ -15,6 +15,7 @@ import Wishlist_Index from "./wishlist/Wishlist_Index";
 import Notification_Index from "./notification/Notification_Index";
 import Account from "./account/Account";
 import Dashboard from "./account/dashboard/Dashboard";
+import Card_Address from "./account/cards_and_address/Card_Address";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/userAccount" element={<Account />}>
           <Route index element={<Dashboard />} />
           <Route index path="dashboard" element={<Dashboard />} />
+          <Route index path="address" element={<Card_Address />} />
         </Route>
       </Routes>
       <Index_Footer />

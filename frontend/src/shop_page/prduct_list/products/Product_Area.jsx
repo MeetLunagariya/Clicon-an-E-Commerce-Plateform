@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Product from "./Product";
 import { badge_value, products } from "./productData";
 

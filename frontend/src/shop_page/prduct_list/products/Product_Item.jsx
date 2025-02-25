@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Rating } from "@mui/material";
 import React from "react";
 import { useDispatch } from "react-redux";
