@@ -1,5 +1,3 @@
-import { ChevronRightIcon } from "lucide-react";
-import React from "react";
 import { RightArrow } from "../../../assets/svg";
 
 const Order = ({ item }) => {

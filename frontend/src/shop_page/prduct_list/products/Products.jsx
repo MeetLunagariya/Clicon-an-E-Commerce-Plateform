@@ -46,7 +46,7 @@ const Products = () => {
     <div className="w-full flex flex-col gap-3">
       <Search_Bar />
       <Filter_Bar />
-      <Product_Area start_end={start_end} />
+      <Product_Area start_end={start_end}/>
       <Footer
         handlePageChange={handlePageChange}
         currentPage={currentPage.current}

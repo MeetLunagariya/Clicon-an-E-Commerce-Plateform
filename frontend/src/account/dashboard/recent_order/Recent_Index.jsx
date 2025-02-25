@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import Title_Bar from "../payment_option/Title_Bar";
-import { ChevronRightIcon } from "lucide-react";
 import Order from "./Order";
 
 const Recent_Index = () => {
