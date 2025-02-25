@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../../../product_page/Title";
 import { profile } from "../../../assets/img";
-import EditButton from "../EditButton";
+import EditButton from "./EditButton";
 
 const Info = () => {
   return (

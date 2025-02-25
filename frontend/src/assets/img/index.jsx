@@ -48,8 +48,12 @@ import amazon from "./amazon.png";
 import CreditCard from "./CreditCard.png";
 import CheckCircle from "./CheckCircle.png";
 import profile from "./profile.png";
+import mastercard from "./mastercard.png";
+import visa from "./visa.png";
 
 export {
+  visa,
+  mastercard,
   profile,
   CheckCircle,
   CreditCard,

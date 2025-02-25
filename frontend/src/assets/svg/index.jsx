@@ -62,7 +62,10 @@ import Heart_2 from "./Heart_2.svg?react";
 import Package from "./Package.svg?react";
 import Receipt from "./Receipt.svg?react";
 import Rocket from "./Rocket.svg?react";
+import DotsThree from "./DotsThree.svg?react";
+
 export {
+  DotsThree,
   Rocket,
   Receipt,
   Package,

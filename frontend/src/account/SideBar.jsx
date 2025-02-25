@@ -14,7 +14,7 @@ import {
 import { Links, NavLink, useNavigate } from "react-router";
 
 const data = [
-  { title: "Dashboard", icon: <Stack_2 />, to: "dashboard" },
+  { title: "Dashboard", icon: <Stack_2 />, to: "./" },
   { title: "Order History", icon: <Storefront />, to: "order_history" },
   { title: "Track Order", icon: <MapPinLine />, to: "track_order" },
   {
@@ -33,7 +33,7 @@ const data = [
 const SideBar = () => {
   const navigate = useNavigate();
   return (
-    <section className="shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)] mr-10 rounded-sm border py-4 ">
+    <section className="shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)] mr-10 rounded-sm border py-4 self-start">
       <ul className="flex flex-col gap-2">
         {data.map((item) => (
           <>
