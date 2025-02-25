@@ -1,13 +1,18 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { X } from "lucide-react";
-import { addCard, showApplicationForm } from "../../../Store/payment_cardSlice";
+import {
+  addCard,
+  setIsUpdate,
+  showApplicationForm,
+  updateCard,
+} from "../../../Store/payment_cardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { mastercard, visa } from "../../../assets/img";
+import { useEffect } from "react";
 
 const schema = yup
   .object({
@@ -40,14 +45,42 @@ const Card_Form = ({ selectedCard }) => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      cardType: selectedCard
+        ? selectedCard.type === mastercard
+          ? "mastercard"
+          : "visa"
+        : "",
+      balance: selectedCard?.balance || "",
+      cvc: selectedCard?.cvc || "",
+      expiryMonth: selectedCard?.expiryMonth || "",
+      expiryYear: selectedCard?.expiryYear || "",
+    },
   });
+
+  useEffect(() => {
+    if (selectedCard) {
+      setValue(
+        "cardType",
+        selectedCard.type === mastercard ? "mastercard" : "visa"
+      );
+      setValue("balance", selectedCard.balance);
+      setValue("cvc", selectedCard.cvc);
+      setValue("expiryMonth", selectedCard.expiryMonth);
+      setValue("expiryYear", selectedCard.expiryYear);
+    }
+  }, [selectedCard, setValue]);
 
   const onSubmit = async (data) => {
     try {
-      const newId =
-        cards.length > 0 ? Math.max(...cards.map((card) => card.id)) + 1 : 1;
+      let newId;
+      if (!isUpdate) {
+        newId =
+          cards.length > 0 ? Math.max(...cards.map((card) => card.id)) + 1 : 1;
+      }
 
       const generateCardNumber = () => {
         return `${Math.random().toString().slice(2, 6)} ${Math.random()
@@ -58,19 +91,21 @@ const Card_Form = ({ selectedCard }) => {
       };
 
       const newCard = {
-        id: newId,
-        number: generateCardNumber(),
+        id: isUpdate ? selectedCard.id : newId,
+        number: isUpdate ? selectedCard.number : generateCardNumber(),
         name: "Kevin Gilbert",
-        expiry: `${data.expiryMonth}/${data.expiryYear.slice(2)}`,
+        expiryMonth: data.expiryMonth,
+        expiryYear: data.expiryYear,
         cvc: data.cvc,
         balance: parseFloat(data.balance),
         type: data.cardType === "mastercard" ? mastercard : visa,
-        // image: data.cardType === "mastercard" ? mastercard : visa,
       };
 
-      dispatch(addCard(newCard));
-
-      // console.log("New card data:", newCard);
+      if (isUpdate) {
+        dispatch(updateCard({ id: selectedCard.id, updatedCard: newCard }));
+      } else {
+        dispatch(addCard(newCard));
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -90,7 +125,10 @@ const Card_Form = ({ selectedCard }) => {
         className="bg-white/95 rounded-lg p-6 w-full max-w-2xl relative max-h-[90vh] overflow-y-auto"
       >
         <button
-          onClick={() => dispatch(showApplicationForm())}
+          onClick={() => {
+            dispatch(showApplicationForm());
+            isUpdate && dispatch(setIsUpdate(false));
+          }}
           className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
         >
           <X className="w-6 h-6" />
@@ -195,7 +233,10 @@ const Card_Form = ({ selectedCard }) => {
           <div className="flex justify-end space-x-4 mt-6">
             <button
               type="button"
-              onClick={() => dispatch(showApplicationForm())}
+              onClick={() => {
+                dispatch(showApplicationForm());
+                isUpdate && dispatch(setIsUpdate(false));
+              }}
               className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors duration-300"
             >
               Cancel

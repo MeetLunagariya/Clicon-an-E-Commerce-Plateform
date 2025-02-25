@@ -5,7 +5,10 @@ import Card_Form from "./dashboard/payment_option/Card_Form";
 import { useSelector } from "react-redux";
 
 const Account = () => {
-  const { showApplicationForm } = useSelector((state) => state.card);
+  const { showApplicationForm, selectedCard } = useSelector(
+    (state) => state.card
+  );
+  console.log("selectedCard", selectedCard);
   // console.log("showApplicationForm", showApplicationForm);
   return (
     <section className="container py-10">
@@ -15,7 +18,7 @@ const Account = () => {
           <Outlet />
         </div>
       </div>
-      {showApplicationForm && <Card_Form />}
+      {showApplicationForm && <Card_Form selectedCard={selectedCard} />}
     </section>
   );
 };
