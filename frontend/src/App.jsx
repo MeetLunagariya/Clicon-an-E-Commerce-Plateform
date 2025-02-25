@@ -16,6 +16,7 @@ import Notification_Index from "./notification/Notification_Index";
 import Account from "./account/Account";
 import Dashboard from "./account/dashboard/Dashboard";
 import Card_Address from "./account/cards_and_address/Card_Address";
+import Order_History from "./account/order_history/Order_History";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -50,6 +51,7 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route index path="dashboard" element={<Dashboard />} />
           <Route index path="address" element={<Card_Address />} />
+          <Route index path="order_history" element={<Order_History />} />
         </Route>
       </Routes>
       <Index_Footer />
