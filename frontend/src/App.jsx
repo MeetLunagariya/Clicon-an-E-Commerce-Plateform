@@ -17,6 +17,7 @@ import Account from "./account/Account";
 import Dashboard from "./account/dashboard/Dashboard";
 import Card_Address from "./account/cards_and_address/Card_Address";
 import Order_History from "./account/order_history/Order_History";
+import Profile_Index from "./account/profile_setting/Profile_Index";
 
 function App() {
   const [isForget, setIsForget] = useState(false);
@@ -52,6 +53,7 @@ function App() {
           {/* <Route index path="dashboard" element={<Dashboard />} /> */}
           <Route index path="address" element={<Card_Address />} />
           <Route index path="order_history" element={<Order_History />} />
+          <Route index path="setting" element={<Profile_Index />} />
         </Route>
       </Routes>
       <Index_Footer />

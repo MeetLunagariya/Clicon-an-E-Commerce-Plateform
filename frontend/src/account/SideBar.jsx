@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ArrowsCounterClockwise,
   ClockClockwise,
@@ -11,7 +11,7 @@ import {
   Stack_2,
   Storefront,
 } from "../assets/svg";
-import { Links, NavLink, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const data = [
   { title: "Dashboard", icon: <Stack_2 />, to: "./" },
@@ -32,19 +32,27 @@ const data = [
 
 const SideBar = () => {
   const navigate = useNavigate();
+  const [selectedItem, setSelectedItem] = useState("Dashboard");
+
   return (
     <section className="shadow-[0px_4px_30px_0px_rgba(31,_38,_135,_0.15)] mr-10 rounded-sm border py-4 self-start">
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-0.5">
         {data.map((item) => (
-          <>
-            <li
-              className="flex gap-2 hover:text-white text-[#5F6C72] hover:bg-[#FA8232] text-sm hover:cursor-pointer px-5 py-3 font-medium"
-              onClick={() => navigate(`${item.to}`)}
-            >
-              <span>{item.icon}</span>
-              <span>{item.title}</span>
-            </li>
-          </>
+          <li
+            key={item.title}
+            className={`flex gap-2 text-sm font-medium px-5 py-3 hover:cursor-pointer ${
+              selectedItem === item.title
+                ? "text-white bg-[#FA8232]"
+                : "text-[#5F6C72] hover:text-white hover:bg-[#FA8232]"
+            }`}
+            onClick={() => {
+              setSelectedItem(item.title);
+              navigate(`${item.to}`);
+            }}
+          >
+            <span>{item.icon}</span>
+            <span>{item.title}</span>
+          </li>
         ))}
       </ul>
     </section>

@@ -50,8 +50,10 @@ import CheckCircle from "./CheckCircle.png";
 import profile from "./profile.png";
 import mastercard from "./mastercard.png";
 import visa from "./visa.png";
+import Avatar from "./Avatar.png";
 
 export {
+  Avatar,
   visa,
   mastercard,
   profile,
