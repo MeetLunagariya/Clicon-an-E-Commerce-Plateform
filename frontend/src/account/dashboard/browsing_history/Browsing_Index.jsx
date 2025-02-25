@@ -45,7 +45,7 @@ const Browsing_Index = () => {
         title={"browsing history"}
         key={"browsing_history"}
       />
-      <section className="uppercase font-medium flex flex-col gap-2 border-t border-b border-gray-200 text-xs font-sans text-gray-700 px-6 py-2.5 ">
+      <section className="uppercase font-medium flex flex-col gap-3 border-t border-b border-gray-200 text-xs font-sans text-gray-700 px-6 py-3 ">
         <ul className="grid grid-cols-3 lg:grid-cols-4 flex-wrap">
           {products
             .slice(start_end.start, start_end.end)
