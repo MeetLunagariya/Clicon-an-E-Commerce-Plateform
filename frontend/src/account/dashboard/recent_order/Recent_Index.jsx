@@ -4,8 +4,8 @@ import Order from "./Order";
 
 const Recent_Index = () => {
   const { orders, total_orders } = useSelector((state) => state.order);
-  console.log("total_orders", total_orders);
-  console.log("orders", orders);
+  // console.log("total_orders", total_orders);
+  // console.log("orders", orders);
   return (
     <section className="col-span-2 row-span-2 border border-gray-200 rounded-sm">
       <Title_Bar

@@ -14,7 +14,7 @@ import {
 import { Links, NavLink, useNavigate } from "react-router";
 
 const data = [
-  { title: "Dashboard", icon: <Stack_2 />, to: "dashboard" },
+  { title: "Dashboard", icon: <Stack_2 />, to: "./" },
   { title: "Order History", icon: <Storefront />, to: "order_history" },
   { title: "Track Order", icon: <MapPinLine />, to: "track_order" },
   {

@@ -47,9 +47,9 @@ function App() {
         <Route path="/shoping_cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/wishlist" element={<Wishlist_Index />} />
-        <Route path="/userAccount" element={<Account />}>
+        <Route path="/dashboard" element={<Account />}>
           <Route index element={<Dashboard />} />
-          <Route index path="dashboard" element={<Dashboard />} />
+          {/* <Route index path="dashboard" element={<Dashboard />} /> */}
           <Route index path="address" element={<Card_Address />} />
           <Route index path="order_history" element={<Order_History />} />
         </Route>

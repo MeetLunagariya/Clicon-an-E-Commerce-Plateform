@@ -28,7 +28,7 @@ const Middle_Nav = () => {
         <button onClick={() => navigate("./wishlist")}>
           <Heart />
         </button>
-        <button onClick={()=>navigate("./userAccount")}>
+        <button onClick={()=>navigate("./dashboard")}>
           <User />
         </button>
       </div>

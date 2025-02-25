@@ -24,6 +24,4 @@ const ProductList = ({ start_end }) => {
   );
 };
 
-// Notification Component (defined in the same file for simplicity)
-
 export default ProductList;
