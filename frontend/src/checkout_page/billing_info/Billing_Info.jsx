@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from "react";
 import User_Info from "./User_Info";
 import Payment_Info from "./Payment_Info";
