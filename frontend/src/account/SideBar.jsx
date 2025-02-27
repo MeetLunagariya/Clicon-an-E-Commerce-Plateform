@@ -16,18 +16,18 @@ import { useNavigate } from "react-router";
 const data = [
   { title: "Dashboard", icon: <Stack_2 />, to: "./" },
   { title: "Order History", icon: <Storefront />, to: "order_history" },
-  { title: "Track Order", icon: <MapPinLine />, to: "track_order" },
+  { title: "Track Order", icon: <MapPinLine />, to: "./" },
   {
     title: "Shopping Cart",
     icon: <ShoppingCartSimple_2 />,
     to: "/shoping_cart",
   },
   { title: "Wishlist", icon: <Heart_2 />, to: "/wishlist" },
-  { title: "Compare", icon: <ArrowsCounterClockwise />, to: "compare" },
+  { title: "Compare", icon: <ArrowsCounterClockwise />, to: "./" },
   { title: "Cards & Address", icon: <Notebook />, to: "address" },
-  { title: "Browsing History", icon: <ClockClockwise />, to: "history" },
+  { title: "Browsing History", icon: <ClockClockwise />, to: "./" },
   { title: "Setting", icon: <Gear />, to: "setting" },
-  { title: "Log-out", icon: <SignOut />, to: "logout" },
+  { title: "Log-out", icon: <SignOut />, to: "./" },
 ];
 
 const SideBar = () => {

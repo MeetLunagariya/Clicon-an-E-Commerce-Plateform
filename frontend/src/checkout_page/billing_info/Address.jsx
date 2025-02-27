@@ -32,7 +32,6 @@ const Address = ({ register, setValue, errors }) => {
             setValue("country", selected?.name);
             setSelectedCountry(selected);
           }}
-          // onTextChange={(_txt) => console.log(_txt)}
           placeHolder="Select Country"
         />
         {errors.country && (
@@ -52,8 +51,6 @@ const Address = ({ register, setValue, errors }) => {
             setValue("state", selected?.name);
             setSelectedState(selected);
           }}
-          // onTextChange={(_txt) => console.log(_txt)}
-          // defaultValue={currentState}
           placeHolder="Select State"
         />
         {errors.state && (
@@ -74,8 +71,6 @@ const Address = ({ register, setValue, errors }) => {
             setValue("city", selected?.name);
             setSelectedCity(selected);
           }}
-          // onTextChange={(_txt) => console.log(_txt)}
-          // defaultValue={currentState}
           placeHolder="Select State"
         />
         {errors.city && (
