@@ -6,6 +6,8 @@ import Inputlabel from "../../ui components/Inputlabel";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../config/firebase";
 
 const schema = yup.object({
   email: yup
@@ -42,9 +44,15 @@ const SignIn = ({ setIsForget }) => {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    loginUser(data);
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      alert('Signed in successfully');
+    } catch (error) {
+      console.error(error);
+    }
+    // loginUser(data);
     // Check valid credentials Here
   };
 

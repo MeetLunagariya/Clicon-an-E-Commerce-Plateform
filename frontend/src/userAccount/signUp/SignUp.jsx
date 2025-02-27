@@ -5,6 +5,8 @@ import IdLogin from "../../ui components/IdLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { auth } from '../../../config/firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useEffect } from "react";
 
 const schema = yup.object({
@@ -70,9 +72,15 @@ const SignUp = () => {
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Submitted Data:", data);
-    registerUser(data);
+    // registerUser(data);
+    try {
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      console.log('User created successfully');
+    } catch (err) {
+      console.error(err);
+    }
     // Check valid credentials Here
   };
 
