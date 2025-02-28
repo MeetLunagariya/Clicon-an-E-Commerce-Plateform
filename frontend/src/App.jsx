@@ -21,7 +21,6 @@ import { AuthProvider, useAuth } from "./Store/context/AuthContext";
 import PrivateRoute from "./userAccount/PrivateRoute";
 
 function App() {
- 
   const [isForget, setIsForget] = useState(false);
   // console.log(isForget);
 
@@ -30,8 +29,8 @@ function App() {
   }
 
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Notification_Index />
         <Routes>
           <Route path="/" element={<UserAccount isForget={isForget} />}>
@@ -63,8 +62,8 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

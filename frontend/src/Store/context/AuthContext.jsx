@@ -1,4 +1,5 @@
 import { createContext, useEffect, useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 const AuthContext = createContext();
 
@@ -8,6 +9,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userItem = localStorage.getItem("user");
@@ -16,6 +18,7 @@ export function AuthProvider({ children }) {
       const now = new Date().getTime();
       if (user.expiry > now) {
         setisLoggedIn(true);
+        navigate("/home");
       } else {
         localStorage.removeItem("user");
       }
