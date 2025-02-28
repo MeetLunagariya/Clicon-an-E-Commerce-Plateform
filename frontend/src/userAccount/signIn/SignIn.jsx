@@ -82,18 +82,22 @@ const SignIn = ({ setIsForget }) => {
         localStorage.removeItem("user");
       }, 3600000);
     } catch (error) {
+      dispatch(addNotification({
+        id: Date.now(),
+        text: "Invalid Credentials",
+      }));
       console.error(error);
-      let errorMessage = "An error occurred during sign-in.";
-      switch (error.code) {
-        case "auth/user-not-found":
-          errorMessage = "User not found. Please check your email address.";
-          break;
-        case "auth/wrong-password":
-          errorMessage = "Incorrect password. Please try again.";
-          break;
-        // Add other error handling cases as needed
-      }
-      alert(errorMessage);
+      // let errorMessage = "An error occurred during sign-in.";
+      // switch (error.code) {
+      //   case "auth/user-not-found":
+      //     errorMessage = "User not found. Please check your email address.";
+      //     break;
+      //   case "auth/wrong-password":
+      //     errorMessage = "Incorrect password. Please try again.";
+      //     break;
+      //   // Add other error handling cases as needed
+      // }
+      // alert(errorMessage);
     }
     // loginUser(data);
     // Check valid credentials Here

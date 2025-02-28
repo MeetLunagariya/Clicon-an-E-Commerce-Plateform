@@ -103,6 +103,12 @@ const SignUp = () => {
       }));
     } catch (err) {
       console.log(err);
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: err.message,
+        })
+      );
     }
     // Check valid credentials Here
   };
