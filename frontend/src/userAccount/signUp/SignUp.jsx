@@ -9,6 +9,8 @@ import { auth } from "../../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../../config/firebase";
 import { getDatabase, ref, set } from "firebase/database";
+import { addNotification } from "../../Store/notificationSlice";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object({
   username: yup
@@ -39,6 +41,7 @@ const schema = yup.object({
     .oneOf([true], "Please agree to terms and conditions"),
 });
 const SignUp = () => {
+  const dispatch = useDispatch();
   const {
     watch,
     register,
@@ -82,7 +85,7 @@ const SignUp = () => {
         data.email,
         data.password
       );
-      console.log('userCredential', userCredential);
+      console.log("userCredential", userCredential);
       const user = userCredential.user;
       console.log("User created:", user.uid);
 
@@ -94,6 +97,10 @@ const SignUp = () => {
         email: data.email, // You could optionally store email here too
       });
       console.log("Username stored in Realtime Database");
+      dispatch(addNotification({
+        id: Date.now(),
+        text: "Registered successfully",
+      }));
     } catch (err) {
       console.log(err);
     }

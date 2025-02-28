@@ -10,6 +10,8 @@ import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { getDatabase, ref, get } from "firebase/database"; // Import necessary functions
 import { app } from "../../../config/firebase"; // Assuming you have your Firebase app initialization here
 import { auth } from "../../../config/firebase";
+import { addNotification } from "../../Store/notificationSlice";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object({
   email: yup
@@ -21,6 +23,7 @@ const schema = yup.object({
 });
 
 const SignIn = ({ setIsForget }) => {
+  const dispatch = useDispatch();
   const {
     watch,
     register,
@@ -60,7 +63,11 @@ const SignIn = ({ setIsForget }) => {
       const userRef = ref(db, `users/${user.uid}`);
       const snapshot = await get(userRef);
       console.log("User data:", snapshot.val());
-      alert("Signed in successfully");
+      dispatch(addNotification({
+        id: Date.now(),
+        text: "Signed in successfully",
+      }));
+      // alert("Signed in successfully");
 
       // Store user credential in local storage for 10 seconds
       const now = new Date();

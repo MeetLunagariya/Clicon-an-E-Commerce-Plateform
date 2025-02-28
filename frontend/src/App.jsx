@@ -19,7 +19,7 @@ import Profile_Index from "./account/profile_setting/Profile_Index";
 import Home from "./home/Home";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isForget, setIsForget] = useState(false);
   // console.log(isForget);
 
@@ -27,7 +27,6 @@ function App() {
     setIsForget((prevstate) => !prevstate);
   }
   const handleIsLoggedIn = () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn) {
       setIsLoggedIn(true);
     }
