@@ -20,14 +20,14 @@ const data = [
   {
     title: "Shopping Cart",
     icon: <ShoppingCartSimple_2 />,
-    to: "/shoping_cart",
+    to: "../shoping_cart",
   },
-  { title: "Wishlist", icon: <Heart_2 />, to: "/wishlist" },
+  { title: "Wishlist", icon: <Heart_2 />, to: "../wishlist" },
   { title: "Compare", icon: <ArrowsCounterClockwise />, to: "./" },
   { title: "Cards & Address", icon: <Notebook />, to: "address" },
   { title: "Browsing History", icon: <ClockClockwise />, to: "./" },
   { title: "Setting", icon: <Gear />, to: "setting" },
-  { title: "Log-out", icon: <SignOut />, to: "./" },
+  { title: "Log-out", icon: <SignOut />},
 ];
 
 const SideBar = () => {
@@ -46,8 +46,13 @@ const SideBar = () => {
                 : "text-[#5F6C72] hover:text-white hover:bg-[#FA8232]"
             }`}
             onClick={() => {
-              setSelectedItem(item.title);
-              navigate(`${item.to}`);
+              if (item.title === "Log-out") {
+                localStorage.removeItem("user");
+                navigate("/");
+              } else {
+                setSelectedItem(item.title);
+                navigate(`${item.to}`);
+              }
             }}
           >
             <span>{item.icon}</span>
