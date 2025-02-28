@@ -6,7 +6,7 @@ const Routes_Nav = () => {
   // console.log("location", location);
   const pathSegments = location.pathname.split("/").filter(Boolean);
   // console.log("pathSegments", pathSegments);
-  const breadcrumbSegments = ["Home", "UserAccount", ...pathSegments];
+  const breadcrumbSegments = [...pathSegments];
 
   return (
     <div className="flex gap-[8px] h-[72px] bg-[#F2F4F5] px-4">

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AppleLogo, GoogleLogo } from "../../assets/svg";
 import FormButton from "../../ui components/FormButton";
 import IdLogin from "../../ui components/IdLogin";
@@ -6,8 +6,13 @@ import Inputlabel from "../../ui components/Inputlabel";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { getDatabase, ref, get } from "firebase/database"; // Import necessary functions
+import { app } from "../../../config/firebase"; // Assuming you have your Firebase app initialization here
 import { auth } from "../../../config/firebase";
+import { addNotification } from "../../Store/notificationSlice";
+import { useDispatch } from "react-redux";
+import { useAuth } from "../../Store/context/AuthContext";
 
 const schema = yup.object({
   email: yup
@@ -17,8 +22,11 @@ const schema = yup.object({
 
   password: yup.string().required("Password is required"),
 });
- 
+
 const SignIn = ({ setIsForget }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { setisLoggedIn } = useAuth();
   const {
     watch,
     register,
@@ -47,10 +55,53 @@ const SignIn = ({ setIsForget }) => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      alert('Signed in successfully');
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      const user = userCredential.user;
+      // console.log("User signed in:", user.uid);
+      const db = getDatabase(app);
+      const userRef = ref(db, `users/${user.uid}`);
+      const snapshot = await get(userRef);
+      console.log("User data:", snapshot.val());
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: "Signed in successfully",
+        })
+      );
+      // alert("Signed in successfully");
+
+      // Store user credential in local storage for 10 seconds
+      const now = new Date();
+      const item = {
+        value: user,
+        expiry: now.getTime() + 3600000, // 1 hour
+      };
+      localStorage.setItem("user", JSON.stringify(item));
+      setisLoggedIn(true);
+      navigate("/home");
     } catch (error) {
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: "Invalid Credentials",
+        })
+      );
       console.error(error);
+      // let errorMessage = "An error occurred during sign-in.";
+      // switch (error.code) {
+      //   case "auth/user-not-found":
+      //     errorMessage = "User not found. Please check your email address.";
+      //     break;
+      //   case "auth/wrong-password":
+      //     errorMessage = "Incorrect password. Please try again.";
+      //     break;
+      //   // Add other error handling cases as needed
+      // }
+      // alert(errorMessage);
     }
     // loginUser(data);
     // Check valid credentials Here

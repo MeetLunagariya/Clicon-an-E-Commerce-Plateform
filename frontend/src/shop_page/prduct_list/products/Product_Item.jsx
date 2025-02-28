@@ -48,7 +48,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
                     );
                   }
                   if (icon.value === "eye") {
-                    navigate(`../product_page/${product.id}`);
+                    navigate(`./product_page/${product.id}`);
                   }
                 }}
               >
