@@ -5,9 +5,10 @@ import IdLogin from "../../ui components/IdLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { auth } from '../../../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useEffect } from "react";
+import { auth } from "../../../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "../../../config/firebase";
+import { getDatabase, ref, set } from "firebase/database";
 
 const schema = yup.object({
   username: yup
@@ -24,10 +25,10 @@ const schema = yup.object({
     .trim()
     .required("Password is required")
     .min(8, "Name must be at least 8 characters")
-    .matches(RegExp('(.*[a-z].*)'), 'Lowercase')
-    .matches(RegExp('(.*[A-Z].*)'), 'Uppercase')
-    .matches(RegExp('(.*\\d.*)'), 'Number')
-    .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), 'Special'),
+    .matches(RegExp("(.*[a-z].*)"), "Lowercase")
+    .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
+    .matches(RegExp("(.*\\d.*)"), "Number")
+    .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
   confirm_password: yup
     .string()
     .label("confirm password")
@@ -44,7 +45,7 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  
+
   // console.log(errors);
   const registerUser = async (userData) => {
     console.log(userData);
@@ -59,7 +60,7 @@ const SignUp = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({username, email, password}),
+            body: JSON.stringify({ username, email, password }),
           }
         );
         const data = await response.json();
@@ -76,10 +77,25 @@ const SignUp = () => {
     console.log("Submitted Data:", data);
     // registerUser(data);
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-      console.log('User created successfully');
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log('userCredential', userCredential);
+      const user = userCredential.user;
+      console.log("User created:", user.uid);
+
+      // to store user data in realtime firebase database
+      const db = getDatabase(app);
+      const userRef = ref(db, `users/${user.uid}`);
+      await set(userRef, {
+        username: data.username,
+        email: data.email, // You could optionally store email here too
+      });
+      console.log("Username stored in Realtime Database");
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
     // Check valid credentials Here
   };

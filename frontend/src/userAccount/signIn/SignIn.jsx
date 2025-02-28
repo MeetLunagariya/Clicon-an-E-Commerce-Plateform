@@ -6,7 +6,9 @@ import Inputlabel from "../../ui components/Inputlabel";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { getDatabase, ref, get } from "firebase/database"; // Import necessary functions
+import { app } from "../../../config/firebase"; // Assuming you have your Firebase app initialization here
 import { auth } from "../../../config/firebase";
 
 const schema = yup.object({
@@ -17,7 +19,7 @@ const schema = yup.object({
 
   password: yup.string().required("Password is required"),
 });
- 
+
 const SignIn = ({ setIsForget }) => {
   const {
     watch,
@@ -47,10 +49,44 @@ const SignIn = ({ setIsForget }) => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
-      alert('Signed in successfully');
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      const user = userCredential.user;
+      // console.log("User signed in:", user.uid);
+      const db = getDatabase(app);
+      const userRef = ref(db, `users/${user.uid}`);
+      const snapshot = await get(userRef);
+      console.log("User data:", snapshot.val());
+      alert("Signed in successfully");
+
+      // Store user credential in local storage for 10 seconds
+      const now = new Date();
+      const item = {
+        value: user,
+        expiry: now.getTime() + 10000, // 10 seconds in milliseconds
+      };
+      localStorage.setItem("user", JSON.stringify(item));
+
+      // Automatically remove the item after 1 hour
+      setTimeout(() => {
+        localStorage.removeItem("user");
+      }, 3600000);
     } catch (error) {
       console.error(error);
+      let errorMessage = "An error occurred during sign-in.";
+      switch (error.code) {
+        case "auth/user-not-found":
+          errorMessage = "User not found. Please check your email address.";
+          break;
+        case "auth/wrong-password":
+          errorMessage = "Incorrect password. Please try again.";
+          break;
+        // Add other error handling cases as needed
+      }
+      alert(errorMessage);
     }
     // loginUser(data);
     // Check valid credentials Here
