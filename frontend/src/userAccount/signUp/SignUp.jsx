@@ -11,6 +11,7 @@ import { app } from "../../../config/firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import { addNotification } from "../../Store/notificationSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 const schema = yup.object({
   username: yup
@@ -42,6 +43,7 @@ const schema = yup.object({
 });
 const SignUp = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     watch,
     register,
@@ -101,6 +103,7 @@ const SignUp = () => {
         id: Date.now(),
         text: "Registered successfully",
       }));
+      navigate("/");
     } catch (err) {
       console.log(err);
       dispatch(

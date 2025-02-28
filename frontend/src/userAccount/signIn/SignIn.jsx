@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AppleLogo, GoogleLogo } from "../../assets/svg";
 import FormButton from "../../ui components/FormButton";
 import IdLogin from "../../ui components/IdLogin";
@@ -12,6 +12,7 @@ import { app } from "../../../config/firebase"; // Assuming you have your Fireba
 import { auth } from "../../../config/firebase";
 import { addNotification } from "../../Store/notificationSlice";
 import { useDispatch } from "react-redux";
+import { useAuth } from "../../Store/context/AuthContext";
 
 const schema = yup.object({
   email: yup
@@ -24,6 +25,8 @@ const schema = yup.object({
 
 const SignIn = ({ setIsForget }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { setisLoggedIn } = useAuth();
   const {
     watch,
     register,
@@ -63,29 +66,30 @@ const SignIn = ({ setIsForget }) => {
       const userRef = ref(db, `users/${user.uid}`);
       const snapshot = await get(userRef);
       console.log("User data:", snapshot.val());
-      dispatch(addNotification({
-        id: Date.now(),
-        text: "Signed in successfully",
-      }));
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: "Signed in successfully",
+        })
+      );
       // alert("Signed in successfully");
 
       // Store user credential in local storage for 10 seconds
       const now = new Date();
       const item = {
         value: user,
-        expiry: now.getTime() + 10000, // 10 seconds in milliseconds
+        expiry: now.getTime() + 3600000, // 1 hour
       };
       localStorage.setItem("user", JSON.stringify(item));
-
-      // Automatically remove the item after 1 hour
-      setTimeout(() => {
-        localStorage.removeItem("user");
-      }, 3600000);
+      setisLoggedIn(true);
+      navigate("/home");
     } catch (error) {
-      dispatch(addNotification({
-        id: Date.now(),
-        text: "Invalid Credentials",
-      }));
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: "Invalid Credentials",
+        })
+      );
       console.error(error);
       // let errorMessage = "An error occurred during sign-in.";
       // switch (error.code) {
