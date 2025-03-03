@@ -1,21 +1,8 @@
 /* eslint-disable react/prop-types */
-import { Outlet, useNavigate } from "react-router";
+import { Outlet } from "react-router";
 import AccountNavbar from "./AccountNavbar";
-import { useAuth } from "../Store/context/AuthContext";
-import { useEffect } from "react";
 
 const UserAccount = ({ isForget }) => {
-  // const navigate = useNavigate();
-  // const { setisLoggedIn } = useAuth();
-
-  // useEffect(() => {
-  //   const userItem = localStorage.getItem("user");
-  //   // console.log("userItem", userItem);
-  //   if (userItem) {
-  //     setisLoggedIn(true);
-  //     navigate("/home");
-  //   }
-  // }, []);
 
   return (
     <main className="flex justify-center text-xl items-center my-20">
