@@ -61,6 +61,7 @@ const Browsing_Index = () => {
           PAGE_SIZE={PAGE_SIZE}
           handlePrevious={handlePrevious}
           handleNext={handleNext}
+          start_end={start_end}
         />
       </section>
     </section>
