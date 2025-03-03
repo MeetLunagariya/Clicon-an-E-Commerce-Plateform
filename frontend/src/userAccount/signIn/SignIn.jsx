@@ -72,7 +72,6 @@ const SignIn = ({ setIsForget }) => {
           text: "Signed in successfully",
         })
       );
-      // alert("Signed in successfully");
 
       // Store user credential in local storage for 10 seconds
       const now = new Date();
@@ -91,20 +90,7 @@ const SignIn = ({ setIsForget }) => {
         })
       );
       console.error(error);
-      // let errorMessage = "An error occurred during sign-in.";
-      // switch (error.code) {
-      //   case "auth/user-not-found":
-      //     errorMessage = "User not found. Please check your email address.";
-      //     break;
-      //   case "auth/wrong-password":
-      //     errorMessage = "Incorrect password. Please try again.";
-      //     break;
-      //   // Add other error handling cases as needed
-      // }
-      // alert(errorMessage);
     }
-    // loginUser(data);
-    // Check valid credentials Here
   };
 
   return (
@@ -114,6 +100,7 @@ const SignIn = ({ setIsForget }) => {
           type="email"
           id="email"
           label="Email Address"
+          placeholder="Try : demo123@gmail.com"
           {...register("email")}
         />
         {errors.email && (
@@ -124,6 +111,7 @@ const SignIn = ({ setIsForget }) => {
           type="password"
           id="pass"
           label="Password"
+          placeholder="Try : Mm@&1234"
           {...register("password")}
         />
 

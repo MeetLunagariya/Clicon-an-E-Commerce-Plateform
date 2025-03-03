@@ -4,7 +4,7 @@ import { useState, forwardRef } from "react";
 import { Eye, HideEye } from "../assets/svg";
 
 const Inputlabel = forwardRef(
-  ({ type, id, placeholder, label, isOptional , ...props }, ref) => {
+  ({ type, id, placeholder, label, isOptional, ...props }, ref) => {
     const [isPassVisible, setIsPassVisible] = useState(false);
 
     return (
