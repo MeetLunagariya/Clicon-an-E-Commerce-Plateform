@@ -14,13 +14,6 @@ const Product = ({ product, badge_value }) => {
       >
         <Product_Item activeCard={activeCard} product={product} badge_value={badge_value}/>
       </div>
-      {/* <div className="flex flex-col gap-1 w-72 fixed top-2 right-2 z-50 pointer-events-none">
-        <AnimatePresence>
-          {notifications.map((n) => (
-            <Notification removeNotif={removeNotif} {...n} key={n.id} />
-          ))}
-        </AnimatePresence>
-      </div> */}
     </>
   );
 };

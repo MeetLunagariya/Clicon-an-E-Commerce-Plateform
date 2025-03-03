@@ -6,7 +6,7 @@ import Inputlabel from "../../ui components/Inputlabel";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, get } from "firebase/database"; // Import necessary functions
 import { app } from "../../../config/firebase"; // Assuming you have your Firebase app initialization here
 import { auth } from "../../../config/firebase";
