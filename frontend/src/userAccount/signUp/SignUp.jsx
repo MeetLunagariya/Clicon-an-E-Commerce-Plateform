@@ -5,13 +5,14 @@ import IdLogin from "../../ui components/IdLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { auth } from "../../../config/firebase";
+import { auth, db } from "../../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../../config/firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import { addNotification } from "../../Store/notificationSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 const schema = yup.object({
   username: yup
@@ -41,6 +42,7 @@ const schema = yup.object({
     .boolean()
     .oneOf([true], "Please agree to terms and conditions"),
 });
+
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -78,31 +80,72 @@ const SignUp = () => {
     }
   };
 
+  // const onSubmit = async (data) => {
+  //   console.log("Submitted Data:", data);
+  //   // registerUser(data);
+  //   try {
+  //     // const userCredential = await createUserWithEmailAndPassword(
+  //     //   auth,
+  //     //   data.email,
+  //     //   data.password
+  //     // );
+  //     // console.log("userCredential", userCredential);
+  //     // const user = userCredential.user;
+  //     // console.log("User created:", user.uid);
+
+  //     // // to store user data in realtime firebase database
+  //     // const userRef = ref(db, `users/${user.uid}`);
+  //     // const db = getFirestore(app);
+  //     // await set(userRef, {
+  //     //   username: data.username,
+  //     //   email: data.email, // You could optionally store email here too
+  //     // });
+  //     // console.log("Username stored in Realtime Database");
+  //     const docRef = await addDoc(collection(db, "users"), {
+  //       username: data.username,
+  //       email: data.email,
+  //       password: data.password,
+  //     });
+  //       console.log("Document written with ID: ", docRef.id);
+  //     dispatch(addNotification({
+  //       id: Date.now(),
+  //       text: "Registered successfully",
+  //     }));
+  //     navigate("/");
+  //   } catch (err) {
+  //     console.log(err);
+  //     dispatch(
+  //       addNotification({
+  //         id: Date.now(),
+  //         text: err.message,
+  //       })
+  //     );
+  //   }
+  //   // Check valid credentials Here
+  // };
+
   const onSubmit = async (data) => {
     console.log("Submitted Data:", data);
-    // registerUser(data);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
-      console.log("userCredential", userCredential);
       const user = userCredential.user;
       console.log("User created:", user.uid);
-
-      // to store user data in realtime firebase database
-      const db = getDatabase(app);
-      const userRef = ref(db, `users/${user.uid}`);
-      await set(userRef, {
+      const docRef = await addDoc(collection(db, "users"), {
         username: data.username,
-        email: data.email, // You could optionally store email here too
+        email: data.email,
+        password: data.password,
       });
-      console.log("Username stored in Realtime Database");
-      dispatch(addNotification({
-        id: Date.now(),
-        text: "Registered successfully",
-      }));
+      console.log("Document written with ID: ", docRef.id);
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: "Registered successfully",
+        })
+      );
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -113,7 +156,6 @@ const SignUp = () => {
         })
       );
     }
-    // Check valid credentials Here
   };
 
   return (
