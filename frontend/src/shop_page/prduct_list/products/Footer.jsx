@@ -8,6 +8,7 @@ const Footer = ({
   PAGE_SIZE,
   handleNext,
   handlePrevious,
+  start_end,
 }) => {
   const totalProducts = products.length;
   const totalPages = Math.ceil(totalProducts / PAGE_SIZE);
@@ -15,8 +16,9 @@ const Footer = ({
   return (
     <div className="w-full flex justify-center items-center gap-5">
       <button
-        className="flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232]"
+        className="flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232] disabled:cursor-not-allowed"
         onClick={handlePrevious}
+        disabled={start_end.start === 0}
       >
         <ArrowLeft_footer />
       </button>
@@ -37,8 +39,9 @@ const Footer = ({
         ))}
       </div>
       <button
-        className={`flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232]`}
+        className={`flex justify-center items-center h-[48px] w-[48px] rounded-full border border-[#FA8232] disabled:cursor-not-allowed`}
         onClick={handleNext}
+        disabled={start_end.end === totalPages * PAGE_SIZE}
       >
         <ArrowRight_footer />
       </button>

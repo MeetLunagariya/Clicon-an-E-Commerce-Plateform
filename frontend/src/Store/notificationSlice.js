@@ -9,7 +9,7 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     addNotification(state, action) {
-      console.log("notifications", action.payload);
+      // console.log("notifications", action.payload);
 
       const newNotification = {
         id: action.payload.id || Date.now(),

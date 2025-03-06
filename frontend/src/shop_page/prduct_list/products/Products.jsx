@@ -40,14 +40,17 @@ const Products = () => {
     }
   };
 
+
+
   // console.log("Page : " + currentPage.current);
   // console.log("start : " + start_end.start + " end : " + start_end.end);
   return (
     <div className="w-full flex flex-col gap-3">
       <Search_Bar />
       <Filter_Bar />
-      <Product_Area start_end={start_end}/>
+      <Product_Area start_end={start_end} PAGE_SIZE={PAGE_SIZE}/>
       <Footer
+        start_end={start_end}
         handlePageChange={handlePageChange}
         currentPage={currentPage.current}
         PAGE_SIZE={PAGE_SIZE}

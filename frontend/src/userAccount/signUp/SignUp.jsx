@@ -5,13 +5,16 @@ import IdLogin from "../../ui components/IdLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { auth } from "../../../config/firebase";
+import { auth, db } from "../../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../../config/firebase";
 import { getDatabase, ref, set } from "firebase/database";
 import { addNotification } from "../../Store/notificationSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import axios from "axios";
+import config from "../../../config/config";
 
 const schema = yup.object({
   username: yup
@@ -23,15 +26,12 @@ const schema = yup.object({
     .string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: yup
-    .string()
-    .trim()
-    .required("Password is required")
-    .min(8, "Name must be at least 8 characters")
-    .matches(RegExp("(.*[a-z].*)"), "Lowercase")
-    .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
-    .matches(RegExp("(.*\\d.*)"), "Number")
-    .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
+  password: yup.string().trim().required("Password is required")
+  .min(8, "Name must be at least 8 characters")
+  .matches(RegExp("(.*[a-z].*)"), "Lowercase")
+  .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
+  .matches(RegExp("(.*\\d.*)"), "Number")
+  .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
   confirm_password: yup
     .string()
     .label("confirm password")
@@ -41,6 +41,7 @@ const schema = yup.object({
     .boolean()
     .oneOf([true], "Please agree to terms and conditions"),
 });
+
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,58 +52,50 @@ const SignUp = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // console.log(errors);
-  const registerUser = async (userData) => {
-    console.log(userData);
-    if (Object.keys(errors).length === 0) {
-      const { username, email, password } = userData;
-      console.log(userData);
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/auth/register",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-          }
-        );
-        const data = await response.json();
-        console.log("data : ", data);
-        // Handle response data
-      } catch (error) {
-        console.log(error.message);
-        // Handle error
-      }
-    }
-  };
-
   const onSubmit = async (data) => {
     console.log("Submitted Data:", data);
-    // registerUser(data);
     try {
+      // to create user in firebase auth
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
-      console.log("userCredential", userCredential);
       const user = userCredential.user;
-      console.log("User created:", user.uid);
 
-      // to store user data in realtime firebase database
-      const db = getDatabase(app);
-      const userRef = ref(db, `users/${user.uid}`);
-      await set(userRef, {
-        username: data.username,
-        email: data.email, // You could optionally store email here too
-      });
-      console.log("Username stored in Realtime Database");
-      dispatch(addNotification({
-        id: Date.now(),
-        text: "Registered successfully",
-      }));
+      // to store user's SignUp data in firestore
+      const userRef = `${config.API_URL}/users/${user.uid}/user_data?documentId=SignUp_data`;
+      const userData = {
+        fields: {
+          username: {
+            stringValue: data.username,
+          },
+          email: {
+            stringValue: data.email,
+          },
+          password: {
+            stringValue: data.password,
+          },
+        },
+      };
+      try {
+        async function createUser(userRef, data) {
+          const response = await axios.post(userRef, data);
+          console.log("data : ", response);
+        }
+        createUser(userRef, userData);
+      } catch (error) {
+        console.log(error.message);
+        console.log(error.response.data);
+        console.log(error.response.status);
+      }
+
+      dispatch(
+        addNotification({
+          id: Date.now(),
+          text: "Registered successfully",
+        })
+      );
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -113,7 +106,6 @@ const SignUp = () => {
         })
       );
     }
-    // Check valid credentials Here
   };
 
   return (

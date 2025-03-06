@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Rating } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
 import { addToCart } from "../../../Store/cartSlice";
 import { addToWishlist } from "../../../Store/wishlistSlice";
 import { addNotification } from "../../../Store/notificationSlice";
+import { Database, getDatabase, ref, runTransaction, update } from "firebase/database";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -17,6 +18,34 @@ const hoverIcon = [
 const Product_Item = ({ activeCard, product, badge_value }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const db = getDatabase();
+
+  // async function addToCart(product) {
+  //   console.log("newItem", product);
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   const uid = user.value.uid;
+  //   const userCartRef = ref(db, `users/${uid}/cartItems`);
+
+  //   try {
+  //     console.log("userCartRef", userCartRef);
+  //     await update(userCartRef, (prevCartItems) => {
+  //       console.log("prevCartItems", prevCartItems);
+  //       const newCartItems = (prevCartItems || []).concat(product);
+  //       return { cartItems: newCartItems };
+  //     });
+  //     dispatch(
+  //       addNotification({
+  //         id: Date.now(),
+  //         text: "Added to firebase",
+  //       })
+  //     );
+  //     console.log("Item added to cart successfully!");
+  //   } catch (error) {
+  //     console.error("Error adding item to cart:", error);
+  //   }
+  // }
+
+
 
   return (
     <>
@@ -37,17 +66,15 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
                         text: "Added to wishlist",
                       })
                     );
-                  }
-                  if (icon.value === "cart") {
-                    dispatch(addToCart({ product }));
+                  } else if (icon.value === "cart") {
+                    dispatch(addToCart({product}))
                     dispatch(
-                      addNotification({
-                        id: Date.now(),
-                        text: "Added to Cart",
-                      })
-                    );
-                  }
-                  if (icon.value === "eye") {
+                     addNotification({
+                       id: Date.now(),
+                       text: "Added to Cart",
+                     })
+                   );
+                  } else if (icon.value === "eye") {
                     navigate(`./product_page/${product.id}`);
                   }
                 }}
