@@ -31,7 +31,7 @@ const SignIn = ({ setIsForget }) => {
     watch,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({ resolver: yupResolver(schema) });
 
   const loginUser = async (userData) => {
@@ -125,7 +125,11 @@ const SignIn = ({ setIsForget }) => {
             <Link to="/forgotPassword">Forget Password</Link>
           </button>
         </div>
-        <FormButton title="Sign In" type="submit" />
+        <FormButton
+          title={isSubmitting ? "Signing In..." : "Sign In"}
+          type="submit"
+          disabled={isSubmitting}
+        />
       </div>
 
       <div className="my-1 flex flex-col gap-3 ">

@@ -5,14 +5,11 @@ import IdLogin from "../../ui components/IdLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { auth, db } from "../../../config/firebase";
+import { auth } from "../../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../../config/firebase";
-import { getDatabase, ref, set } from "firebase/database";
 import { addNotification } from "../../Store/notificationSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
 import axios from "axios";
 import config from "../../../config/config";
 
@@ -26,12 +23,15 @@ const schema = yup.object({
     .string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: yup.string().trim().required("Password is required")
-  .min(8, "Name must be at least 8 characters")
-  .matches(RegExp("(.*[a-z].*)"), "Lowercase")
-  .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
-  .matches(RegExp("(.*\\d.*)"), "Number")
-  .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
+  password: yup
+    .string()
+    .trim()
+    .required("Password is required")
+    .min(8, "Name must be at least 8 characters")
+    .matches(RegExp("(.*[a-z].*)"), "Lowercase")
+    .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
+    .matches(RegExp("(.*\\d.*)"), "Number")
+    .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
   confirm_password: yup
     .string()
     .label("confirm password")
@@ -49,7 +49,7 @@ const SignUp = () => {
     watch,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data) => {
@@ -177,7 +177,11 @@ const SignUp = () => {
             </p>
           )}
         </div>
-        <FormButton title={"sign up"} type={"submit"} />
+        <FormButton
+          title={isSubmitting ? "Signing Up..." : "Sign Up"}
+          type="submit"
+          disabled={isSubmitting}
+        />
       </form>
       <div className="my-1 flex flex-col gap-3 px-[32px]">
         <div className="flex items-center text-sm font-PublicSans text-[#77878F]  before:flex-1 before:border-t before:border-[#E4E7E9] before:me-6 after:flex-1 after:border-t after:border-[#E4E7E9] after:ms-6 ">
