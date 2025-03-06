@@ -45,29 +45,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
   //   }
   // }
 
-  async function addToCart(newItem) {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const uid = user.value.uid;
-    const userCartRef = ref(db, `users/${uid}/cartItems`);
 
-    await runTransaction(userCartRef, (currentData) => {
-      if (currentData === null) {
-        // Cart doesn't exist, create it with the new item
-        currentData = { cartItems: [newItem] };
-      } else {
-        // Cart exists, add the new item
-        const newCartItems = (currentData.cartItems || []).concat(newItem);
-        currentData.cartItems = newCartItems;
-      }
-      return currentData;
-    })
-      .then(() => {
-        console.log("Item added to cart successfully!");
-      })
-      .catch((error) => {
-        console.error("Error adding item to cart:", error);
-      });
-  }
 
   return (
     <>
@@ -89,7 +67,13 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
                       })
                     );
                   } else if (icon.value === "cart") {
-                    addToCart(product);
+                    dispatch(addToCart({product}))
+                    dispatch(
+                     addNotification({
+                       id: Date.now(),
+                       text: "Added to Cart",
+                     })
+                   );
                   } else if (icon.value === "eye") {
                     navigate(`./product_page/${product.id}`);
                   }

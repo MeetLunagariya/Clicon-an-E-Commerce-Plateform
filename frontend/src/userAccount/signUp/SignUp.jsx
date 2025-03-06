@@ -12,7 +12,9 @@ import { getDatabase, ref, set } from "firebase/database";
 import { addNotification } from "../../Store/notificationSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { useEffect } from "react";
+import axios from "axios";
+import config from "../../../config/config";
 
 const schema = yup.object({
   username: yup
@@ -24,15 +26,12 @@ const schema = yup.object({
     .string()
     .email("Invalid email format")
     .required("Email is required"),
-  password: yup
-    .string()
-    .trim()
-    .required("Password is required")
-    .min(8, "Name must be at least 8 characters")
-    .matches(RegExp("(.*[a-z].*)"), "Lowercase")
-    .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
-    .matches(RegExp("(.*\\d.*)"), "Number")
-    .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
+  password: yup.string().trim().required("Password is required")
+  .min(8, "Name must be at least 8 characters")
+  .matches(RegExp("(.*[a-z].*)"), "Lowercase")
+  .matches(RegExp("(.*[A-Z].*)"), "Uppercase")
+  .matches(RegExp("(.*\\d.*)"), "Number")
+  .matches(RegExp('[!@#$%^&*(),.?":{}|<>]'), "Special"),
   confirm_password: yup
     .string()
     .label("confirm password")
@@ -53,93 +52,44 @@ const SignUp = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  // console.log(errors);
-  const registerUser = async (userData) => {
-    console.log(userData);
-    if (Object.keys(errors).length === 0) {
-      const { username, email, password } = userData;
-      console.log(userData);
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/auth/register",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, email, password }),
-          }
-        );
-        const data = await response.json();
-        console.log("data : ", data);
-        // Handle response data
-      } catch (error) {
-        console.log(error.message);
-        // Handle error
-      }
-    }
-  };
-
-  // const onSubmit = async (data) => {
-  //   console.log("Submitted Data:", data);
-  //   // registerUser(data);
-  //   try {
-  //     // const userCredential = await createUserWithEmailAndPassword(
-  //     //   auth,
-  //     //   data.email,
-  //     //   data.password
-  //     // );
-  //     // console.log("userCredential", userCredential);
-  //     // const user = userCredential.user;
-  //     // console.log("User created:", user.uid);
-
-  //     // // to store user data in realtime firebase database
-  //     // const userRef = ref(db, `users/${user.uid}`);
-  //     // const db = getFirestore(app);
-  //     // await set(userRef, {
-  //     //   username: data.username,
-  //     //   email: data.email, // You could optionally store email here too
-  //     // });
-  //     // console.log("Username stored in Realtime Database");
-  //     const docRef = await addDoc(collection(db, "users"), {
-  //       username: data.username,
-  //       email: data.email,
-  //       password: data.password,
-  //     });
-  //       console.log("Document written with ID: ", docRef.id);
-  //     dispatch(addNotification({
-  //       id: Date.now(),
-  //       text: "Registered successfully",
-  //     }));
-  //     navigate("/");
-  //   } catch (err) {
-  //     console.log(err);
-  //     dispatch(
-  //       addNotification({
-  //         id: Date.now(),
-  //         text: err.message,
-  //       })
-  //     );
-  //   }
-  //   // Check valid credentials Here
-  // };
-
   const onSubmit = async (data) => {
     console.log("Submitted Data:", data);
     try {
+      // to create user in firebase auth
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
       const user = userCredential.user;
-      console.log("User created:", user.uid);
-      const docRef = await addDoc(collection(db, "users"), {
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      });
-      console.log("Document written with ID: ", docRef.id);
+
+      // to store user's SignUp data in firestore
+      const userRef = `${config.API_URL}/users/${user.uid}/user_data?documentId=SignUp_data`;
+      const userData = {
+        fields: {
+          username: {
+            stringValue: data.username,
+          },
+          email: {
+            stringValue: data.email,
+          },
+          password: {
+            stringValue: data.password,
+          },
+        },
+      };
+      try {
+        async function createUser(userRef, data) {
+          const response = await axios.post(userRef, data);
+          console.log("data : ", response);
+        }
+        createUser(userRef, userData);
+      } catch (error) {
+        console.log(error.message);
+        console.log(error.response.data);
+        console.log(error.response.status);
+      }
+
       dispatch(
         addNotification({
           id: Date.now(),
