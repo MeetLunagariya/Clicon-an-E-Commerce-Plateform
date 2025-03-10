@@ -65,6 +65,7 @@ const SignUp = () => {
 
       // to store user's SignUp data in firestore
       const userRef = `${config.API_URL}/users/${user.uid}/user_data?documentId=SignUp_data`;
+      const cartRef = `${config.API_URL}/users/${user.uid}/user_data?documentId=Cart`;
       const userData = {
         fields: {
           username: {
@@ -84,6 +85,19 @@ const SignUp = () => {
           console.log("data : ", response);
         }
         createUser(userRef, userData);
+      } catch (error) {
+        console.log(error.message);
+        console.log(error.response.data);
+        console.log(error.response.status);
+      }
+
+      // to add empty cart for registered User...
+      try {
+        async function createCart(cartRef) {
+          const response = await axios.post(cartRef);
+          console.log("data : ", response);
+        }
+        createCart(cartRef);
       } catch (error) {
         console.log(error.message);
         console.log(error.response.data);

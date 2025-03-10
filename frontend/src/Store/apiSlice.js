@@ -7,7 +7,7 @@ export const usersApi = createApi({
   endpoints: (builder) => ({
     fetchProducts: builder.query({
       query: () => `products`,
-    }),
+    })
   }),
 });
 

@@ -68,7 +68,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
         )}
         <div className="p-3">
           <img
-            src={fields.image.stringValue}
+            src={fields?.image.stringValue}
             alt="Image of Phone"
             className="w-full h-full"
           />
@@ -80,7 +80,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
           >
             {badge_value.val === "discount" ? (
               <div className="flex text-black font-semibold gap-1">
-                <span>{fields.disc_percentage}%</span>
+                <span>{fields?.disc_percentage.integerValue}%</span>
                 <span>off</span>
               </div>
             ) : (
@@ -92,23 +92,23 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
       <div className="flex flex-col gap-[8px] justify-start overflow-hidden text-sm">
         <div className="flex gap-1">
           <span className="h-[16px]">
-            <Rating value={fields.star_value.integerValue} readOnly />
+            <Rating value={fields?.star_value.integerValue} readOnly />
           </span>
-          <span className="text-[#77878F]">({fields.review_count.integerValue})</span>
+          <span className="text-[#77878F]">({fields?.review_count.integerValue})</span>
         </div>
         <div className="text-[#191C1F] font-semibold line-clamp-2">
-          {fields.description.stringValue}
+          {fields?.description.stringValue}
         </div>
         <div className="text-[#2DA5F3] font-semibold">
           {badge_value?.val === "discount" ? (
             <div className="flex font-semibold gap-1">
               <span className="text-[#929FA5] line-through">
-                ${fields.price.integerValue}
+                ${fields?.price.integerValue}
               </span>
-              <span>${fields.disc_price.integerValue}</span>
+              <span>${fields?.disc_price.integerValue}</span>
             </div>
           ) : (
-            <span>${fields.price.integerValue}</span>
+            <span>${fields?.price.integerValue}</span>
           )}
         </div>
       </div>
