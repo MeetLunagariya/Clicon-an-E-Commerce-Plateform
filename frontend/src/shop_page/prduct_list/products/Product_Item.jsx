@@ -7,7 +7,13 @@ import { Eye2, HeartBlack, ShoppingCartSimple2 } from "../../../assets/svg";
 import { addToCart } from "../../../Store/cartSlice";
 import { addToWishlist } from "../../../Store/wishlistSlice";
 import { addNotification } from "../../../Store/notificationSlice";
-import { Database, getDatabase, ref, runTransaction, update } from "firebase/database";
+import {
+  Database,
+  getDatabase,
+  ref,
+  runTransaction,
+  update,
+} from "firebase/database";
 
 const hoverIcon = [
   { icon: <HeartBlack />, value: "heart" },
@@ -18,34 +24,8 @@ const hoverIcon = [
 const Product_Item = ({ activeCard, product, badge_value }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const db = getDatabase();
-
-  // async function addToCart(product) {
-  //   console.log("newItem", product);
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   const uid = user.value.uid;
-  //   const userCartRef = ref(db, `users/${uid}/cartItems`);
-
-  //   try {
-  //     console.log("userCartRef", userCartRef);
-  //     await update(userCartRef, (prevCartItems) => {
-  //       console.log("prevCartItems", prevCartItems);
-  //       const newCartItems = (prevCartItems || []).concat(product);
-  //       return { cartItems: newCartItems };
-  //     });
-  //     dispatch(
-  //       addNotification({
-  //         id: Date.now(),
-  //         text: "Added to firebase",
-  //       })
-  //     );
-  //     console.log("Item added to cart successfully!");
-  //   } catch (error) {
-  //     console.error("Error adding item to cart:", error);
-  //   }
-  // }
-
-
+  const { fields } = product;
+  // console.log("fields", fields);
 
   return (
     <>
@@ -59,7 +39,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
                 onClick={(e) => {
                   e.stopPropagation();
                   if (icon.value === "heart") {
-                    dispatch(addToWishlist(product));
+                    dispatch(addToWishlist(fields));
                     dispatch(
                       addNotification({
                         id: Date.now(),
@@ -67,15 +47,15 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
                       })
                     );
                   } else if (icon.value === "cart") {
-                    dispatch(addToCart({product}))
+                    dispatch(addToCart({ fields }));
                     dispatch(
-                     addNotification({
-                       id: Date.now(),
-                       text: "Added to Cart",
-                     })
-                   );
+                      addNotification({
+                        id: Date.now(),
+                        text: "Added to Cart",
+                      })
+                    );
                   } else if (icon.value === "eye") {
-                    navigate(`./product_page/${product.id}`);
+                    navigate(`./product_page/${fields.id.integerValue}`);
                   }
                 }}
               >
@@ -88,7 +68,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
         )}
         <div className="p-3">
           <img
-            src={product.image}
+            src={fields.image.stringValue}
             alt="Image of Phone"
             className="w-full h-full"
           />
@@ -100,7 +80,7 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
           >
             {badge_value.val === "discount" ? (
               <div className="flex text-black font-semibold gap-1">
-                <span>{product.disc_percentage}%</span>
+                <span>{fields.disc_percentage}%</span>
                 <span>off</span>
               </div>
             ) : (
@@ -112,23 +92,23 @@ const Product_Item = ({ activeCard, product, badge_value }) => {
       <div className="flex flex-col gap-[8px] justify-start overflow-hidden text-sm">
         <div className="flex gap-1">
           <span className="h-[16px]">
-            <Rating value={product.star_value} readOnly />
+            <Rating value={fields.star_value.integerValue} readOnly />
           </span>
-          <span className="text-[#77878F]">({product.review_count})</span>
+          <span className="text-[#77878F]">({fields.review_count.integerValue})</span>
         </div>
         <div className="text-[#191C1F] font-semibold line-clamp-2">
-          {product.description}
+          {fields.description.stringValue}
         </div>
         <div className="text-[#2DA5F3] font-semibold">
           {badge_value?.val === "discount" ? (
             <div className="flex font-semibold gap-1">
               <span className="text-[#929FA5] line-through">
-                ${product.price}
+                ${fields.price.integerValue}
               </span>
-              <span>${product.disc_price}</span>
+              <span>${fields.disc_price.integerValue}</span>
             </div>
           ) : (
-            <span>${product.price}</span>
+            <span>${fields.price.integerValue}</span>
           )}
         </div>
       </div>

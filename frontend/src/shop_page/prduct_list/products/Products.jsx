@@ -40,8 +40,6 @@ const Products = () => {
     }
   };
 
-
-
   // console.log("Page : " + currentPage.current);
   // console.log("start : " + start_end.start + " end : " + start_end.end);
   return (
